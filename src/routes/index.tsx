@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Building2, FlaskConical } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
-import { ProblemContrast } from "@/components/site/problem-contrast";
+import { WhyStory } from "@/components/site/why-story";
 import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { OrderTracker } from "@/components/site/order-tracker";
