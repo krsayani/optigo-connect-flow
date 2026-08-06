@@ -91,9 +91,13 @@ export function HeroFlow() {
             return (
               <div
                 key={n.id}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${n.x}%`, top: `${n.y}%` }}
+                className="absolute -translate-y-1/2"
+                style={{
+                  top: `${n.y}%`,
+                  ...(n.side === "left" ? { left: "3%" } : { right: "3%" }),
+                }}
               >
+
                 <div
                   className={`flex items-center gap-2 rounded-xl border bg-background/95 px-2.5 py-2 shadow-card transition-all duration-500 sm:px-3.5 sm:py-2.5 ${
                     active
