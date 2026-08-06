@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ForLabsRouteImport } from './routes/for-labs'
+import { Route as ForPracticesRouteImport } from './routes/for-practices'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
 import { Route as PlatformRouteImport } from './routes/platform'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +21,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForLabsRoute = ForLabsRouteImport.update({
+  id: '/for-labs',
+  path: '/for-labs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForPracticesRoute = ForPracticesRouteImport.update({
+  id: '/for-practices',
+  path: '/for-practices',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlatformRoute = PlatformRouteImport.update({
@@ -31,31 +49,62 @@ const PlatformRoute = PlatformRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/how-it-works' | '/platform'
+  fullPaths:
+    | '/'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/platform'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/how-it-works' | '/platform'
-  id: '__root__' | '/' | '/how-it-works' | '/platform'
+  to:
+    | '/'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/platform'
+  id:
+    | '__root__'
+    | '/'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/platform'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForLabsRoute: typeof ForLabsRoute
+  ForPracticesRoute: typeof ForPracticesRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  IntegrationsRoute: typeof IntegrationsRoute
   PlatformRoute: typeof PlatformRoute
 }
 
@@ -68,11 +117,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for-labs': {
+      id: '/for-labs'
+      path: '/for-labs'
+      fullPath: '/for-labs'
+      preLoaderRoute: typeof ForLabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-practices': {
+      id: '/for-practices'
+      path: '/for-practices'
+      fullPath: '/for-practices'
+      preLoaderRoute: typeof ForPracticesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/how-it-works': {
       id: '/how-it-works'
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/platform': {
@@ -87,7 +157,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForLabsRoute: ForLabsRoute,
+  ForPracticesRoute: ForPracticesRoute,
   HowItWorksRoute: HowItWorksRoute,
+  IntegrationsRoute: IntegrationsRoute,
   PlatformRoute: PlatformRoute,
 }
 export const routeTree = rootRouteImport
