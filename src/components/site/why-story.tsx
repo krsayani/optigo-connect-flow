@@ -56,32 +56,17 @@ function StepLabel({ n, children }: { n: string; children: React.ReactNode }) {
 
 /* ---------------- STEP 1: re-entry ---------------- */
 
-const fields = [
-  "Prescription",
-  "Lens design",
-  "Lens material",
-  "Coatings",
-  "Measurements",
-  "Frame information",
-];
-
 function StepReentry() {
   const { ref, inView } = useInViewOnce<HTMLDivElement>(0.3);
   return (
     <div ref={ref} className="story-3d">
-      <div className="grid gap-5 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-        {/* practice / EHR card */}
+      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
         <div className="pop-card rounded-2xl border border-border bg-background p-5 shadow-float">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
-              <ClipboardList className="h-3.5 w-3.5 text-electric" /> Practice / EHR
-            </span>
-            <span className="rounded-full bg-accent px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-electric">
-              complete
-            </span>
-          </div>
+          <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
+            <ClipboardList className="h-3.5 w-3.5 text-electric" /> Practice / EHR
+          </span>
           <div className="mt-4 space-y-1.5">
-            {fields.map((f) => (
+            {["Prescription", "Lens design", "Measurements"].map((f) => (
               <div
                 key={f}
                 className="flex items-center justify-between rounded-lg border border-border/70 bg-mist px-3 py-2 text-[11.5px] text-navy/80"
@@ -93,30 +78,23 @@ function StepReentry() {
           </div>
         </div>
 
-        {/* manual re-entry */}
         <div className="flex items-center justify-center py-2">
           <div className="flex flex-col items-center gap-2">
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-navy shadow-card animate-buzz">
               <Keyboard className="h-4 w-4" />
             </span>
             <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground">
-              manual entry
+              re-entered
             </span>
           </div>
         </div>
 
-        {/* lab ordering portal */}
         <div className="pop-card rounded-2xl border border-dashed border-border bg-muted/50 p-5">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
-              <Glasses className="h-3.5 w-3.5 text-muted-foreground" /> Lab ordering workflow
-            </span>
-            <span className="rounded-full bg-destructive/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-destructive">
-              re-entry
-            </span>
-          </div>
+          <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
+            <Glasses className="h-3.5 w-3.5 text-muted-foreground" /> Lab portal
+          </span>
           <div className="mt-4 space-y-1.5">
-            {fields.map((f, i) => (
+            {["Prescription", "Lens design", "Measurements"].map((f, i) => (
               <div
                 key={f}
                 className="flex items-center gap-2 rounded-lg border border-border/70 bg-background/70 px-3 py-2"
@@ -136,37 +114,29 @@ function StepReentry() {
           </div>
         </div>
       </div>
-      <p className="mt-5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground">
-        Information already exists. Staff still has work to do.
-      </p>
     </div>
   );
 }
 
 /* ---------------- STEP 2: black box ---------------- */
 
-const stages = [
-  "Received?",
-  "In production?",
-  "Surfacing?",
-  "Coating?",
-  "Quality inspection?",
-  "Shipped?",
-];
-
 function StepBlackBox() {
   return (
-    <div className="story-3d relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-10">
+    <div className="story-3d relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8">
       <div className="absolute inset-0 grid-mesh-dark opacity-60" />
       <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-electric/20 blur-3xl animate-drift" />
-      <div className="relative">
-        <h3 className="max-w-lg text-2xl font-bold text-on-dark sm:text-3xl">
-          Then the order disappears into the process.
-        </h3>
-
-        <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-5">
+      <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold text-on-dark sm:text-2xl">
+            Then the order disappears into the process.
+          </h3>
+          <p className="mt-3 text-sm text-on-dark-muted">
+            The practice and patient often don't have one place to follow the journey.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
           {["Practice", "Lab"].map((l) => (
-            <div key={l} className="flex items-center gap-3 sm:gap-5">
+            <div key={l} className="flex items-center gap-3">
               <div className="pop-card rounded-xl border border-white/12 bg-white/[0.06] px-4 py-3 text-xs font-semibold text-on-dark backdrop-blur-md">
                 {l}
               </div>
@@ -180,25 +150,6 @@ function StepBlackBox() {
             </div>
           </div>
         </div>
-
-        <p className="mt-8 text-sm text-on-dark-muted">
-          The order has been submitted. But where is it now?
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {stages.map((s, i) => (
-            <span
-              key={s}
-              className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[11px] text-on-dark/80"
-              style={{ animation: `pulse-soft ${3 + i * 0.4}s ease-in-out infinite` }}
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-on-dark-muted">
-          The practice and patient often don't have one simple place to follow the entire
-          journey.
-        </p>
       </div>
     </div>
   );
@@ -209,9 +160,7 @@ function StepBlackBox() {
 const chores = [
   "Check the practice system",
   "Check another portal",
-  "Look for the order",
   "Contact the laboratory",
-  "Determine the status",
   "Respond to the patient",
 ];
 
@@ -227,30 +176,30 @@ function StepCall() {
   const ss = String(secs % 60).padStart(2, "0");
 
   return (
-    <div ref={ref} className="story-3d grid gap-8 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
+    <div ref={ref} className="story-3d grid gap-8 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-12">
       {/* phone */}
-      <div className="mx-auto w-full max-w-[300px]">
+      <div className="mx-auto w-full max-w-[280px]">
         <div className="pop-card-tilt rounded-[2rem] border border-border bg-background p-3 shadow-float">
           <div className="rounded-[1.5rem] surface-dark p-5">
             <div className="flex justify-between font-mono text-[9px] text-on-dark-muted">
               <span>Incoming call</span>
               <span>now</span>
             </div>
-            <div className="mt-8 flex flex-col items-center text-center">
-              <span className="relative flex h-16 w-16 items-center justify-center rounded-full border border-aqua/40 bg-white/[0.08]">
+            <div className="mt-6 flex flex-col items-center text-center">
+              <span className="relative flex h-14 w-14 items-center justify-center rounded-full border border-aqua/40 bg-white/[0.08]">
                 <span className="absolute inset-0 rounded-full border border-aqua/40 animate-ring-ping" />
-                <Phone className="h-6 w-6 text-aqua" />
+                <Phone className="h-5 w-5 text-aqua" />
               </span>
-              <p className="mt-5 text-sm font-semibold text-on-dark">Patient</p>
-              <p className="mt-3 text-[12.5px] leading-relaxed text-on-dark-muted">
-                “Hi, I ordered my glasses last week. Are they ready yet?”
+              <p className="mt-4 text-sm font-semibold text-on-dark">Patient</p>
+              <p className="mt-2 text-[12px] leading-relaxed text-on-dark-muted">
+                “Are my glasses ready yet?”
               </p>
             </div>
-            <div className="mt-8 flex justify-center gap-4">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/90">
+            <div className="mt-6 flex justify-center gap-4">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-destructive/90">
                 <X className="h-4 w-4 text-on-dark" />
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-aqua animate-pulse-soft">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-aqua animate-pulse-soft">
                 <Phone className="h-4 w-4 text-navy-deep" />
               </span>
             </div>
@@ -262,7 +211,7 @@ function StepCall() {
         <h3 className="text-2xl font-bold text-navy sm:text-3xl">
           One simple question creates more work.
         </h3>
-        <div className="mt-6 grid gap-2 sm:grid-cols-2">
+        <div className="mt-5 grid gap-2 sm:grid-cols-2">
           {chores.map((c, i) => (
             <div
               key={c}
@@ -281,20 +230,15 @@ function StepCall() {
           ))}
         </div>
 
-        <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-border bg-mist px-4 py-3">
+        <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-border bg-mist px-4 py-3">
           <span className="h-1.5 w-1.5 rounded-full bg-destructive animate-pulse-soft" />
           <span className="font-mono text-lg font-semibold tabular-nums text-navy">
             {mm}:{ss}
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-            staff time, one order
+            staff time, one call
           </span>
         </div>
-
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          Every status check takes staff away from the patient in front of them. One phone call
-          isn't the problem—it's the same workflow repeated across hundreds of optical orders.
-        </p>
       </div>
     </div>
   );
@@ -302,24 +246,15 @@ function StepCall() {
 
 /* ---------------- STEP 4: multiply ---------------- */
 
-const noise = [
-  "Manual workflows",
-  "Order status checks",
-  "Patient calls",
-  "Lab communication",
-  "Disconnected systems",
-  "Staff interruptions",
-];
-
 const clutter = [
-  { t: "Status check", l: "6%", top: "4%", d: 0 },
-  { t: "Patient call", l: "52%", top: "0%", d: 200 },
-  { t: "Where is order #4182?", l: "24%", top: "26%", d: 420 },
-  { t: "Re-enter Rx", l: "66%", top: "30%", d: 640 },
-  { t: "Lab portal login", l: "8%", top: "52%", d: 820 },
-  { t: "Callback requested", l: "44%", top: "58%", d: 1000 },
-  { t: "Missing coating info", l: "70%", top: "72%", d: 1180 },
-  { t: "Follow up tomorrow", l: "18%", top: "78%", d: 1340 },
+  { t: "Status check", l: "6%", top: "8%", d: 0 },
+  { t: "Patient call", l: "52%", top: "4%", d: 200 },
+  { t: "Where is order #4182?", l: "24%", top: "30%", d: 420 },
+  { t: "Re-enter Rx", l: "66%", top: "34%", d: 640 },
+  { t: "Lab portal login", l: "8%", top: "56%", d: 820 },
+  { t: "Callback requested", l: "44%", top: "62%", d: 1000 },
+  { t: "Missing coating info", l: "70%", top: "76%", d: 1180 },
+  { t: "Follow up tomorrow", l: "18%", top: "80%", d: 1340 },
 ];
 
 function StepMultiply() {
@@ -337,55 +272,39 @@ function StepMultiply() {
   }, [inView]);
 
   return (
-    <div ref={ref} className="story-3d">
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_1.2fr] lg:items-center">
-        <div>
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-6xl font-extrabold tabular-nums text-gradient sm:text-7xl">
-              {count}
-            </span>
-            <span className="text-sm font-semibold text-muted-foreground">
-              status questions
-            </span>
-          </div>
-          <p className="mt-5 text-xl font-bold leading-snug text-navy sm:text-2xl">
-            Multiply it across every order. Every week. Every location.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {noise.map((n) => (
-              <span
-                key={n}
-                className="rounded-full border border-border bg-muted px-2.5 py-1 text-[11px] text-muted-foreground"
-              >
-                {n}
-              </span>
-            ))}
-          </div>
+    <div ref={ref} className="story-3d grid gap-6 lg:grid-cols-[minmax(0,1fr)_1.2fr] lg:items-center">
+      <div>
+        <div className="flex items-baseline gap-3">
+          <span className="font-display text-5xl font-extrabold tabular-nums text-gradient sm:text-6xl">
+            {count}
+          </span>
+          <span className="text-sm font-semibold text-muted-foreground">status questions</span>
         </div>
+        <p className="mt-4 text-lg font-bold leading-snug text-navy sm:text-xl">
+          Multiply it across every order. Every week. Every location.
+        </p>
+      </div>
 
-        <div className="relative h-[320px] overflow-hidden rounded-3xl border border-border bg-mist sm:h-[360px]">
-          <div className="absolute inset-0 grid-mesh opacity-70" />
-          {clutter.map((c) => (
-            <div
-              key={c.t}
-              className="pop-card absolute flex items-center gap-2 rounded-xl border border-border bg-background/95 px-3 py-2 shadow-card backdrop-blur"
-              style={{
-                left: c.l,
-                top: c.top,
-                opacity: inView ? 1 : 0,
-                transform: inView ? "none" : "scale(0.85) translateY(14px)",
-                transition: `all 600ms cubic-bezier(.22,1,.36,1) ${c.d}ms`,
-                animation: inView ? `float-soft ${4 + (c.d % 5) * 0.4}s ease-in-out infinite` : undefined,
-              }}
-            >
-              <Bell className="h-3 w-3 text-destructive" />
-              <span className="whitespace-nowrap text-[11px] font-medium text-navy/80">
-                {c.t}
-              </span>
-            </div>
-          ))}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-mist to-transparent" />
-        </div>
+      <div className="relative h-[260px] overflow-hidden rounded-3xl border border-border bg-mist sm:h-[300px]">
+        <div className="absolute inset-0 grid-mesh opacity-70" />
+        {clutter.map((c) => (
+          <div
+            key={c.t}
+            className="pop-card absolute flex items-center gap-2 rounded-xl border border-border bg-background/95 px-3 py-2 shadow-card backdrop-blur"
+            style={{
+              left: c.l,
+              top: c.top,
+              opacity: inView ? 1 : 0,
+              transform: inView ? "none" : "scale(0.85) translateY(14px)",
+              transition: `all 600ms cubic-bezier(.22,1,.36,1) ${c.d}ms`,
+              animation: inView ? `float-soft ${4 + (c.d % 5) * 0.4}s ease-in-out infinite` : undefined,
+            }}
+          >
+            <Bell className="h-3 w-3 text-destructive" />
+            <span className="whitespace-nowrap text-[11px] font-medium text-navy/80">{c.t}</span>
+          </div>
+        ))}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-mist to-transparent" />
       </div>
     </div>
   );
@@ -398,11 +317,11 @@ function BetterWay() {
   return (
     <div
       ref={ref}
-      className="relative flex min-h-[34vh] flex-col items-center justify-center px-5 py-20 text-center sm:py-24"
+      className="relative flex min-h-[28vh] flex-col items-center justify-center px-5 py-16 text-center sm:py-20"
     >
       <p
         className={cn(
-          "text-3xl font-bold leading-tight text-navy transition-all duration-1000 sm:text-5xl",
+          "text-3xl font-bold leading-tight text-navy transition-all duration-1000 sm:text-4xl",
           shown ? "opacity-100 blur-0" : "translate-y-3 opacity-0 blur-sm",
         )}
       >
@@ -410,11 +329,11 @@ function BetterWay() {
       </p>
       <div
         className={cn(
-          "mt-14 transition-all duration-1000 delay-700",
+          "mt-10 transition-all duration-1000 delay-500",
           shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
         )}
       >
-        <span className="font-display text-4xl font-extrabold tracking-tight text-gradient sm:text-6xl">
+        <span className="font-display text-4xl font-extrabold tracking-tight text-gradient sm:text-5xl">
           OptiGo
         </span>
       </div>
@@ -427,10 +346,10 @@ function BetterWay() {
 const chain = ["Practice / EHR", "OptiGo", "Optical Lab", "OptiGo", "Practice + Patient"];
 
 const updates = [
-  "Your order has been received.",
-  "Your lenses are in production.",
-  "Your order is progressing.",
-  "Your glasses are ready for pickup.",
+  "Order received.",
+  "In production.",
+  "Progressing.",
+  "Ready for pickup.",
 ];
 
 function OptigoFlow() {
@@ -444,7 +363,7 @@ function OptigoFlow() {
 
   return (
     <div ref={ref} className="story-3d">
-      <div className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-10">
+      <div className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8">
         <div className="absolute inset-0 grid-mesh-dark opacity-60" />
         <div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-aqua/15 blur-3xl animate-drift" />
         <div className="relative flex flex-col gap-3 lg:flex-row lg:items-center">
@@ -462,7 +381,7 @@ function OptigoFlow() {
                 {c}
               </div>
               {i < chain.length - 1 && (
-                <div className="relative hidden h-px w-10 bg-white/15 lg:block">
+                <div className="relative hidden h-px w-8 bg-white/15 lg:block">
                   <span
                     className={cn(
                       "absolute -top-[3px] h-1.5 w-1.5 rounded-full bg-aqua transition-all duration-700",
@@ -475,23 +394,17 @@ function OptigoFlow() {
           ))}
         </div>
 
-        <div className="relative mt-10 grid gap-8 lg:grid-cols-[1.1fr_minmax(0,300px)] lg:items-center">
+        <div className="relative mt-8 grid gap-8 lg:grid-cols-[1.1fr_minmax(0,280px)] lg:items-center">
           <div>
-            <h3 className="text-2xl font-bold text-on-dark sm:text-3xl">
-              One connected workflow.
-            </h3>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-on-dark-muted">
-              OptiGo is being built to streamline the connection between practice systems,
-              optical laboratories, staff, and patients—reducing unnecessary manual work while
-              bringing better visibility to the optical order journey.
-            </p>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-on-dark-muted/70">
-              Representative of the intended product experience.
+            <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One connected workflow.</h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-dark-muted">
+              OptiGo streamlines the connection between practices, labs, staff, and patients—
+              reducing manual work and bringing visibility to every order.
             </p>
           </div>
 
           {/* patient phone with status updates */}
-          <div className="mx-auto w-full max-w-[300px]">
+          <div className="mx-auto w-full max-w-[280px]">
             <div className="pop-card-tilt rounded-[2rem] border border-white/12 bg-white/[0.06] p-3 backdrop-blur-md">
               <div className="rounded-[1.5rem] bg-background p-4">
                 <div className="flex items-center justify-between">
@@ -534,8 +447,6 @@ const before = [
   "Manual follow-up",
   "Limited visibility",
   "Patient status calls",
-  "Staff interruptions",
-  "Multiple systems",
 ];
 
 const after = [
@@ -543,8 +454,6 @@ const after = [
   "Automated data movement",
   "Order visibility",
   "Proactive communication",
-  "Less repetitive follow-up",
-  "One modern experience",
 ];
 
 function Comparison() {
@@ -553,7 +462,7 @@ function Comparison() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Reveal className="pop-card rounded-3xl border border-border bg-background p-6 sm:p-8">
           <p className="eyebrow">Before</p>
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-5 space-y-3">
             {before.map((b) => (
               <li key={b} className="flex items-center gap-3 text-sm text-muted-foreground">
                 <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-muted">
@@ -572,7 +481,7 @@ function Comparison() {
           <div className="absolute inset-0 grid-mesh-dark opacity-60" />
           <div className="relative">
             <p className="eyebrow text-aqua">OptiGo</p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-5 space-y-3">
               {after.map((a) => (
                 <li key={a} className="flex items-center gap-3 text-sm text-on-dark">
                   <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-aqua">
@@ -586,12 +495,12 @@ function Comparison() {
         </Reveal>
       </div>
 
-      <Reveal delay={160} className="mt-10 text-center">
-        <p className="mx-auto max-w-3xl text-2xl font-bold leading-snug text-navy sm:text-4xl">
+      <Reveal delay={160} className="mt-8 text-center">
+        <p className="mx-auto max-w-3xl text-2xl font-bold leading-snug text-navy sm:text-3xl">
           Less entering. Less checking. Less calling.{" "}
           <span className="text-gradient">More visibility.</span>
         </p>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <CTAButton to="/how-it-works">See How OptiGo Works</CTAButton>
         </div>
       </Reveal>
@@ -604,7 +513,7 @@ function Comparison() {
 export function WhyStory() {
   return (
     <>
-      <section className="relative overflow-hidden px-5 py-20 sm:px-8 sm:py-28">
+      <section className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-22">
         <div className="absolute inset-0 grid-mesh opacity-40" />
         <div className="relative mx-auto max-w-7xl">
           <Reveal className="max-w-3xl">
@@ -613,37 +522,37 @@ export function WhyStory() {
               A patient orders glasses.{" "}
               <span className="text-gradient">That should be the easy part.</span>
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              The exam is finished. The patient has selected their frames and lenses. They've
-              paid. But behind the counter, the work is just beginning.
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              The exam is done. The patient has paid. But behind the counter, the real work is just
+              beginning.
             </p>
           </Reveal>
 
-          <div className="mt-16 space-y-16 sm:space-y-24">
+          <div className="mt-12 space-y-12 sm:space-y-16">
             <Reveal>
               <StepLabel n="01">The re-entry</StepLabel>
-              <div className="mt-6">
+              <div className="mt-5">
                 <StepReentry />
               </div>
             </Reveal>
 
             <Reveal>
               <StepLabel n="02">The black box</StepLabel>
-              <div className="mt-6">
+              <div className="mt-5">
                 <StepBlackBox />
               </div>
             </Reveal>
 
             <Reveal>
               <StepLabel n="03">The interruption</StepLabel>
-              <div className="mt-6">
+              <div className="mt-5">
                 <StepCall />
               </div>
             </Reveal>
 
             <Reveal>
               <StepLabel n="04">The multiplier</StepLabel>
-              <div className="mt-6">
+              <div className="mt-5">
                 <StepMultiply />
               </div>
             </Reveal>
@@ -657,9 +566,9 @@ export function WhyStory() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-mist px-5 py-20 sm:px-8 sm:py-28">
+      <section className="relative overflow-hidden bg-mist px-5 py-16 sm:px-8 sm:py-22">
         <div className="absolute inset-0 grid-mesh opacity-50" />
-        <div className="relative mx-auto max-w-7xl space-y-16 sm:space-y-24">
+        <div className="relative mx-auto max-w-7xl space-y-12 sm:space-y-16">
           <Reveal>
             <OptigoFlow />
           </Reveal>
