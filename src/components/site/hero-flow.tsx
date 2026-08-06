@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Building2, Cpu, FlaskConical, HeartPulse } from "lucide-react";
 
 const NODES = [
-  { id: "practice", label: "Practice", icon: Building2, x: 12, y: 16 },
-  { id: "ehr", label: "EHR", icon: Cpu, x: 12, y: 78 },
-  { id: "lab", label: "Optical Lab", icon: FlaskConical, x: 88, y: 16 },
-  { id: "patient", label: "Patient", icon: HeartPulse, x: 88, y: 78 },
+  { id: "practice", label: "Practice", icon: Building2, side: "left", y: 16 },
+  { id: "ehr", label: "EHR", icon: Cpu, side: "left", y: 78 },
+  { id: "lab", label: "Optical Lab", icon: FlaskConical, side: "right", y: 16 },
+  { id: "patient", label: "Patient", icon: HeartPulse, side: "right", y: 78 },
 ] as const;
+
 
 const PATHS = [
   { id: "p1", d: "M 14 20 C 34 22, 38 44, 50 47", dir: 1 },

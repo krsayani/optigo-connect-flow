@@ -154,6 +154,45 @@ export function BuiltForMore() {
           <div className="relative mx-auto aspect-square w-full max-w-[440px]">
             <div className="absolute inset-0 rounded-3xl border border-border bg-mist" />
             <div className="absolute inset-0 grid-mesh rounded-3xl opacity-70" />
+            <div className="absolute left-1/2 top-1/2 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/10 blur-3xl" />
+
+            {/* connective rays */}
+            <svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 h-full w-full"
+              aria-hidden="true"
+            >
+              {[20, 65, 110, 200, 245, 290].map((a, i) => {
+                const rad = (a * Math.PI) / 180;
+                const r = i === 1 || i === 4 ? 44 : 35;
+                return (
+                  <g key={a}>
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2={50 + Math.cos(rad) * r}
+                      y2={50 + Math.sin(rad) * r}
+                      stroke="oklch(0.58 0.19 258 / 0.18)"
+                      strokeWidth="0.4"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2={50 + Math.cos(rad) * r}
+                      y2={50 + Math.sin(rad) * r}
+                      stroke="oklch(0.78 0.11 195)"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeDasharray="2 26"
+                      vectorEffect="non-scaling-stroke"
+                      style={{ animation: `dash-move ${2.6 + i * 0.3}s linear infinite` }}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
             {/* core */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-electric/30 bg-navy shadow-glow">
@@ -164,24 +203,24 @@ export function BuiltForMore() {
             </div>
             {/* abstract, unlabeled future surfaces */}
             {[
-              { r: 34, a: 20, s: 46, b: 3 },
-              { r: 36, a: 110, s: 40, b: 5 },
-              { r: 33, a: 200, s: 52, b: 4 },
-              { r: 37, a: 290, s: 38, b: 6 },
-              { r: 44, a: 65, s: 30, b: 8 },
-              { r: 45, a: 245, s: 32, b: 8 },
+              { r: 35, a: 20, s: 46, b: 0 },
+              { r: 35, a: 110, s: 40, b: 1 },
+              { r: 35, a: 200, s: 52, b: 0 },
+              { r: 35, a: 290, s: 38, b: 1 },
+              { r: 44, a: 65, s: 30, b: 2 },
+              { r: 44, a: 245, s: 32, b: 2 },
             ].map((n, i) => {
               const rad = (n.a * Math.PI) / 180;
               return (
                 <div
                   key={i}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-electric/20 bg-background/70"
+                  className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-electric/25 bg-background/80 shadow-card"
                   style={{
                     left: `${50 + Math.cos(rad) * n.r}%`,
                     top: `${50 + Math.sin(rad) * n.r}%`,
                     width: n.s,
                     height: n.s,
-                    filter: `blur(${n.b}px)`,
+                    filter: n.b ? `blur(${n.b}px)` : undefined,
                     animation: `pulse-soft ${4 + i * 0.6}s ease-in-out infinite`,
                   }}
                 />
@@ -191,6 +230,7 @@ export function BuiltForMore() {
               Built for what's next
             </div>
           </div>
+
         </Reveal>
       </div>
     </Section>
