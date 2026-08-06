@@ -101,7 +101,7 @@ export function CTAButton({
 
   return (
     <Link
-      to={to}
+      to={to as "/"}
       className={cn(
         "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300",
         styles,
@@ -166,5 +166,38 @@ export function FeatureCard({
         {body}
       </p>
     </div>
+  );
+}
+
+export function PageHero({
+  eyebrow,
+  title,
+  body,
+  children,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  body?: ReactNode;
+  children?: ReactNode;
+}) {
+  return (
+    <section className="relative overflow-hidden border-b border-border px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
+      <div className="absolute inset-0 surface-hero" />
+      <div className="absolute inset-0 grid-mesh opacity-60" />
+      <div className="relative mx-auto max-w-7xl">
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow">{eyebrow}</p>
+          <h1 className="mt-4 text-4xl font-bold leading-[1.05] text-navy sm:text-5xl lg:text-[3.4rem]">
+            {title}
+          </h1>
+          {body && (
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {body}
+            </p>
+          )}
+        </Reveal>
+        {children && <Reveal delay={120} className="mt-9">{children}</Reveal>}
+      </div>
+    </section>
   );
 }
