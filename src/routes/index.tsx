@@ -88,15 +88,9 @@ function Index() {
 
       <EcosystemStrip />
 
-      {/* PROBLEM */}
-      <Section>
-        <SectionHeading
-          eyebrow="The problem"
-          title="Optical ordering shouldn't be this complicated."
-          body="Practice staff work across EHRs, lab portals, phone calls, emails, and manual data entry just to get one pair of glasses ordered, tracked, and communicated."
-        />
-        <ProblemContrast />
-      </Section>
+      {/* WHY OPTIGO EXISTS — storytelling */}
+      <WhyStory />
+
 
       {/* HOW IT WORKS */}
       <Section tone="mist">
