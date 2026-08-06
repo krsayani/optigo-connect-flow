@@ -41,7 +41,7 @@ function Field({
   name: string;
   type?: string;
   required?: boolean;
-  error?: string;
+  error?: string | undefined;
   placeholder?: string;
   className?: string;
 }) {
@@ -66,7 +66,7 @@ function Field({
   );
 }
 
-function TextArea({ label, name, error }: { label: string; name: string; error?: string }) {
+function TextArea({ label, name, error }: { label: string; name: string; error?: string | undefined }) {
   return (
     <label className="block sm:col-span-2">
       <span className="text-[12px] font-semibold text-navy">{label}</span>
