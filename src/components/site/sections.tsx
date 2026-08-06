@@ -151,7 +151,7 @@ export function BuiltForMore() {
         </div>
 
         <Reveal delay={120} className="relative">
-          <div className="relative mx-auto aspect-square w-full max-w-[440px]">
+          <div className="relative mx-auto aspect-square w-full max-w-[440px] overflow-hidden rounded-3xl">
             <div className="absolute inset-0 rounded-3xl border border-border bg-mist" />
             <div className="absolute inset-0 grid-mesh rounded-3xl opacity-70" />
             <div className="absolute left-1/2 top-1/2 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/10 blur-3xl" />
