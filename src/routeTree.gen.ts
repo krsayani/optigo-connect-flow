@@ -10,15 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ForLabsRouteImport } from './routes/for-labs'
 import { Route as ForPracticesRouteImport } from './routes/for-practices'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PlatformRouteImport } from './routes/platform'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForLabsRoute = ForLabsRouteImport.update({
@@ -41,6 +54,11 @@ const IntegrationsRoute = IntegrationsRouteImport.update({
   path: '/integrations',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlatformRoute = PlatformRouteImport.update({
   id: '/platform',
   path: '/platform',
@@ -49,62 +67,83 @@ const PlatformRoute = PlatformRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/partner'
     | '/platform'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/partner'
     | '/platform'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/partner'
     | '/platform'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DemoRoute: typeof DemoRoute
   ForLabsRoute: typeof ForLabsRoute
   ForPracticesRoute: typeof ForPracticesRoute
   HowItWorksRoute: typeof HowItWorksRoute
   IntegrationsRoute: typeof IntegrationsRoute
+  PartnerRoute: typeof PartnerRoute
   PlatformRoute: typeof PlatformRoute
 }
 
@@ -115,6 +154,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/for-labs': {
@@ -145,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/platform': {
       id: '/platform'
       path: '/platform'
@@ -157,10 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DemoRoute: DemoRoute,
   ForLabsRoute: ForLabsRoute,
   ForPracticesRoute: ForPracticesRoute,
   HowItWorksRoute: HowItWorksRoute,
   IntegrationsRoute: IntegrationsRoute,
+  PartnerRoute: PartnerRoute,
   PlatformRoute: PlatformRoute,
 }
 export const routeTree = rootRouteImport
