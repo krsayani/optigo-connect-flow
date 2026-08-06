@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Building2, FlaskConical } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
-import { ProblemContrast } from "@/components/site/problem-contrast";
+import { WhyStory } from "@/components/site/why-story";
 import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { OrderTracker } from "@/components/site/order-tracker";
@@ -88,21 +88,15 @@ function Index() {
 
       <EcosystemStrip />
 
-      {/* PROBLEM */}
-      <Section>
-        <SectionHeading
-          eyebrow="The problem"
-          title="Optical ordering shouldn't be this complicated."
-          body="Practice staff work across EHRs, lab portals, phone calls, emails, and manual data entry just to get one pair of glasses ordered, tracked, and communicated."
-        />
-        <ProblemContrast />
-      </Section>
+      {/* WHY OPTIGO EXISTS — storytelling */}
+      <WhyStory />
+
 
       {/* HOW IT WORKS */}
       <Section tone="mist">
         <SectionHeading
           eyebrow="How OptiGo works"
-          title="One connected workflow."
+          title="How the connection works."
           body="Order information moves from the practice or EHR into OptiGo, through the appropriate laboratory workflow, and back as the order progresses."
         />
         <HowItWorksStages />
