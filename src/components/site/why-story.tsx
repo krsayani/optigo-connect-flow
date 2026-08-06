@@ -398,7 +398,7 @@ function BetterWay() {
   return (
     <div
       ref={ref}
-      className="relative flex min-h-[46vh] flex-col items-center justify-center px-5 py-24 text-center sm:py-32"
+      className="relative flex min-h-[34vh] flex-col items-center justify-center px-5 py-20 text-center sm:py-24"
     >
       <p
         className={cn(

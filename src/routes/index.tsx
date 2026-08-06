@@ -96,7 +96,7 @@ function Index() {
       <Section tone="mist">
         <SectionHeading
           eyebrow="How OptiGo works"
-          title="One connected workflow."
+          title="How the connection works."
           body="Order information moves from the practice or EHR into OptiGo, through the appropriate laboratory workflow, and back as the order progresses."
         />
         <HowItWorksStages />
