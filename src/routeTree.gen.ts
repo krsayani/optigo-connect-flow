@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as ForLabsRouteImport } from './routes/for-labs'
+import { Route as ForPracticesRouteImport } from './routes/for-practices'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as PartnerRouteImport } from './routes/partner'
+import { Route as PlatformRouteImport } from './routes/platform'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForLabsRoute = ForLabsRouteImport.update({
+  id: '/for-labs',
+  path: '/for-labs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForPracticesRoute = ForPracticesRouteImport.update({
+  id: '/for-practices',
+  path: '/for-practices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegrationsRoute = IntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformRoute = PlatformRouteImport.update({
+  id: '/platform',
+  path: '/platform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
+  '/platform': typeof PlatformRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
+  '/platform': typeof PlatformRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/demo': typeof DemoRoute
+  '/for-labs': typeof ForLabsRoute
+  '/for-practices': typeof ForPracticesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/integrations': typeof IntegrationsRoute
+  '/partner': typeof PartnerRoute
+  '/platform': typeof PlatformRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/demo'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/partner'
+    | '/platform'
+    | '/privacy'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/demo'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/partner'
+    | '/platform'
+    | '/privacy'
+    | '/terms'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/demo'
+    | '/for-labs'
+    | '/for-practices'
+    | '/how-it-works'
+    | '/integrations'
+    | '/partner'
+    | '/platform'
+    | '/privacy'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DemoRoute: typeof DemoRoute
+  ForLabsRoute: typeof ForLabsRoute
+  ForPracticesRoute: typeof ForPracticesRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  IntegrationsRoute: typeof IntegrationsRoute
+  PartnerRoute: typeof PartnerRoute
+  PlatformRoute: typeof PlatformRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +182,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-labs': {
+      id: '/for-labs'
+      path: '/for-labs'
+      fullPath: '/for-labs'
+      preLoaderRoute: typeof ForLabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-practices': {
+      id: '/for-practices'
+      path: '/for-practices'
+      fullPath: '/for-practices'
+      preLoaderRoute: typeof ForPracticesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integrations': {
+      id: '/integrations'
+      path: '/integrations'
+      fullPath: '/integrations'
+      preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform': {
+      id: '/platform'
+      path: '/platform'
+      fullPath: '/platform'
+      preLoaderRoute: typeof PlatformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DemoRoute: DemoRoute,
+  ForLabsRoute: ForLabsRoute,
+  ForPracticesRoute: ForPracticesRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  IntegrationsRoute: IntegrationsRoute,
+  PartnerRoute: PartnerRoute,
+  PlatformRoute: PlatformRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
