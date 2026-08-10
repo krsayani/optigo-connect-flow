@@ -390,7 +390,7 @@ function OptigoFlow() {
         {/* Desktop hub-and-spoke diagram */}
         <div className="relative mx-auto mt-10 hidden max-w-4xl lg:block">
           <svg
-            viewBox="0 0 800 420"
+            viewBox="0 0 800 500"
             className="h-auto w-full"
             preserveAspectRatio="xMidYMid meet"
             aria-hidden="true"
