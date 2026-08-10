@@ -371,7 +371,7 @@ function OptigoFlow() {
 
   return (
     <div ref={ref} className="story-3d">
-      <div className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8">
+      <div className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 pb-14 sm:p-8 sm:pb-20">
         <div className="absolute inset-0 grid-mesh-dark opacity-60" />
         <div className="absolute -right-24 top-0 h-72 w-72 rounded-full bg-aqua/15 blur-3xl animate-drift" />
         <div
