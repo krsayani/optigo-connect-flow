@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  ArrowDown,
   ArrowRight,
   Bell,
   Check,
@@ -7,7 +8,9 @@ import {
   Glasses,
   HelpCircle,
   Keyboard,
+  Monitor,
   Phone,
+  Smartphone,
   Sparkles,
   X,
 } from "lucide-react";
