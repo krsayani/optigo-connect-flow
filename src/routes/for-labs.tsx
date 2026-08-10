@@ -16,7 +16,7 @@ import {
   CTAButton,
   FeatureCard,
 } from "@/components/site/primitives";
-import { TrustSection, BuiltForMore, FinalCTA } from "@/components/site/sections";
+import { TrustSection, FinalCTA } from "@/components/site/sections";
 
 const TITLE = "For Laboratories | OptiGo Lab Connectivity Infrastructure";
 const DESC =
@@ -82,7 +82,7 @@ function ForLabsPage() {
             <span className="text-gradient">labs and practices.</span>
           </>
         }
-        body="OptiGo is building modern infrastructure designed to make digital communication between optical laboratories and practices simpler, more transparent, and more scalable."
+        body="Orders arrive structured and complete, status flows back once, and the practices you already serve stay in sync without a phone call."
       >
         <CTAButton to="/partner">Become an Integration Partner</CTAButton>
       </PageHero>
@@ -129,7 +129,6 @@ function ForLabsPage() {
       </Section>
 
       <TrustSection />
-      <BuiltForMore />
       <FinalCTA />
     </>
   );

@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Cable, GitBranch, Radar, MessagesSquare, Layers, ShieldCheck } from "lucide-react";
-import { HeroFlow } from "@/components/site/hero-flow";
-import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { Reveal } from "@/components/site/reveal";
 import {
   PageHero,
@@ -92,12 +90,6 @@ function PlatformPage() {
         </div>
       </PageHero>
 
-      <Section>
-        <Reveal>
-          <HeroFlow />
-        </Reveal>
-      </Section>
-
       <Section tone="mist">
         <SectionHeading
           eyebrow="Capabilities"
@@ -110,20 +102,6 @@ function PlatformPage() {
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Product"
-          title="Order operations, centralized."
-          body="A single view of active optical orders, connected laboratories, and the exceptions that need attention."
-        />
-        <Reveal delay={120} className="mt-12">
-          <DashboardMockup />
-        </Reveal>
-        <p className="mt-5 text-center text-[11px] text-muted-foreground">
-          Interface shown for illustration. All records are fictional demo data.
-        </p>
       </Section>
 
       <InfrastructureSection />
