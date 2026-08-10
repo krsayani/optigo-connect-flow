@@ -502,7 +502,7 @@ function OptigoFlow() {
               </div>
             </div>
 
-            <div className="pointer-events-auto absolute left-1/2 top-[56%] w-44 -translate-x-1/2 sm:w-52">
+            <div className="pointer-events-auto absolute left-1/2 top-[52%] w-44 -translate-x-1/2 sm:w-52">
               <div
                 className={cn(
                   "pop-card rounded-[2rem] border border-white/12 bg-white/[0.06] p-2.5 backdrop-blur-md transition-all duration-500",
