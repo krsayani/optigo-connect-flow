@@ -502,14 +502,14 @@ function OptigoFlow() {
               </div>
             </div>
 
-            <div className="pointer-events-auto absolute left-1/2 top-[62%] w-44 -translate-x-1/2 sm:w-52">
+            <div className="pointer-events-auto absolute left-1/2 top-[56%] w-44 -translate-x-1/2 sm:w-52">
               <div
                 className={cn(
-                  "pop-card rounded-[2rem] border border-white/12 bg-white/[0.06] p-3 backdrop-blur-md transition-all duration-500",
+                  "pop-card rounded-[2rem] border border-white/12 bg-white/[0.06] p-2.5 backdrop-blur-md transition-all duration-500",
                   patientActive && "border-electric/40 shadow-glow",
                 )}
               >
-                <div className="rounded-[1.5rem] bg-background p-4">
+                <div className="rounded-[1.5rem] bg-background p-3">
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
                       <Smartphone className="h-3 w-3 text-electric" /> Patient
