@@ -430,7 +430,7 @@ function OptigoFlow() {
             />
             <path
               id="pPatient"
-              d="M 400 175 L 400 285"
+              d="M 400 175 L 400 340"
               stroke="url(#linePatient)"
               strokeWidth="2"
               fill="none"
