@@ -79,7 +79,7 @@ function PlatformPage() {
             <span className="text-gradient">A bigger vision for optometry.</span>
           </>
         }
-        body="OptiGo is being built as infrastructure: an architecture intended to connect multiple EHR systems, optical laboratories, practices, and patients through a single workflow."
+        body="Order routing, a shared status model, and practice- and patient-facing views — the pieces that turn one submission into a tracked order end to end."
       >
         <div className="flex flex-wrap gap-3">
           <CTAButton to="/demo">Request a Demo</CTAButton>
