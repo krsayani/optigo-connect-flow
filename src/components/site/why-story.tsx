@@ -346,95 +346,317 @@ function BetterWay() {
 
 /* ---------------- SECTION 2: the OptiGo experience ---------------- */
 
-const chain = ["Practice / EHR", "OptiGo", "Optical Lab", "OptiGo", "Practice + Patient"];
-
-const updates = [
-  "Order received.",
-  "In production.",
-  "Progressing.",
-  "Ready for pickup.",
+const patientUpdates = [
+  { label: "Order submitted", stage: 0 },
+  { label: "Lab received order", stage: 1 },
+  { label: "In production", stage: 2 },
+  { label: "Ready for pickup", stage: 3 },
 ];
 
 function OptigoFlow() {
   const { ref, inView } = useInViewOnce<HTMLDivElement>(0.3);
-  const [step, setStep] = useState(0);
+  const [phase, setPhase] = useState(0);
   useEffect(() => {
     if (!inView) return;
-    const t = setInterval(() => setStep((v) => (v + 1) % (chain.length + 1)), 1200);
+    const t = setInterval(() => setPhase((v) => (v + 1) % 5), 1200);
     return () => clearInterval(t);
   }, [inView]);
+
+  const visibleUpdates = phase;
+
+  const ehrActive = phase === 0;
+  const hubActive = phase === 1 || phase === 2 || phase === 3;
+  const labActive = phase === 2;
+  const patientActive = phase === 3 || phase === 4;
 
   return (
     <div ref={ref} className="story-3d">
       <div className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8">
         <div className="absolute inset-0 grid-mesh-dark opacity-60" />
-        <div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-aqua/15 blur-3xl animate-drift" />
-        <div className="relative flex flex-col gap-3 lg:flex-row lg:items-center">
-          {chain.map((c, i) => (
-            <div key={`${c}-${i}`} className="flex flex-1 items-center gap-3">
-              <div
-                className={cn(
-                  "pop-card flex-1 rounded-xl border px-4 py-3 text-center text-xs font-semibold backdrop-blur-md transition-all duration-500",
-                  c === "OptiGo"
-                    ? "border-aqua/40 bg-white/[0.1] text-aqua"
-                    : "border-white/12 bg-white/[0.05] text-on-dark",
-                  step === i && "shadow-glow",
-                )}
-              >
-                {c}
-              </div>
-              {i < chain.length - 1 && (
-                <div className="relative hidden h-px w-8 bg-white/15 lg:block">
-                  <span
-                    className={cn(
-                      "absolute -top-[3px] h-1.5 w-1.5 rounded-full bg-aqua transition-all duration-700",
-                      step > i ? "left-full" : "left-0",
-                    )}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+        <div className="absolute -right-24 top-0 h-72 w-72 rounded-full bg-aqua/15 blur-3xl animate-drift" />
+        <div
+          className="absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-electric/10 blur-3xl animate-drift"
+          style={{ animationDelay: "-6s" }}
+        />
+
+        <div className="relative text-center">
+          <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One entry. Every loop closed.</h3>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-on-dark-muted">
+            Enter the order once in your EHR. OptiGo routes it to the lab and keeps the patient
+            informed at every step.
+          </p>
         </div>
 
-        <div className="relative mt-8 grid gap-8 lg:grid-cols-[1.1fr_minmax(0,280px)] lg:items-center">
-          <div>
-            <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One connected workflow.</h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-on-dark-muted">
-              OptiGo streamlines the connection between practices, labs, staff, and patients—
-              reducing manual work and bringing visibility to every order.
-            </p>
-          </div>
+        {/* Desktop hub-and-spoke diagram */}
+        <div className="relative mx-auto mt-10 hidden max-w-4xl lg:block">
+          <svg
+            viewBox="0 0 800 420"
+            className="h-auto w-full"
+            preserveAspectRatio="xMidYMid meet"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="lineEhr" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="var(--electric-soft)" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="var(--aqua)" stopOpacity="0.85" />
+              </linearGradient>
+              <linearGradient id="lineLab" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="var(--aqua)" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="var(--electric-soft)" stopOpacity="0.35" />
+              </linearGradient>
+              <linearGradient id="linePatient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--aqua)" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="var(--electric-soft)" stopOpacity="0.35" />
+              </linearGradient>
+            </defs>
 
-          {/* patient phone with status updates */}
-          <div className="mx-auto w-full max-w-[280px]">
-            <div className="pop-card-tilt rounded-[2rem] border border-white/12 bg-white/[0.06] p-3 backdrop-blur-md">
-              <div className="rounded-[1.5rem] bg-background p-4">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
-                    <Sparkles className="h-3 w-3 text-electric" /> OptiGo updates
-                  </span>
-                  <span className="font-mono text-[9px] text-muted-foreground">now</span>
-                </div>
-                <div className="mt-4 space-y-2">
-                  {updates.map((u, i) => (
-                    <div
-                      key={u}
-                      className="flex items-start gap-2 rounded-xl border border-border bg-mist px-3 py-2.5"
-                      style={{
-                        opacity: inView ? 1 : 0,
-                        transform: inView ? "none" : "translateY(8px)",
-                        transition: `all 500ms cubic-bezier(.22,1,.36,1) ${400 + i * 420}ms`,
-                      }}
-                    >
-                      <span className="mt-0.5 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-electric">
-                        <Check className="h-2 w-2 text-primary-foreground" />
-                      </span>
-                      <span className="text-[11.5px] leading-snug text-navy/85">{u}</span>
-                    </div>
-                  ))}
+            <path
+              id="pEhr"
+              d="M 190 130 L 330 130"
+              stroke="url(#lineEhr)"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="6 6"
+              opacity="0.6"
+            />
+            <path
+              id="pLab"
+              d="M 470 130 L 610 130"
+              stroke="url(#lineLab)"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="6 6"
+              opacity="0.6"
+            />
+            <path
+              id="pPatient"
+              d="M 400 175 L 400 285"
+              stroke="url(#linePatient)"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="6 6"
+              opacity="0.6"
+            />
+
+            <circle r="4" fill="var(--aqua)">
+              <animateMotion dur="2s" repeatCount="indefinite">
+                <mpath href="#pEhr" />
+              </animateMotion>
+            </circle>
+            <circle r="4" fill="var(--aqua)">
+              <animateMotion dur="2s" begin="0.6s" repeatCount="indefinite">
+                <mpath href="#pLab" />
+              </animateMotion>
+            </circle>
+            <circle r="4" fill="var(--electric-soft)">
+              <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite">
+                <mpath href="#pPatient" />
+              </animateMotion>
+            </circle>
+          </svg>
+
+          <div className="pointer-events-none absolute inset-0">
+            <div className="pointer-events-auto absolute left-[10%] top-[22%] w-36 -translate-x-1/2 sm:w-44">
+              <div
+                className={cn(
+                  "pop-card rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center backdrop-blur-md transition-all duration-500",
+                  ehrActive && "border-electric/40 shadow-glow",
+                )}
+              >
+                <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
+                  <Monitor className="h-5 w-5" />
+                </span>
+                <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+                <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
+              </div>
+            </div>
+
+            <div className="pointer-events-auto absolute left-1/2 top-[16%] w-40 -translate-x-1/2 sm:w-48">
+              <div
+                className={cn(
+                  "pop-card relative rounded-2xl border border-aqua/40 bg-white/[0.1] p-5 text-center backdrop-blur-md transition-all duration-500",
+                  hubActive && "shadow-glow",
+                )}
+              >
+                <div className="absolute inset-0 rounded-2xl bg-aqua/10 blur-xl" />
+                <span className="relative mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl border border-aqua/30 bg-aqua/20 text-aqua">
+                  <Sparkles className="h-6 w-6" />
+                </span>
+                <p className="relative mt-3 font-display text-lg font-bold text-aqua">OptiGo</p>
+                <p className="relative mt-1 text-[10px] text-on-dark-muted">Routes & updates</p>
+              </div>
+            </div>
+
+            <div className="pointer-events-auto absolute right-[10%] top-[22%] w-36 translate-x-1/2 sm:w-44">
+              <div
+                className={cn(
+                  "pop-card rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center backdrop-blur-md transition-all duration-500",
+                  labActive && "border-electric/40 shadow-glow",
+                )}
+              >
+                <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
+                  <Glasses className="h-5 w-5" />
+                </span>
+                <p className="mt-3 text-xs font-semibold text-on-dark">Optical Lab</p>
+                <p className="mt-1 text-[10px] text-on-dark-muted">Receives order</p>
+              </div>
+            </div>
+
+            <div className="pointer-events-auto absolute left-1/2 top-[62%] w-44 -translate-x-1/2 sm:w-52">
+              <div
+                className={cn(
+                  "pop-card rounded-[2rem] border border-white/12 bg-white/[0.06] p-3 backdrop-blur-md transition-all duration-500",
+                  patientActive && "border-electric/40 shadow-glow",
+                )}
+              >
+                <div className="rounded-[1.5rem] bg-background p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
+                      <Smartphone className="h-3 w-3 text-electric" /> Patient
+                    </span>
+                    <span className="font-mono text-[9px] text-muted-foreground">live</span>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    {patientUpdates.map((u, i) => (
+                      <div
+                        key={u.label}
+                        className="flex items-start gap-2 rounded-xl border border-border bg-mist px-3 py-2"
+                        style={{
+                          opacity: visibleUpdates > i ? 1 : 0.35,
+                          transform: visibleUpdates > i ? "none" : "translateY(4px)",
+                          transition: "all 400ms cubic-bezier(.22,1,.36,1)",
+                        }}
+                      >
+                        <span
+                          className={cn(
+                            "mt-0.5 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full",
+                            visibleUpdates > i ? "bg-electric" : "bg-muted",
+                          )}
+                        >
+                          <Check className="h-2 w-2 text-primary-foreground" />
+                        </span>
+                        <span className="text-[11px] leading-snug text-navy/85">{u.label}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile vertical flow */}
+        <div className="relative mt-10 flex flex-col items-center gap-3 lg:hidden">
+          <div
+            className={cn(
+              "pop-card w-full max-w-xs rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center backdrop-blur-md transition-all duration-500",
+              ehrActive && "border-electric/40 shadow-glow",
+            )}
+          >
+            <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
+              <Monitor className="h-5 w-5" />
+            </span>
+            <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+            <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
+          </div>
+
+          <div className="relative h-8 w-px overflow-hidden bg-white/15">
+            <span
+              className={cn(
+                "absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-aqua transition-all duration-700",
+                phase >= 1 ? "top-full" : "top-0",
+              )}
+            />
+          </div>
+
+          <div
+            className={cn(
+              "pop-card w-full max-w-xs rounded-2xl border border-aqua/40 bg-white/[0.1] p-5 text-center backdrop-blur-md transition-all duration-500",
+              hubActive && "shadow-glow",
+            )}
+          >
+            <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl border border-aqua/30 bg-aqua/20 text-aqua">
+              <Sparkles className="h-6 w-6" />
+            </span>
+            <p className="mt-3 font-display text-lg font-bold text-aqua">OptiGo</p>
+            <p className="mt-1 text-[10px] text-on-dark-muted">Routes & updates</p>
+          </div>
+
+          <div className="grid w-full max-w-xs grid-cols-[1fr_auto_1fr] items-center gap-2">
+            <div className="relative h-px overflow-hidden bg-white/15">
+              <span
+                className={cn(
+                  "absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-aqua transition-all duration-700",
+                  phase >= 3 ? "left-full" : "left-0",
+                )}
+              />
+            </div>
+            <ArrowDown className="h-4 w-4 text-on-dark-muted" />
+            <div className="relative h-px overflow-hidden bg-white/15">
+              <span
+                className={cn(
+                  "absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-aqua transition-all duration-700",
+                  phase >= 2 ? "left-full" : "left-0",
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="grid w-full max-w-xs grid-cols-2 gap-3">
+            <div
+              className={cn(
+                "pop-card rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center backdrop-blur-md transition-all duration-500",
+                labActive && "border-electric/40 shadow-glow",
+              )}
+            >
+              <span className="mx-auto inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
+                <Glasses className="h-4 w-4" />
+              </span>
+              <p className="mt-2 text-[11px] font-semibold text-on-dark">Optical Lab</p>
+            </div>
+
+            <div
+              className={cn(
+                "pop-card rounded-2xl border border-white/12 bg-white/[0.06] p-4 text-center backdrop-blur-md transition-all duration-500",
+                patientActive && "border-electric/40 shadow-glow",
+              )}
+            >
+              <span className="mx-auto inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
+                <Smartphone className="h-4 w-4" />
+              </span>
+              <p className="mt-2 text-[11px] font-semibold text-on-dark">Patient</p>
+            </div>
+          </div>
+
+          <div className="w-full max-w-xs rounded-[1.5rem] border border-white/12 bg-background p-4">
+            <div className="flex items-center justify-between">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
+                <Smartphone className="h-3 w-3 text-electric" /> OptiGo updates
+              </span>
+              <span className="font-mono text-[9px] text-muted-foreground">live</span>
+            </div>
+            <div className="mt-3 space-y-2">
+              {patientUpdates.map((u, i) => (
+                <div
+                  key={u.label}
+                  className="flex items-start gap-2 rounded-xl border border-border bg-mist px-3 py-2"
+                  style={{
+                    opacity: visibleUpdates > i ? 1 : 0.35,
+                    transform: visibleUpdates > i ? "none" : "translateY(4px)",
+                    transition: "all 400ms cubic-bezier(.22,1,.36,1)",
+                  }}
+                >
+                  <span
+                    className={cn(
+                      "mt-0.5 inline-flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full",
+                      visibleUpdates > i ? "bg-electric" : "bg-muted",
+                    )}
+                  >
+                    <Check className="h-2 w-2 text-primary-foreground" />
+                  </span>
+                  <span className="text-[11px] leading-snug text-navy/85">{u.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
