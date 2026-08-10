@@ -11,7 +11,6 @@ import {
 import {
   InfrastructureSection,
   WhyOptiGo,
-  BuiltForMore,
   FinalCTA,
 } from "@/components/site/sections";
 
@@ -106,7 +105,6 @@ function PlatformPage() {
 
       <InfrastructureSection />
       <WhyOptiGo />
-      <BuiltForMore />
       <FinalCTA />
     </>
   );

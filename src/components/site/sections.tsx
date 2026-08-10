@@ -114,7 +114,7 @@ const why = [
 export function WhyOptiGo() {
   return (
     <Section tone="mist">
-      <SectionHeading eyebrow="Why OptiGo" title="Designed as infrastructure, not another portal." />
+      <SectionHeading eyebrow="Why OptiGo" title="What a shared connectivity layer changes." />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {why.map((w, i) => (
           <Reveal key={w.title} delay={i * 80}>
