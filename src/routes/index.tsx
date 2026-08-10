@@ -72,11 +72,6 @@ function Index() {
                   Become an Integration Partner
                 </CTAButton>
               </Reveal>
-              <Reveal delay={320}>
-                <p className="mt-8 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-                  Practice / EHR → OptiGo → Optical Lab → Practice + Patient
-                </p>
-              </Reveal>
             </div>
 
             <Reveal delay={180}>
