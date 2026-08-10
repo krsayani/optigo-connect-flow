@@ -522,7 +522,7 @@ function OptigoFlow() {
                         key={u.label}
                         className="flex items-start gap-2 rounded-xl border border-border bg-mist px-3 py-2"
                         style={{
-                          opacity: visibleUpdates > i ? 1 : 0.35,
+                          opacity: visibleUpdates > i ? 1 : 0.5,
                           transform: visibleUpdates > i ? "none" : "translateY(4px)",
                           transition: "all 400ms cubic-bezier(.22,1,.36,1)",
                         }}
