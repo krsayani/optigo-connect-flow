@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { User } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero, Section, SectionHeading, CTAButton } from "@/components/site/primitives";
-import { BuiltForMore, TrustSection, FinalCTA } from "@/components/site/sections";
+import { FinalCTA } from "@/components/site/sections";
 
 const TITLE = "About OptiGo | Infrastructure for Modern Optometry";
 const DESC =
@@ -101,8 +101,6 @@ function AboutPage() {
         </Reveal>
       </Section>
 
-      <BuiltForMore />
-      <TrustSection />
       <FinalCTA />
     </>
   );

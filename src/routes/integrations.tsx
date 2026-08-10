@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { PageHero, Section, SectionHeading, CTAButton } from "@/components/site/primitives";
-import { InfrastructureSection, FinalCTA } from "@/components/site/sections";
+import { FinalCTA } from "@/components/site/sections";
 
 const TITLE = "Integrations | Building the Connected Optical Ecosystem";
 const DESC =
@@ -125,7 +125,6 @@ function IntegrationsPage() {
         </Reveal>
       </Section>
 
-      <InfrastructureSection />
       <FinalCTA />
     </>
   );

@@ -5,12 +5,9 @@ import { HeroFlow } from "@/components/site/hero-flow";
 import { WhyStory } from "@/components/site/why-story";
 import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
-import { OrderTracker } from "@/components/site/order-tracker";
 import { Section, SectionHeading, CTAButton } from "@/components/site/primitives";
 import {
-  EcosystemStrip,
   InfrastructureSection,
-  WhyOptiGo,
   BuiltForMore,
   TrustSection,
   FinalCTA,
@@ -81,8 +78,6 @@ function Index() {
         </div>
       </section>
 
-      <EcosystemStrip />
-
       {/* WHY OPTIGO EXISTS — storytelling */}
       <WhyStory />
 
@@ -91,8 +86,8 @@ function Index() {
       <Section tone="mist">
         <SectionHeading
           eyebrow="How OptiGo works"
-          title="How the connection works."
-          body="Order information moves from the practice or EHR into OptiGo, through the appropriate laboratory workflow, and back as the order progresses."
+          title="Four stages, one continuous handoff."
+          body="Connect, route, track, communicate — the four stages that turn a single submission into a tracked order everyone can see."
         />
         <HowItWorksStages />
       </Section>
@@ -111,16 +106,6 @@ function Index() {
           Product interface shown for illustration. All patient names and orders are fictional
           demo data.
         </p>
-      </Section>
-
-      {/* VISIBILITY */}
-      <Section tone="mist">
-        <SectionHeading
-          eyebrow="Real-time visibility"
-          title="Know where every order stands."
-          body="OptiGo is being designed to give practices better visibility into the optical order lifecycle from submission through completion."
-        />
-        <OrderTracker />
       </Section>
 
       {/* AUDIENCE SPLIT */}
@@ -157,8 +142,8 @@ function Index() {
                 A better connection between labs and practices.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Modern infrastructure designed to make digital communication between optical
-                laboratories and practices simpler, more transparent, and more scalable.
+                Connect once and receive structured orders from every practice on OptiGo —
+                no re-keying, no per-practice integration to maintain.
               </p>
               <div className="mt-8">
                 <CTAButton to="/for-labs" variant="light">
@@ -175,7 +160,7 @@ function Index() {
         <SectionHeading
           eyebrow="Integrations"
           title="Building the connected optical ecosystem."
-          body="We're actively working with industry partners to connect OptiGo with the systems practices and laboratories already use."
+          body="Integrations with the practice-management, EHR, and laboratory systems the industry already runs on are in active development."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-3">
           {["Crystal Practice Management", "DVI", "Ocuco"].map((name, i) => (
@@ -204,7 +189,6 @@ function Index() {
       </Section>
 
       <InfrastructureSection />
-      <WhyOptiGo />
       <BuiltForMore />
       <TrustSection />
       <FinalCTA />

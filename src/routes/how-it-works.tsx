@@ -3,7 +3,7 @@ import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { ProblemContrast } from "@/components/site/problem-contrast";
 import { OrderTracker } from "@/components/site/order-tracker";
 import { PageHero, Section, SectionHeading, CTAButton } from "@/components/site/primitives";
-import { InfrastructureSection, FinalCTA } from "@/components/site/sections";
+import { FinalCTA } from "@/components/site/sections";
 
 const TITLE = "How It Works | OptiGo Connected Optical Workflow";
 const DESC =
@@ -56,13 +56,12 @@ function HowItWorksPage() {
       <Section>
         <SectionHeading
           eyebrow="Visibility"
-          title="Know where every order stands."
-          body="OptiGo is being designed to give practices better visibility into the optical order lifecycle from submission through completion."
+          title="Two views of the same order."
+          body="Staff see every milestone in lab detail; the patient sees a simple, plain-language version of the same record."
         />
         <OrderTracker />
       </Section>
 
-      <InfrastructureSection />
       <FinalCTA />
     </>
   );

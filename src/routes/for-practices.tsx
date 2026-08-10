@@ -18,7 +18,7 @@ import {
   CTAButton,
   FeatureCard,
 } from "@/components/site/primitives";
-import { TrustSection, BuiltForMore, FinalCTA } from "@/components/site/sections";
+import { TrustSection, FinalCTA } from "@/components/site/sections";
 
 const TITLE = "For Practices | OptiGo Optical Order Management";
 const DESC =
@@ -128,7 +128,6 @@ function ForPracticesPage() {
       </Section>
 
       <TrustSection />
-      <BuiltForMore />
       <FinalCTA />
     </>
   );
