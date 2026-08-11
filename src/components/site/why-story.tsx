@@ -59,67 +59,93 @@ function StepLabel({ n, children }: { n: string; children: React.ReactNode }) {
 
 /* ---------------- STEP 1: re-entry ---------------- */
 
+const REENTRY_FIELDS = ["Prescription", "Lens design", "Measurements"];
+
+function WindowChrome({ label, icon }: { label: string; icon: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 border-b border-hairline/60 px-4 py-2.5">
+      <span className="flex gap-1">
+        <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30" />
+        <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30" />
+        <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30" />
+      </span>
+      <span className="ml-1 inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
+        {icon}
+        {label}
+      </span>
+    </div>
+  );
+}
+
 function StepReentry() {
   const { ref, inView } = useInViewOnce<HTMLDivElement>(0.3);
+
   return (
     <div ref={ref} className="story-3d">
-      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
-        <div className="pop-card rounded-2xl border border-border bg-background p-5 shadow-float">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
-            <ClipboardList className="h-3.5 w-3.5 text-electric" /> Practice / EHR
-          </span>
-          <div className="mt-4 space-y-1.5">
-            {["Prescription", "Lens design", "Measurements"].map((f) => (
-              <div
-                key={f}
-                className="flex items-center justify-between rounded-lg border border-border/70 bg-mist px-3 py-2 text-[11.5px] text-navy/80"
-              >
-                <span>{f}</span>
-                <Check className="h-3 w-3 text-electric" />
-              </div>
-            ))}
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-border bg-gradient-to-br from-mist to-background p-4 shadow-card sm:p-7">
+        <div className="absolute inset-0 grid-mesh opacity-40" />
+        <div className="absolute -left-16 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-electric/10 blur-3xl" />
+
+        <div className="relative grid gap-3 sm:grid-cols-2 sm:gap-8">
+          {/* source window */}
+          <div className="pop-card overflow-hidden rounded-2xl border border-border bg-background shadow-float">
+            <WindowChrome
+              label="Practice / EHR"
+              icon={<ClipboardList className="h-3 w-3 text-electric" />}
+            />
+            <div className="space-y-1.5 p-3.5">
+              {REENTRY_FIELDS.map((f) => (
+                <div
+                  key={f}
+                  className="flex items-center justify-between rounded-xl bg-mist px-3 py-2 text-[11.5px] font-medium text-navy/80"
+                >
+                  <span>{f}</span>
+                  <Check className="h-3 w-3 text-electric" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* target window */}
+          <div className="pop-card overflow-hidden rounded-2xl border border-dashed border-border bg-background/70 backdrop-blur">
+            <WindowChrome
+              label="Lab portal"
+              icon={<Glasses className="h-3 w-3 text-muted-foreground" />}
+            />
+            <div className="space-y-1.5 p-3.5">
+              {REENTRY_FIELDS.map((f, i) => (
+                <div
+                  key={f}
+                  className="flex items-center gap-2 rounded-xl bg-muted/60 px-3 py-2"
+                >
+                  <span className="text-[11.5px] text-muted-foreground">{f}</span>
+                  <span className="relative ml-auto h-1 w-14 overflow-hidden rounded-full bg-border">
+                    <span
+                      className="absolute inset-y-0 left-0 rounded-full bg-electric/60"
+                      style={{
+                        width: inView ? "100%" : "0%",
+                        transition: `width 900ms cubic-bezier(.22,1,.36,1) ${300 + i * 260}ms`,
+                      }}
+                    />
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center py-2">
-          <div className="flex flex-col items-center gap-2">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-navy shadow-card animate-buzz">
-              <Keyboard className="h-4 w-4" />
-            </span>
-            <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground">
-              re-entered
-            </span>
-          </div>
-        </div>
-
-        <div className="pop-card rounded-2xl border border-dashed border-border bg-muted/50 p-5">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold text-navy">
-            <Glasses className="h-3.5 w-3.5 text-muted-foreground" /> Lab portal
+        {/* duplicate-entry badge riding the seam */}
+        <div className="relative -mt-1 flex justify-center sm:absolute sm:left-1/2 sm:top-1/2 sm:mt-0 sm:-translate-x-1/2 sm:-translate-y-1/2">
+          <span className="inline-flex items-center gap-2 rounded-full border border-electric/25 bg-background/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-electric shadow-card backdrop-blur">
+            <Keyboard className="h-3.5 w-3.5 animate-buzz" />
+            Typed twice
           </span>
-          <div className="mt-4 space-y-1.5">
-            {["Prescription", "Lens design", "Measurements"].map((f, i) => (
-              <div
-                key={f}
-                className="flex items-center gap-2 rounded-lg border border-border/70 bg-background/70 px-3 py-2"
-              >
-                <span className="text-[11.5px] text-muted-foreground">{f}</span>
-                <span className="relative ml-auto h-1.5 w-14 overflow-hidden rounded-full bg-muted">
-                  <span
-                    className="absolute inset-y-0 left-0 rounded-full bg-electric/50"
-                    style={{
-                      width: inView ? "100%" : "0%",
-                      transition: `width 900ms cubic-bezier(.22,1,.36,1) ${300 + i * 260}ms`,
-                    }}
-                  />
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 /* ---------------- STEP 2: black box ---------------- */
 
