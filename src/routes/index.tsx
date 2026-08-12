@@ -1,11 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Building2, FlaskConical } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  FlaskConical,
+  GitBranch,
+  Radar,
+  BarChart3,
+  Shuffle,
+  MessageSquareOff,
+  LineChart,
+} from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
-import { WhyStory } from "@/components/site/why-story";
-import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
-import { Section, SectionHeading, CTAButton } from "@/components/site/primitives";
+import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
 import {
   InfrastructureSection,
   BuiltForMore,
@@ -13,9 +21,9 @@ import {
   FinalCTA,
 } from "@/components/site/sections";
 
-const TITLE = "OptiGo | The Connected Future of Optical Ordering";
+const TITLE = "OptiGo | Centralized Optical Lab Ordering";
 const DESC =
-  "OptiGo is building modern infrastructure connecting optometry practices, EHR systems, optical laboratories, and patients through streamlined optical workflows.";
+  "OptiGo is the single source of truth for optical-lab orders—automating routing, tracking every stage, and turning order data into clear operational and financial insight.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +40,42 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+const problems = [
+  {
+    icon: <Shuffle className="h-4 w-4" />,
+    title: "Manual, inconsistent ordering",
+    body: "Staff pick labs and re-enter orders across portals—slow, error-prone, and hard to train.",
+  },
+  {
+    icon: <MessageSquareOff className="h-4 w-4" />,
+    title: "Scattered status updates",
+    body: "Progress lives in portals, calls, emails, and notes—so delays and patient answers get lost.",
+  },
+  {
+    icon: <LineChart className="h-4 w-4" />,
+    title: "No clear lab intelligence",
+    body: "Spend, turnaround, remakes, and lab performance stay fragmented—so leaders can’t compare or control cost.",
+  },
+];
+
+const capabilities = [
+  {
+    icon: <GitBranch className="h-4 w-4" />,
+    title: "Automated real-time routing",
+    body: "Connect every lab in one place. OptiGo recommends or routes by pricing, turnaround, insurance, product fit, and your rules—with logged overrides.",
+  },
+  {
+    icon: <Radar className="h-4 w-4" />,
+    title: "End-to-end tracking",
+    body: "One timeline from submission to patient pickup—status, owner, latest message, and next action in a single view.",
+  },
+  {
+    icon: <BarChart3 className="h-4 w-4" />,
+    title: "Decision-support metrics",
+    body: "See spend, cost per order, turnaround, remakes, lab comparisons, and routing savings—filterable by location, lab, product, and more.",
+  },
+];
 
 function Index() {
   return (
@@ -52,16 +96,16 @@ function Index() {
                 </p>
               </Reveal>
               <Reveal delay={70}>
-                <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-navy sm:text-5xl lg:text-[4.15rem]">
-                  Optical Ordering.
+                <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-navy sm:text-5xl lg:text-[3.85rem]">
+                  One platform for
                   <br />
-                  <span className="text-gradient">Reimagined.</span>
+                  <span className="text-gradient">every lab order.</span>
                 </h1>
               </Reveal>
               <Reveal delay={140}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  One intelligent workflow connecting practices, EHRs, labs, and patients —
-                  so optical orders move with less chase and more clarity.
+                  Centralized ordering, tracking, and lab intelligence for eye-care practices—
+                  without juggling portals, spreadsheets, or phone calls.
                 </p>
               </Reveal>
               <Reveal delay={210} className="mt-9 flex flex-wrap gap-3">
@@ -80,25 +124,60 @@ function Index() {
         </div>
       </section>
 
-      {/* WHY OPTIGO EXISTS — storytelling */}
-      <WhyStory />
-
-      {/* HOW IT WORKS */}
+      {/* PROBLEM */}
       <Section tone="mist">
         <SectionHeading
-          eyebrow="How OptiGo works"
-          title="Four stages, one continuous handoff."
-          body="Connect, route, track, communicate — the four stages that turn a single submission into a tracked order everyone can see."
+          eyebrow="The problem"
+          title="Lab ordering is still fragmented."
+          body="Practices work with many labs—each with its own portal, catalog, pricing, and status process. Staff stitch it together by hand."
         />
-        <HowItWorksStages />
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {problems.map((item, i) => (
+            <Reveal key={item.title} delay={i * 80}>
+              <FeatureCard
+                icon={item.icon}
+                title={item.title}
+                body={item.body}
+                className="h-full"
+              />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* SOLUTION */}
+      <Section>
+        <SectionHeading
+          eyebrow="The solution"
+          title="Submit. Route. Track. Decide—in one system."
+          body="OptiGo is the single source of truth for optical-lab orders: less manual work, clearer patient updates, faster turnaround, and better cost control."
+        />
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {capabilities.map((item, i) => (
+            <Reveal key={item.title} delay={i * 90}>
+              <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 sm:p-8">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
+                  {item.icon}
+                </span>
+                <p className="mt-5 font-mono text-[11px] tracking-[0.18em] text-electric">
+                  0{i + 1}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-navy">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       {/* PRODUCT */}
-      <Section>
+      <Section tone="mist">
         <SectionHeading
           eyebrow="The product"
           title="Every optical order, in one place."
-          body="A single operational surface for optical orders across locations and connected laboratories."
+          body="One operational surface for routing, status, communication, and performance across locations and labs."
         />
         <Reveal delay={120} className="mt-12">
           <DashboardMockup />
@@ -117,13 +196,11 @@ function Index() {
               <Building2 className="h-4 w-4" />
             </span>
             <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
-              Less chasing.
-              <br />
-              More patient care.
+              Built for eye-care practices.
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Centralize optical orders, cut repetitive data entry, and give staff a clear view
-              of every order without another phone call.
+              Route smarter, see every order end to end, and give leaders the lab cost and
+              performance data they need—across every location.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CTAButton to="/signup" search={{ type: "practice" }}>
@@ -145,11 +222,11 @@ function Index() {
                 <FlaskConical className="h-4 w-4" />
               </span>
               <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
-                A better connection between labs and practices.
+                Built for optical labs.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Connect once and receive structured orders from every practice on OptiGo —
-                no re-keying, no per-practice integration to maintain.
+                Receive structured orders, share status once, and stay connected to practices
+                without one-off portal chaos.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <CTAButton to="/signup" search={{ type: "lab" }} variant="light">
@@ -168,8 +245,8 @@ function Index() {
       <Section tone="mist">
         <SectionHeading
           eyebrow="Integrations"
-          title="Building the connected optical ecosystem."
-          body="Integrations with the practice-management, EHR, and laboratory systems the industry already runs on are in active development."
+          title="Works with the systems you already use."
+          body="Practice-management, EHR, and laboratory connections are in active development."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-3">
           {["Crystal Practice Management", "DVI", "Ocuco"].map((name, i) => (
