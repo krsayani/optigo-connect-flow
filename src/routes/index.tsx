@@ -127,7 +127,13 @@ function Index() {
             </div>
 
             <Reveal delay={160} className="relative">
-              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-electric/15 via-transparent to-aqua/20 blur-2xl" />
+              <div
+                className="absolute inset-[4%_2%_8%] -z-10 bg-gradient-to-br from-electric/20 via-transparent to-aqua/25 blur-2xl"
+                style={{
+                  clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                  WebkitClipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                }}
+              />
               <HeroFlow />
             </Reveal>
           </div>
