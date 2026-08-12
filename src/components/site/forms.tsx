@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { submitLead } from "@/lib/submit-lead";
 
 const base = {
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -44,6 +45,7 @@ const signupSchema = z.object({
 export type SignupAccountType = "practice" | "lab";
 
 type Errors = Record<string, string>;
+type FormType = "demo" | "partner" | "signup";
 
 function Field({
   label,
@@ -101,11 +103,12 @@ function TextArea({ label, name, error }: { label: string; name: string; error?:
   );
 }
 
-function useFormSubmit(schema: z.ZodTypeAny, successMsg: string) {
+function useFormSubmit(schema: z.ZodTypeAny, formType: FormType, successMsg: string) {
   const [errors, setErrors] = useState<Errors>({});
   const [done, setDone] = useState(false);
+  const [pending, setPending] = useState(false);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
@@ -120,22 +123,47 @@ function useFormSubmit(schema: z.ZodTypeAny, successMsg: string) {
       toast.error("Please review the highlighted fields.");
       return;
     }
+
     setErrors({});
-    setDone(true);
-    form.reset();
-    toast.success(successMsg);
+    setPending(true);
+    try {
+      await submitLead({
+        data: {
+          formType,
+          ...result.data,
+        },
+      });
+      setDone(true);
+      form.reset();
+      toast.success(successMsg);
+    } catch (err) {
+      console.error(err);
+      toast.error("Couldn't send your request. Please try again in a moment.");
+    } finally {
+      setPending(false);
+    }
   };
 
-  return { errors, done, onSubmit };
+  return { errors, done, pending, onSubmit };
 }
 
-const Submit = ({ label }: { label: string }) => (
+const Submit = ({ label, pending }: { label: string; pending?: boolean }) => (
   <button
     type="submit"
-    className="group mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-electric sm:col-span-2"
+    disabled={pending}
+    className="group mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-electric disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-2"
   >
-    {label}
-    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+    {pending ? (
+      <>
+        Sending
+        <Loader2 className="h-4 w-4 animate-spin" />
+      </>
+    ) : (
+      <>
+        {label}
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </>
+    )}
   </button>
 );
 
@@ -147,8 +175,9 @@ const Note = () => (
 );
 
 export function DemoForm() {
-  const { errors, done, onSubmit } = useFormSubmit(
+  const { errors, done, pending, onSubmit } = useFormSubmit(
     demoSchema,
+    "demo",
     "Thanks — we'll be in touch shortly.",
   );
 
@@ -161,14 +190,14 @@ export function DemoForm() {
       <Field label="Phone" name="phone" type="tel" />
       <Field label="Number of Locations" name="locations" placeholder="1–5, 6–20, 20+" />
       <Field
-        label="Current EHR / Practice Management System"
+        label="Current Practice Management System"
         name="ehr"
         className="sm:col-span-2"
       />
       <Field label="Primary Optical Labs" name="labs" className="sm:col-span-2" />
       <TextArea label="Message" name="message" />
       <Note />
-      <Submit label="Request a Demo" />
+      <Submit label="Request a Demo" pending={pending} />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
           Request received. A member of the OptiGo team will follow up by email.
@@ -180,14 +209,15 @@ export function DemoForm() {
 
 const partnerTypes = [
   "Optical Laboratory",
-  "EHR / Practice Management",
+  "Practice Management System",
   "Technology Partner",
   "Other",
 ];
 
 export function PartnerForm() {
-  const { errors, done, onSubmit } = useFormSubmit(
+  const { errors, done, pending, onSubmit } = useFormSubmit(
     partnerSchema,
+    "partner",
     "Thanks — we'll reach out about integrating with OptiGo.",
   );
 
@@ -224,7 +254,7 @@ export function PartnerForm() {
       <Field label="Phone" name="phone" type="tel" />
       <TextArea label="Message" name="message" />
       <Note />
-      <Submit label="Partner With OptiGo" />
+      <Submit label="Partner With OptiGo" pending={pending} />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
           Thanks for reaching out — we'll be in touch about integration options.
@@ -241,8 +271,9 @@ export function SignupForm({
   accountType: SignupAccountType;
   onChangeType?: () => void;
 }) {
-  const { errors, done, onSubmit } = useFormSubmit(
+  const { errors, done, pending, onSubmit } = useFormSubmit(
     signupSchema,
+    "signup",
     "Welcome to OptiGo — your signup request was received.",
   );
 
@@ -258,7 +289,7 @@ export function SignupForm({
             Signing up as
           </p>
           <p className="mt-0.5 text-sm font-semibold text-navy">
-            {isPractice ? "Optometry Practice" : "Optical Laboratory"}
+            {isPractice ? "Practice (PMS)" : "Lab (LMS)"}
           </p>
         </div>
         {onChangeType && (
@@ -303,12 +334,12 @@ export function SignupForm({
       <Field
         label={
           isPractice
-            ? "Current EHR / practice management"
-            : "Lab management / order system"
+            ? "Current Practice Management System"
+            : "Lab Management System"
         }
         name="systems"
         className="sm:col-span-2"
-        placeholder={isPractice ? "Crystal, DVI, Ocuco…" : "LMS / portal you use today"}
+        placeholder={isPractice ? "Crystal, DVI, Ocuco…" : "Your lab management system"}
       />
       <Field
         label="Create a password"
@@ -325,7 +356,10 @@ export function SignupForm({
         error={errors["message"]}
       />
       <Note />
-      <Submit label={isPractice ? "Create practice account" : "Create lab account"} />
+      <Submit
+        label={isPractice ? "Create practice account" : "Create lab account"}
+        pending={pending}
+      />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
           Account request received. We'll email you next steps to activate OptiGo.

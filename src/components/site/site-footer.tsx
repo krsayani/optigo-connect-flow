@@ -3,32 +3,35 @@ import { OptiGoWordmark } from "./logo";
 
 const columns = [
   {
-    title: "Platform",
+    title: "On this page",
     links: [
-      { label: "Platform", to: "/platform" },
-      { label: "How It Works", to: "/how-it-works" },
-      { label: "Integrations", to: "/integrations" },
+      { label: "The Problem", href: "#problem" },
+      { label: "The Solution", href: "#solution" },
+      { label: "The Product", href: "#product" },
     ],
   },
   {
-    title: "Who It's For",
+    title: "Get started",
     links: [
-      { label: "For Practices", to: "/for-practices" },
-      { label: "For Labs", to: "/for-labs" },
-      { label: "Sign Up", to: "/signup" },
-      { label: "Partner With Us", to: "/partner" },
+      { label: "Who It's For", href: "#who" },
+      { label: "Sign Up", href: "#get-started" },
+      { label: "Request a Demo", href: "#contact" },
     ],
   },
   {
-    title: "Company",
+    title: "Legal",
     links: [
-      { label: "About", to: "/about" },
-      { label: "Contact", to: "/demo" },
       { label: "Privacy", to: "/privacy" },
       { label: "Terms", to: "/terms" },
     ],
   },
 ] as const;
+
+function scrollToHash(href: string) {
+  const id = href.replace("#", "");
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function SiteFooter() {
   return (
@@ -36,14 +39,23 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
-            <OptiGoWordmark />
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState(null, "", "#top");
+                scrollToHash("#top");
+              }}
+            >
+              <OptiGoWordmark />
+            </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Building the connected future of optometry.
+              Built for practices and labs.
             </p>
             <div className="mt-6 h-px w-24 hairline-x" />
             <p className="mt-6 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              OptiGo is an early-stage software infrastructure company. Product capabilities
-              described on this site are in active development.
+              OptiGo connects all Practice Management Systems (PMS) to all Lab Management
+              Systems (LMS) in one place—then verifies and routes each order.
             </p>
           </div>
 
@@ -53,12 +65,26 @@ export function SiteFooter() {
               <ul className="mt-4 space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <Link
-                      to={l.to}
-                      className="text-sm text-muted-foreground transition-colors hover:text-electric"
-                    >
-                      {l.label}
-                    </Link>
+                    {"href" in l ? (
+                      <a
+                        href={l.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.history.pushState(null, "", l.href);
+                          scrollToHash(l.href);
+                        }}
+                        className="text-sm text-muted-foreground transition-colors hover:text-electric"
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={l.to}
+                        className="text-sm text-muted-foreground transition-colors hover:text-electric"
+                      >
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -71,7 +97,7 @@ export function SiteFooter() {
             © 2026 OptiGo. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Starting with optical. Building for the future of optometry.
+            Connecting every PMS to every LMS.
           </p>
         </div>
       </div>

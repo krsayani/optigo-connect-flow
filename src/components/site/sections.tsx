@@ -10,20 +10,20 @@ import {
   FileCheck2,
   Building2,
   Cpu,
-  FlaskConical,
   HeartPulse,
 } from "lucide-react";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "./primitives";
 import { Reveal } from "./reveal";
 import { InfrastructureGraphic } from "./infrastructure-graphic";
+import { LensesIcon } from "@/components/site/lenses-icon";
 
 /* ---------- Ecosystem strip ---------- */
 
 const ecosystem = [
-  { label: "Practices", icon: Building2 },
-  { label: "EHRs", icon: Cpu },
-  { label: "Laboratories", icon: FlaskConical },
-  { label: "Patients", icon: HeartPulse },
+  { label: "Patient", icon: HeartPulse },
+  { label: "Practice", icon: Building2 },
+  { label: "PMS", icon: Cpu },
+  { label: "LMS", icon: LensesIcon },
 ];
 
 export function EcosystemStrip() {
@@ -285,7 +285,7 @@ export function FinalCTA() {
           align="center"
           tone="dark"
           title="Help build the future of optical connectivity."
-          body="Whether you're an optometry practice, optical laboratory, EHR provider, or technology partner, we'd like to hear from you."
+          body="Whether you're an optometry practice, optical laboratory, practice management provider, or technology partner, we'd like to hear from you."
         />
         <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
           <CTAButton to="/signup" variant="light">

@@ -80,12 +80,14 @@ export function SectionHeading({
 
 export function CTAButton({
   to,
+  href,
   search,
   children,
   variant = "primary",
   className,
 }: {
-  to: string;
+  to?: string;
+  href?: string;
   search?: Record<string, string>;
   children: ReactNode;
   variant?: "primary" | "ghost" | "light" | "outline-light";
@@ -101,15 +103,37 @@ export function CTAButton({
       "border border-white/25 text-on-dark hover:border-aqua hover:text-aqua",
   }[variant];
 
+  const classes = cn(
+    "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
+    styles,
+    className,
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={classes}
+        onClick={(e) => {
+          if (!href.startsWith("#")) return;
+          e.preventDefault();
+          window.history.pushState(null, "", href);
+          document
+            .getElementById(href.slice(1))
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+      >
+        {children}
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </a>
+    );
+  }
+
   return (
     <Link
-      to={to as "/"}
+      to={(to || "/") as "/"}
       search={search as never}
-      className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
-        styles,
-        className,
-      )}
+      className={classes}
     >
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -23,7 +23,7 @@ const painPoints = [
 ];
 
 const optigoSteps = [
-  "Order originates in the practice / EHR",
+  "Order originates in the practice management system",
   "OptiGo normalizes and routes the order",
   "Laboratory workflow receives a clean handoff",
   "Status flows back to practice and patient",

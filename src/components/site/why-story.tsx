@@ -90,7 +90,7 @@ function StepReentry() {
           {/* source window */}
           <div className="pop-card overflow-hidden rounded-2xl border border-border bg-background shadow-float">
             <WindowChrome
-              label="Practice / EHR"
+              label="Practice Mgmt"
               icon={<ClipboardList className="h-3 w-3 text-electric" />}
             />
             <div className="space-y-1.5 p-3.5">
@@ -164,7 +164,7 @@ function StepBlackBox() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          {["Practice", "Lab"].map((l) => (
+          {["Practice", "Lab Mgmt"].map((l) => (
             <div key={l} className="flex items-center gap-3">
               <div className="pop-card rounded-xl border border-white/12 bg-white/[0.06] px-4 py-3 text-xs font-semibold text-on-dark backdrop-blur-md">
                 {l}
@@ -408,7 +408,7 @@ function OptigoFlow() {
         <div className="relative text-center">
           <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One entry. Every loop closed.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-on-dark-muted">
-            Enter the order once in your EHR. OptiGo routes it to the lab and keeps the patient
+            Enter the order once in your practice management system. OptiGo routes it to the lab and keeps the patient
             informed at every step.
           </p>
         </div>
@@ -492,7 +492,7 @@ function OptigoFlow() {
                 <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
                   <Monitor className="h-5 w-5" />
                 </span>
-                <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+                <p className="mt-3 text-xs font-semibold text-on-dark">Practice Mgmt</p>
                 <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
               </div>
             </div>
@@ -523,7 +523,7 @@ function OptigoFlow() {
                 <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
                   <Glasses className="h-5 w-5" />
                 </span>
-                <p className="mt-3 text-xs font-semibold text-on-dark">Optical Lab</p>
+                <p className="mt-3 text-xs font-semibold text-on-dark">Lab Mgmt</p>
                 <p className="mt-1 text-[10px] text-on-dark-muted">Receives order</p>
               </div>
             </div>
@@ -582,7 +582,7 @@ function OptigoFlow() {
             <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
               <Monitor className="h-5 w-5" />
             </span>
-            <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+            <p className="mt-3 text-xs font-semibold text-on-dark">Practice Mgmt</p>
             <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
           </div>
 
@@ -638,7 +638,7 @@ function OptigoFlow() {
               <span className="mx-auto inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
                 <Glasses className="h-4 w-4" />
               </span>
-              <p className="mt-2 text-[11px] font-semibold text-on-dark">Optical Lab</p>
+              <p className="mt-2 text-[11px] font-semibold text-on-dark">Lab Mgmt</p>
             </div>
 
             <div

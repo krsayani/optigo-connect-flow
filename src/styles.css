@@ -390,6 +390,10 @@
   color: var(--color-muted-foreground);
 }
 
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(18px);

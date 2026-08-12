@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { Building2, Cpu, FlaskConical, HeartPulse } from "lucide-react";
+import { Building2, Cpu, Factory, HeartPulse } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LensesIcon } from "@/components/site/lenses-icon";
 
 const ring = [
-  { label: "Practice", icon: Building2, angle: 225 },
-  { label: "EHR", icon: Cpu, angle: 315 },
-  { label: "Laboratory", icon: FlaskConical, angle: 45 },
-  { label: "Patient", icon: HeartPulse, angle: 135 },
+  { label: "Patient", icon: HeartPulse, angle: 210 },
+  { label: "Practice", icon: Building2, angle: 255 },
+  { label: "PMS", icon: Cpu, angle: 300 },
+  { label: "LMS", icon: LensesIcon, angle: 45 },
+  { label: "Lab", icon: Factory, angle: 90 },
 ];
 
 export function InfrastructureGraphic() {
@@ -18,23 +20,11 @@ export function InfrastructureGraphic() {
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[520px]">
-      <div className="absolute inset-0 grid-mesh-dark rounded-full opacity-50" />
-      {[0.55, 0.78, 1].map((s, i) => (
-        <div
-          key={s}
-          className="absolute rounded-full border border-white/10"
-          style={{
-            inset: `${(1 - s) * 50}%`,
-            animation: `pulse-soft ${5 + i}s ease-in-out infinite`,
-          }}
-        />
-      ))}
-
       <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
         {ring.map((n) => {
           const rad = (n.angle * Math.PI) / 180;
-          const x = 50 + Math.cos(rad) * 36;
-          const y = 50 + Math.sin(rad) * 36;
+          const x = 50 + Math.cos(rad) * 34;
+          const y = 50 + Math.sin(rad) * 34;
           return (
             <g key={n.label}>
               <line
@@ -69,7 +59,7 @@ export function InfrastructureGraphic() {
               OptiGo
             </span>
             <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.18em] text-aqua">
-              Core
+              Hub
             </span>
           </div>
         </div>
@@ -88,19 +78,16 @@ export function InfrastructureGraphic() {
           >
             <div
               className={cn(
-                "flex items-center gap-2 rounded-xl border px-2.5 py-2 backdrop-blur-md transition-all duration-500",
+                "flex items-center gap-2 rounded-xl border bg-white/10 px-2.5 py-2 backdrop-blur transition-all duration-500",
                 active === i
-                  ? "border-aqua/50 bg-white/[0.12] shadow-glow"
-                  : "border-white/12 bg-white/[0.05]",
+                  ? "border-aqua/50 shadow-glow"
+                  : "border-white/15",
               )}
             >
-              <Icon
-                className={cn(
-                  "h-3.5 w-3.5 transition-colors",
-                  active === i ? "text-aqua" : "text-on-dark-muted",
-                )}
-              />
-              <span className="whitespace-nowrap text-[11px] font-semibold text-on-dark">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-lg bg-white/10 text-aqua">
+                <Icon className="h-3.5 w-3.5" />
+              </span>
+              <span className="text-[10px] font-semibold text-on-dark sm:text-[11px]">
                 {n.label}
               </span>
             </div>

@@ -6,31 +6,31 @@ import { Reveal } from "./reveal";
 const steps = [
   {
     n: "01",
-    title: "Connect",
+    title: "Patient → Practice",
     icon: Cable,
-    body: "OptiGo connects with practice-management and EHR systems.",
-    lane: ["Practice / EHR", "OptiGo"],
+    body: "The patient order starts at the practice.",
+    lane: ["Patient", "Practice"],
   },
   {
     n: "02",
-    title: "Route",
+    title: "Practice → PMS",
     icon: GitBranch,
-    body: "Optical order information moves through a streamlined digital workflow toward the laboratory.",
-    lane: ["OptiGo", "Optical Lab"],
+    body: "The practice enters the order into its Practice Management System.",
+    lane: ["Practice", "PMS"],
   },
   {
     n: "03",
-    title: "Track",
+    title: "PMS → OptiGo",
     icon: Radar,
-    body: "Order status can move back through the connected ecosystem as the order progresses.",
-    lane: ["Optical Lab", "OptiGo"],
+    body: "OptiGo receives the order from the PMS, then verifies and routes it.",
+    lane: ["PMS", "OptiGo"],
   },
   {
     n: "04",
-    title: "Communicate",
+    title: "OptiGo → LMS → Lab",
     icon: MessagesSquare,
-    body: "Practices and patients gain better visibility without relying on repetitive manual follow-up.",
-    lane: ["OptiGo", "Practice + Patient"],
+    body: "OptiGo sends the order to the Lab Management System, which reaches the lab. OptiGo also communicates directly with PMS, LMS, and Patient.",
+    lane: ["OptiGo", "LMS / Lab"],
   },
 ];
 
@@ -47,7 +47,7 @@ export function HowItWorksStages() {
       <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-mist p-6 sm:p-10">
         <div className="absolute inset-0 grid-mesh opacity-70" />
         <div className="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {["EHR", "OptiGo", "Lab", "OptiGo", "Practice / Patient"].map((label, i) => (
+          {["Patient", "Practice", "PMS", "OptiGo", "LMS", "Lab"].map((label, i) => (
             <div key={`${label}-${i}`} className="flex flex-1 items-center gap-3">
               <div
                 className={cn(

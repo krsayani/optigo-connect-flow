@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "OptiGo",
           description:
-            "OptiGo is building modern infrastructure connecting optometry practices, EHR systems, optical laboratories, and patients through streamlined optical workflows.",
+            "OptiGo connects all Practice Management Systems (PMS) to all Lab Management Systems (LMS) in one place, then verifies and routes every order.",
           url: "/",
         }),
       },
