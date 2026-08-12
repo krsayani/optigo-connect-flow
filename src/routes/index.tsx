@@ -107,15 +107,15 @@ function Index() {
               </Reveal>
               <Reveal delay={70}>
                 <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-navy sm:text-5xl lg:text-[3.85rem]">
-                  Connect every PMS
+                  One platform for
                   <br />
-                  <span className="text-gradient">to every LMS.</span>
+                  <span className="text-gradient">every optical lab order.</span>
                 </h1>
               </Reveal>
               <Reveal delay={140}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  Patient → Practice → PMS → OptiGo → LMS → Lab. OptiGo verifies and routes
-                  every order, and communicates directly with PMS, LMS, and Patient.
+                  Centralized automated ordering, tracking, and lab intelligence for eye-care
+                  practices—without juggling portals, spreadsheets, or phone calls.
                 </p>
               </Reveal>
               <Reveal delay={210} className="mt-9 flex flex-wrap gap-3">
