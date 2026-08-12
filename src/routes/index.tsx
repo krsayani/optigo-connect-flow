@@ -42,18 +42,18 @@ export const Route = createFileRoute("/")({
 const problems = [
   {
     icon: <Shuffle className="h-4 w-4" />,
-    title: "PMS and LMS don’t talk",
-    body: "Every practice management system and lab management system is separate—staff re-enter orders and chase status by hand.",
+    title: "Orders leave the PMS and vanish",
+    body: "Once a job is sent out, staff leave the practice system and hunt through lab portals—re-keying specs and hoping nothing gets lost.",
   },
   {
     icon: <MessageSquareOff className="h-4 w-4" />,
-    title: "Updates live everywhere else",
-    body: "Status is scattered across LMS portals, calls, and emails—so patients and staff never share one clear view.",
+    title: "Nobody owns the live status",
+    body: "Patients ask “where’s my order?” and the answer is a guess—because progress sits in another system the practice doesn’t control.",
   },
   {
     icon: <LineChart className="h-4 w-4" />,
-    title: "No shared performance picture",
-    body: "Without one connection layer, practices can’t compare labs, control cost, or see turnaround across systems.",
+    title: "Leaders can’t see the real cost",
+    body: "Which lab is late, expensive, or remaking jobs? That picture never shows up inside the tools teams already use every day.",
   },
 ];
 
@@ -138,8 +138,8 @@ function Index() {
       <Section id="problem" tone="mist">
         <SectionHeading
           eyebrow="The problem"
-          title="PMS and LMS still don’t connect."
-          body="Practices run on Practice Management Systems. Labs run on Lab Management Systems. Today those worlds stay separate—and staff fill the gap manually."
+          title="The order leaves your practice—and the trail goes cold."
+          body="Practice systems and lab systems were never built to work as one. Staff fill the gap with portals, phone calls, and spreadsheets—and patients feel every delay."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {problems.map((item, i) => (
