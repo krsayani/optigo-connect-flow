@@ -84,7 +84,9 @@ function ForLabsPage() {
         }
         body="Orders arrive structured and complete, status flows back once, and the practices you already serve stay in sync without a phone call."
       >
-        <CTAButton to="/partner">Become an Integration Partner</CTAButton>
+        <CTAButton to="/signup" search={{ type: "lab" }}>
+          Sign up your lab
+        </CTAButton>
       </PageHero>
 
       <Section>
@@ -117,8 +119,8 @@ function ForLabsPage() {
               body="Rather than building and maintaining separate connections practice by practice, laboratories can connect once into an architecture designed to reach practices across the OptiGo ecosystem."
             />
             <Reveal delay={140} className="mt-9">
-              <CTAButton to="/partner" variant="light">
-                Talk to our team
+              <CTAButton to="/signup" search={{ type: "lab" }} variant="light">
+                Sign up your lab
               </CTAButton>
             </Reveal>
           </div>

@@ -5,7 +5,7 @@ export function OptiGoMark({ className }: { className?: string }) {
     <svg
       viewBox="0 0 32 32"
       aria-hidden="true"
-      className={cn("h-7 w-7", className)}
+      className={cn("h-8 w-8", className)}
       fill="none"
     >
       <defs>
@@ -14,14 +14,15 @@ export function OptiGoMark({ className }: { className?: string }) {
           <stop offset="100%" stopColor="oklch(0.78 0.11 195)" />
         </linearGradient>
       </defs>
+      <rect width="32" height="32" rx="8" fill="oklch(0.17 0.045 262)" />
       <path
-        d="M2 16c4.2-6.4 8.9-9.6 14-9.6S26.8 9.6 31 16c-4.2 6.4-8.9 9.6-14 9.6S6.2 22.4 2 16Z"
+        d="M4 16c4.2-6.4 8.9-9.6 12-9.6S23.8 9.6 28 16c-4.2 6.4-8.9 9.6-12 9.6S8.2 22.4 4 16Z"
         stroke="url(#og-mark)"
-        strokeWidth="1.8"
-        opacity="0.85"
+        strokeWidth="1.7"
+        opacity="0.95"
       />
-      <circle cx="16.4" cy="16" r="5.4" stroke="url(#og-mark)" strokeWidth="1.8" />
-      <circle cx="16.4" cy="16" r="1.9" fill="url(#og-mark)" />
+      <circle cx="16" cy="16" r="5" stroke="url(#og-mark)" strokeWidth="1.7" />
+      <circle cx="16" cy="16" r="1.75" fill="url(#og-mark)" />
     </svg>
   );
 }
@@ -38,7 +39,7 @@ export function OptiGoWordmark({
       <OptiGoMark />
       <span
         className={cn(
-          "font-display text-[1.28rem] font-extrabold tracking-tight",
+          "font-display text-[1.35rem] font-extrabold tracking-[-0.04em]",
           tone === "light" ? "text-on-dark" : "text-navy",
         )}
       >

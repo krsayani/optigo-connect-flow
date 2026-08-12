@@ -37,41 +37,43 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20">
-        <div className="absolute inset-0 surface-hero" />
-        <div className="absolute inset-0 grid-mesh opacity-50" />
+      <section className="relative overflow-hidden px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14">
+        <div className="absolute inset-0 surface-aurora" />
+        <div className="absolute inset-0 grid-mesh opacity-45" />
+        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-electric/25 blur-3xl animate-orb" />
+        <div className="absolute right-0 top-24 h-96 w-96 rounded-full bg-aqua/20 blur-3xl animate-orb" />
+
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_1.15fr] lg:gap-12">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.15fr] lg:gap-10">
             <div>
               <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1.5 text-[11px] font-semibold text-navy backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-electric animate-pulse-soft" />
-                  Software infrastructure for optometry
-                </span>
+                <p className="font-display text-sm font-bold uppercase tracking-[0.22em] text-electric">
+                  OptiGo
+                </p>
               </Reveal>
-              <Reveal delay={80}>
-                <h1 className="mt-6 text-4xl font-bold leading-[1.03] text-navy sm:text-5xl lg:text-[4rem]">
+              <Reveal delay={70}>
+                <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-navy sm:text-5xl lg:text-[4.15rem]">
                   Optical Ordering.
                   <br />
                   <span className="text-gradient">Reimagined.</span>
                 </h1>
               </Reveal>
-              <Reveal delay={160}>
+              <Reveal delay={140}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  OptiGo connects practices, EHR systems, optical laboratories, and patients
-                  through one intelligent workflow—reducing manual work and bringing visibility
-                  to every order.
+                  One intelligent workflow connecting practices, EHRs, labs, and patients —
+                  so optical orders move with less chase and more clarity.
                 </p>
               </Reveal>
-              <Reveal delay={240} className="mt-9 flex flex-wrap gap-3">
-                <CTAButton to="/demo">Request a Demo</CTAButton>
-                <CTAButton to="/partner" variant="ghost">
-                  Become an Integration Partner
+              <Reveal delay={210} className="mt-9 flex flex-wrap gap-3">
+                <CTAButton to="/signup">Sign Up</CTAButton>
+                <CTAButton to="/demo" variant="ghost">
+                  Request a Demo
                 </CTAButton>
               </Reveal>
             </div>
 
-            <Reveal delay={180}>
+            <Reveal delay={160} className="relative">
+              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-electric/15 via-transparent to-aqua/20 blur-2xl" />
               <HeroFlow />
             </Reveal>
           </div>
@@ -80,7 +82,6 @@ function Index() {
 
       {/* WHY OPTIGO EXISTS — storytelling */}
       <WhyStory />
-
 
       {/* HOW IT WORKS */}
       <Section tone="mist">
@@ -112,10 +113,10 @@ function Index() {
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal className="lift flex flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
-            <h3 className="mt-6 text-2xl font-bold leading-tight text-navy sm:text-3xl">
+            <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
               Less chasing.
               <br />
               More patient care.
@@ -124,8 +125,13 @@ function Index() {
               Centralize optical orders, cut repetitive data entry, and give staff a clear view
               of every order without another phone call.
             </p>
-            <div className="mt-8">
-              <CTAButton to="/for-practices">Bring OptiGo to Your Practice</CTAButton>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CTAButton to="/signup" search={{ type: "practice" }}>
+                Sign up as a practice
+              </CTAButton>
+              <CTAButton to="/for-practices" variant="ghost">
+                Learn more
+              </CTAButton>
             </div>
           </Reveal>
 
@@ -135,19 +141,22 @@ function Index() {
           >
             <div className="absolute inset-0 grid-mesh-dark opacity-60" />
             <div className="relative flex flex-1 flex-col">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-aqua">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-aqua">
                 <FlaskConical className="h-4 w-4" />
               </span>
-              <h3 className="mt-6 text-2xl font-bold leading-tight text-on-dark sm:text-3xl">
+              <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
                 A better connection between labs and practices.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
                 Connect once and receive structured orders from every practice on OptiGo —
                 no re-keying, no per-practice integration to maintain.
               </p>
-              <div className="mt-8">
-                <CTAButton to="/for-labs" variant="light">
-                  Become an Integration Partner
+              <div className="mt-8 flex flex-wrap gap-3">
+                <CTAButton to="/signup" search={{ type: "lab" }} variant="light">
+                  Sign up as a lab
+                </CTAButton>
+                <CTAButton to="/for-labs" variant="outline-light">
+                  Learn more
                 </CTAButton>
               </div>
             </div>

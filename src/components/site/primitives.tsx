@@ -80,11 +80,13 @@ export function SectionHeading({
 
 export function CTAButton({
   to,
+  search,
   children,
   variant = "primary",
   className,
 }: {
   to: string;
+  search?: Record<string, string>;
   children: ReactNode;
   variant?: "primary" | "ghost" | "light" | "outline-light";
   className?: string;
@@ -102,8 +104,9 @@ export function CTAButton({
   return (
     <Link
       to={to as "/"}
+      search={search as never}
       className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300",
+        "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
         styles,
         className,
       )}
@@ -181,13 +184,14 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-border px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
-      <div className="absolute inset-0 surface-hero" />
-      <div className="absolute inset-0 grid-mesh opacity-60" />
+    <section className="relative overflow-hidden border-b border-border px-5 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-20">
+      <div className="absolute inset-0 surface-aurora" />
+      <div className="absolute inset-0 grid-mesh opacity-45" />
+      <div className="absolute -left-16 top-8 h-56 w-56 rounded-full bg-electric/20 blur-3xl animate-orb" />
       <div className="relative mx-auto max-w-7xl">
         <Reveal className="max-w-3xl">
-          <p className="eyebrow">{eyebrow}</p>
-          <h1 className="mt-4 text-4xl font-bold leading-[1.05] text-navy sm:text-5xl lg:text-[3.4rem]">
+          <p className="eyebrow text-electric">{eyebrow}</p>
+          <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-navy sm:text-5xl lg:text-[3.4rem]">
             {title}
           </h1>
           {body && (

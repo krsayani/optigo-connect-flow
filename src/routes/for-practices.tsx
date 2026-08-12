@@ -92,7 +92,9 @@ function ForPracticesPage() {
         }
         body="Optical ordering takes staff time that belongs with patients. OptiGo is being built to take the repetitive parts off their plate."
       >
-        <CTAButton to="/demo">Bring OptiGo to Your Practice</CTAButton>
+        <CTAButton to="/signup" search={{ type: "practice" }}>
+          Sign up your practice
+        </CTAButton>
       </PageHero>
 
       <Section>

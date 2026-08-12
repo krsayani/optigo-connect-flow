@@ -288,11 +288,11 @@ export function FinalCTA() {
           body="Whether you're an optometry practice, optical laboratory, EHR provider, or technology partner, we'd like to hear from you."
         />
         <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
-          <CTAButton to="/demo" variant="light">
-            Request a Demo
+          <CTAButton to="/signup" variant="light">
+            Sign Up
           </CTAButton>
-          <CTAButton to="/partner" variant="outline-light">
-            Partner With OptiGo
+          <CTAButton to="/demo" variant="outline-light">
+            Request a Demo
           </CTAButton>
         </Reveal>
       </div>

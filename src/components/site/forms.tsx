@@ -26,6 +26,23 @@ const partnerSchema = z.object({
   type: z.string().trim().min(1, "Select a partner type"),
 });
 
+const signupSchema = z.object({
+  ...base,
+  accountType: z.enum(["practice", "lab"], {
+    required_error: "Select an account type",
+  }),
+  company: z.string().trim().min(1, "Organization name is required").max(120),
+  role: z.string().trim().max(120).optional(),
+  locations: z.string().trim().max(40).optional(),
+  systems: z.string().trim().max(200).optional(),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .max(128, "Password is too long"),
+});
+
+export type SignupAccountType = "practice" | "lab";
+
 type Errors = Record<string, string>;
 
 function Field({
@@ -212,6 +229,110 @@ export function PartnerForm() {
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
           Thanks for reaching out — we'll be in touch about integration options.
         </p>
+      )}
+    </form>
+  );
+}
+
+export function SignupForm({
+  accountType,
+  onChangeType,
+}: {
+  accountType: SignupAccountType;
+  onChangeType?: () => void;
+}) {
+  const { errors, done, onSubmit } = useFormSubmit(
+    signupSchema,
+    "Welcome to OptiGo — your signup request was received.",
+  );
+
+  const isPractice = accountType === "practice";
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="grid gap-4 sm:grid-cols-2">
+      <input type="hidden" name="accountType" value={accountType} />
+
+      <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-electric/20 bg-accent/60 px-4 py-3">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-electric">
+            Signing up as
+          </p>
+          <p className="mt-0.5 text-sm font-semibold text-navy">
+            {isPractice ? "Optometry Practice" : "Optical Laboratory"}
+          </p>
+        </div>
+        {onChangeType && (
+          <button
+            type="button"
+            onClick={onChangeType}
+            className="text-xs font-semibold text-electric underline-offset-2 hover:underline"
+          >
+            Change
+          </button>
+        )}
+      </div>
+
+      <Field label="Full name" name="name" required error={errors["name"]} />
+      <Field
+        label={isPractice ? "Practice name" : "Laboratory name"}
+        name="company"
+        required
+        error={errors["company"]}
+      />
+      <Field
+        label="Work email"
+        name="email"
+        type="email"
+        required
+        error={errors["email"]}
+        placeholder="you@organization.com"
+      />
+      <Field label="Phone" name="phone" type="tel" />
+      <Field
+        label="Your role"
+        name="role"
+        placeholder={
+          isPractice ? "Owner, Optician, Office Manager…" : "Operations, IT, Partnerships…"
+        }
+      />
+      <Field
+        label={isPractice ? "Number of locations" : "Practices you serve"}
+        name="locations"
+        placeholder={isPractice ? "1–5, 6–20, 20+" : "Approx. count or region"}
+      />
+      <Field
+        label={
+          isPractice
+            ? "Current EHR / practice management"
+            : "Lab management / order system"
+        }
+        name="systems"
+        className="sm:col-span-2"
+        placeholder={isPractice ? "Crystal, DVI, Ocuco…" : "LMS / portal you use today"}
+      />
+      <Field
+        label="Create a password"
+        name="password"
+        type="password"
+        required
+        error={errors["password"]}
+        className="sm:col-span-2"
+        placeholder="At least 8 characters"
+      />
+      <TextArea
+        label="Anything else we should know?"
+        name="message"
+        error={errors["message"]}
+      />
+      <Note />
+      <Submit label={isPractice ? "Create practice account" : "Create lab account"} />
+      {done && (
+        <p className="text-[12px] font-medium text-electric sm:col-span-2">
+          Account request received. We'll email you next steps to activate OptiGo.
+        </p>
+      )}
+      {errors["accountType"] && (
+        <p className="text-[11px] text-destructive sm:col-span-2">{errors["accountType"]}</p>
       )}
     </form>
   );

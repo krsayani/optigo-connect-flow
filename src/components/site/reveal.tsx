@@ -12,6 +12,14 @@ export function useReveal<T extends HTMLElement>() {
       setShown(true);
       return;
     }
+
+    // Reveal immediately if already in (or near) the viewport
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+      setShown(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -21,7 +29,7 @@ export function useReveal<T extends HTMLElement>() {
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.08, rootMargin: "40px 0px -20px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

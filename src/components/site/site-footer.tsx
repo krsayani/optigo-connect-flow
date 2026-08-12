@@ -15,6 +15,7 @@ const columns = [
     links: [
       { label: "For Practices", to: "/for-practices" },
       { label: "For Labs", to: "/for-labs" },
+      { label: "Sign Up", to: "/signup" },
       { label: "Partner With Us", to: "/partner" },
     ],
   },
