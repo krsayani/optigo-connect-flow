@@ -1,6 +1,7 @@
 import { useEffect, useState, type ComponentType } from "react";
 import { Building2, Factory, HeartPulse } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { OptiGoWordmark } from "@/components/site/logo";
 
 type Vertex = {
   id: string;
@@ -58,52 +59,122 @@ export function HeroFlow() {
                   <stop offset="50%" stopColor="oklch(0.58 0.19 258)" stopOpacity="0.75" />
                   <stop offset="100%" stopColor="oklch(0.78 0.11 195)" stopOpacity="0.45" />
                 </linearGradient>
+                <marker
+                  id="arrow-end"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="4.5"
+                  markerHeight="4.5"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M 0 1.2 L 8 5 L 0 8.8 Z" fill="oklch(0.58 0.19 258)" />
+                </marker>
+                <marker
+                  id="arrow-start"
+                  viewBox="0 0 10 10"
+                  refX="2"
+                  refY="5"
+                  markerWidth="4.5"
+                  markerHeight="4.5"
+                  orient="auto"
+                >
+                  <path d="M 10 1.2 L 2 5 L 10 8.8 Z" fill="oklch(0.58 0.19 258)" />
+                </marker>
+                <marker
+                  id="arrow-end-aqua"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="4.5"
+                  markerHeight="4.5"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M 0 1.2 L 8 5 L 0 8.8 Z" fill="oklch(0.72 0.12 195)" />
+                </marker>
+                <marker
+                  id="arrow-start-aqua"
+                  viewBox="0 0 10 10"
+                  refX="2"
+                  refY="5"
+                  markerWidth="4.5"
+                  markerHeight="4.5"
+                  orient="auto"
+                >
+                  <path d="M 10 1.2 L 2 5 L 10 8.8 Z" fill="oklch(0.72 0.12 195)" />
+                </marker>
               </defs>
 
-              {/* Outer triangle between Patient / Practice / Lab */}
-              <polygon
-                points="50,18 14,78 86,78"
-                fill="oklch(0.58 0.19 258 / 0.04)"
-                stroke="url(#tri-edge)"
-                strokeWidth="0.6"
-                strokeLinejoin="round"
-              />
-              <polygon
-                points="50,18 14,78 86,78"
-                fill="none"
-                stroke="oklch(0.78 0.11 195)"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeDasharray="2.5 6"
-                strokeLinejoin="round"
-                style={{ animation: "dash-move 3s linear infinite" }}
-              />
-
-              {/* Spokes: OptiGo ↔ each vertex */}
+              {/* Outer triangle edges with ↔ arrows */}
               {[
-                "M 50 50 L 50 22",
-                "M 50 50 L 22 72",
-                "M 50 50 L 78 72",
-              ].map((d, i) => (
-                <g key={d}>
+                // Patient ↔ Practice
+                { d: "M 46 24 L 22 70", key: "patient-practice" },
+                // Practice ↔ Lab
+                { d: "M 22 78 L 78 78", key: "practice-lab" },
+                // Lab ↔ Patient
+                { d: "M 78 70 L 54 24", key: "lab-patient" },
+              ].map((edge) => (
+                <g key={edge.key}>
                   <path
-                    d={d}
+                    d={edge.d}
                     fill="none"
                     stroke="url(#tri-edge)"
-                    strokeWidth="0.55"
-                    vectorEffect="non-scaling-stroke"
+                    strokeWidth="0.7"
+                    strokeLinecap="round"
+                    markerStart="url(#arrow-start)"
+                    markerEnd="url(#arrow-end)"
                   />
                   <path
-                    d={d}
+                    d={edge.d}
+                    fill="none"
+                    stroke="oklch(0.78 0.11 195 / 0.55)"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeDasharray="2.5 7"
+                    style={{ animation: "dash-move 3s linear infinite" }}
+                  />
+                </g>
+              ))}
+
+              {/* Soft triangle fill */}
+              <polygon
+                points="50,18 14,78 86,78"
+                fill="oklch(0.58 0.19 258 / 0.035)"
+                stroke="none"
+              />
+
+              {/* Spokes: OptiGo ↔ each vertex with ↔ arrows */}
+              {[
+                // to Patient (shorten so arrows clear the hub/node)
+                { d: "M 50 40 L 50 24", key: "to-patient" },
+                // to Practice
+                { d: "M 40 56 L 26 70", key: "to-practice" },
+                // to Lab
+                { d: "M 60 56 L 74 70", key: "to-lab" },
+              ].map((spoke, i) => (
+                <g key={spoke.key}>
+                  <path
+                    d={spoke.d}
+                    fill="none"
+                    stroke="url(#tri-edge)"
+                    strokeWidth="0.85"
+                    strokeLinecap="round"
+                    markerStart="url(#arrow-start-aqua)"
+                    markerEnd="url(#arrow-end-aqua)"
+                    style={{
+                      opacity: tick === i || tick === 3 ? 1 : 0.7,
+                    }}
+                  />
+                  <path
+                    d={spoke.d}
                     fill="none"
                     stroke="oklch(0.78 0.11 195)"
-                    strokeWidth="1.15"
+                    strokeWidth="1.2"
                     strokeLinecap="round"
-                    strokeDasharray="2 28"
-                    vectorEffect="non-scaling-stroke"
+                    strokeDasharray="2 20"
                     style={{
-                      animation: `dash-move ${2.2 + i * 0.25}s linear infinite`,
-                      opacity: tick === i || tick === 3 ? 1 : 0.55,
+                      animation: `dash-move ${2.1 + i * 0.2}s linear infinite`,
+                      opacity: tick === i || tick === 3 ? 1 : 0.5,
                     }}
                   />
                 </g>
@@ -116,16 +187,11 @@ export function HeroFlow() {
                 <div className="absolute inset-0 -m-8 rounded-full bg-electric/25 blur-2xl animate-pulse-soft" />
                 <div
                   className={cn(
-                    "relative flex flex-col items-center gap-1 rounded-2xl border border-electric/35 bg-navy px-5 py-3.5 shadow-glow sm:px-7 sm:py-4",
+                    "relative flex items-center justify-center rounded-2xl border border-electric/35 bg-navy px-5 py-3.5 shadow-glow sm:px-6 sm:py-4",
                     tick === 3 && "scale-[1.03]",
                   )}
                 >
-                  <span className="font-display text-sm font-extrabold tracking-tight text-on-dark sm:text-base">
-                    OptiGo
-                  </span>
-                  <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-aqua">
-                    Bidirectional hub
-                  </span>
+                  <OptiGoWordmark tone="light" className="scale-95 sm:scale-100" />
                 </div>
               </div>
             </div>
