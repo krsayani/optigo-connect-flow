@@ -157,7 +157,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "lift rounded-2xl p-6",
+        "lift rounded-2xl p-6 sm:p-7",
         tone === "dark"
           ? "border border-white/10 bg-white/[0.04] backdrop-blur-sm"
           : "card-elevated",

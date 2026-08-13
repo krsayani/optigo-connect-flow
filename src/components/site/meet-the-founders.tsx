@@ -40,7 +40,7 @@ function initials(name: string) {
 
 export function MeetTheFounders() {
   return (
-    <Section id="founders">
+    <Section id="founders" tone="mist">
       <SectionHeading
         align="center"
         eyebrow="Meet the Founders"
@@ -60,12 +60,9 @@ export function MeetTheFounders() {
                     className="h-full w-full object-cover object-top"
                   />
                 ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-mist to-accent">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-mist to-accent">
                     <span className="font-display text-4xl font-extrabold tracking-tight text-navy/35">
                       {initials(person.name)}
-                    </span>
-                    <span className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                      Photo coming soon
                     </span>
                   </div>
                 )}

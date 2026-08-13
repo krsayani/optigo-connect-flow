@@ -247,7 +247,7 @@ const trust = [
 
 export function TrustSection() {
   return (
-    <Section tone="mist">
+    <Section>
       <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
         <SectionHeading
           eyebrow="Trust"
@@ -257,7 +257,7 @@ export function TrustSection() {
         <div className="grid gap-3 sm:grid-cols-2">
           {trust.map((t, i) => (
             <Reveal key={t.title} delay={i * 70}>
-              <div className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3.5">
+              <div className="lift flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3.5">
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-electric">
                   {t.icon}
                 </span>

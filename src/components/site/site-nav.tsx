@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils";
 import { OptiGoWordmark } from "./logo";
 
 const nav = [
-  { label: "The Problem", href: "#problem" },
-  { label: "The Solution", href: "#solution" },
-  { label: "The Product", href: "#product" },
-  { label: "Who It's For", href: "#who" },
+  { label: "Problem", href: "#problem" },
+  { label: "Solution", href: "#solution" },
+  { label: "Product", href: "#product" },
+  { label: "Who", href: "#who" },
   { label: "Founders", href: "#founders" },
 ] as const;
 
@@ -62,7 +62,7 @@ export function SiteNav() {
           <OptiGoWordmark />
         </a>
 
-        <nav className="hidden flex-1 items-center gap-0.5 md:flex" aria-label="Main">
+        <nav className="hidden flex-1 items-center gap-0.5 lg:flex" aria-label="Main">
           {nav.map((item) => (
             <a
               key={item.href}
@@ -78,7 +78,7 @@ export function SiteNav() {
           ))}
         </nav>
 
-        <div className="ml-auto hidden items-center gap-2 md:flex">
+        <div className="ml-auto hidden items-center gap-2 lg:flex">
           <a
             href="#contact"
             onClick={(e) => {
@@ -113,14 +113,14 @@ export function SiteNav() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border text-navy md:hidden"
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border text-navy lg:hidden"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-border bg-background/95 backdrop-blur-xl lg:hidden">
           <nav className="mx-auto grid max-w-7xl gap-1 px-5 py-4 sm:px-8" aria-label="Mobile">
             {nav.map((item) => (
               <a

@@ -102,8 +102,8 @@ function Index() {
           <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.15fr] lg:gap-10">
             <div>
               <Reveal>
-                <p className="font-display text-sm font-bold uppercase tracking-[0.22em] text-electric">
-                  OptiGo
+                <p className="inline-flex items-center rounded-full border border-electric/20 bg-accent/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-electric">
+                  For practices and labs
                 </p>
               </Reveal>
               <Reveal delay={70}>
@@ -120,7 +120,19 @@ function Index() {
                   or phone calls.
                 </p>
               </Reveal>
-              <Reveal delay={210} className="mt-9 flex flex-wrap gap-3">
+              <Reveal delay={210} className="mt-8 flex flex-wrap gap-2">
+                {["Ordering", "Communication", "Tracking", "Payments", "Intelligence"].map(
+                  (label) => (
+                    <span
+                      key={label}
+                      className="rounded-full border border-border bg-background/80 px-3 py-1 text-[12px] font-semibold text-navy/80"
+                    >
+                      {label}
+                    </span>
+                  ),
+                )}
+              </Reveal>
+              <Reveal delay={250} className="mt-6 flex flex-wrap gap-3">
                 <CTAButton href="#get-started">Sign Up</CTAButton>
                 <CTAButton href="#contact" variant="ghost">
                   Request a Demo
@@ -170,11 +182,12 @@ function Index() {
           eyebrow="The solution"
           title="One platform for the whole workflow."
           body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every practice and lab you work with."
+          align="center"
         />
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
           {capabilities.map((item, i) => (
             <Reveal key={item.title} delay={i * 90}>
-              <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 sm:p-8">
+              <div className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-7 sm:p-8">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-electric">
                   {item.icon}
                 </span>
@@ -197,6 +210,7 @@ function Index() {
           eyebrow="The product"
           title="Every practice–lab order, in one place."
           body="One operational surface across practices and labs—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
+          align="center"
         />
         <Reveal delay={120} className="mt-12">
           <DashboardMockup />
@@ -213,9 +227,10 @@ function Index() {
           eyebrow="Who it's for"
           title="Built for both sides of the connection."
           body="Practices and labs—finally linked through OptiGo."
+          align="center"
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <Reveal className="lift flex flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
+          <Reveal className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
             <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
@@ -238,7 +253,7 @@ function Index() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
+            <div className="mt-auto pt-8">
               <a
                 href="#get-started"
                 onClick={(e) => {
@@ -259,7 +274,7 @@ function Index() {
 
           <Reveal
             delay={120}
-            className="lift relative flex flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
+            className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
           >
             <div className="absolute inset-0 grid-mesh-dark opacity-60" />
             <div className="relative flex flex-1 flex-col">
@@ -285,7 +300,7 @@ function Index() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-8">
+              <div className="mt-auto pt-8">
                 <a
                   href="#get-started"
                   onClick={(e) => {
@@ -307,12 +322,17 @@ function Index() {
         </div>
       </Section>
 
+      <MeetTheFounders />
+
+      <TrustSection />
+
       {/* GET STARTED / SIGNUP */}
       <Section id="get-started" tone="mist">
         <SectionHeading
           eyebrow="Sign up"
           title="Create your OptiGo account."
           body="Join as a practice or lab. We’ll connect you into the OptiGo network."
+          align="center"
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -321,7 +341,7 @@ function Index() {
             onClick={() => setAccountType("practice")}
             aria-pressed={accountType === "practice"}
             className={cn(
-              "rounded-3xl border p-6 text-left transition-all sm:p-7",
+              "h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
               accountType === "practice"
                 ? "border-electric bg-accent shadow-card"
                 : "border-border bg-background hover:border-electric/40",
@@ -341,7 +361,7 @@ function Index() {
             onClick={() => setAccountType("lab")}
             aria-pressed={accountType === "lab"}
             className={cn(
-              "rounded-3xl border p-6 text-left transition-all sm:p-7",
+              "h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
               accountType === "lab"
                 ? "border-electric/40 surface-dark shadow-glow"
                 : "border-border bg-background hover:border-electric/40",
@@ -427,10 +447,6 @@ function Index() {
           </Reveal>
         </div>
       </Section>
-
-      <MeetTheFounders />
-
-      <TrustSection />
     </>
   );
 }
