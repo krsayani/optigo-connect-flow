@@ -11,6 +11,8 @@ import {
   CheckCircle2,
   Activity,
   CreditCard,
+  Receipt,
+  DoorOpen,
 } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
@@ -58,10 +60,16 @@ const problems = [
     title: "No clear lab intelligence",
     body: "Spend, turnaround, remakes, and lab performance stay fragmented—so leaders can't compare or control cost.",
   },
+  {
+    icon: <DoorOpen className="h-4 w-4" />,
+    title: "Exam walkouts",
+    body: "Patients leave after the exam without buying. Without a quote they can purchase from later, that capture is gone.",
+  },
 ];
 
 const heroChips = [
   { label: "Ordering", icon: GitBranch },
+  { label: "Quotes", icon: Receipt },
   { label: "Communication", icon: MessageSquare },
   { label: "Tracking", icon: Activity },
   { label: "Payments", icon: CreditCard },
@@ -69,6 +77,11 @@ const heroChips = [
 ] as const;
 
 const capabilities = [
+  {
+    icon: <Receipt className="h-4 w-4" />,
+    title: "Quotes they can buy from later",
+    body: "Give patients a quote before they walk out. They can purchase glasses after they leave the office—so the exam still converts.",
+  },
   {
     icon: <GitBranch className="h-4 w-4" />,
     title: "Order from one place",
@@ -174,7 +187,7 @@ function Index() {
           body="Practices work with many labs—each with its own portal, catalog, pricing, and status process. Staff stitch it together by hand."
           align="center"
         />
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {problems.map((item, i) => (
             <Reveal key={item.title} delay={i * 80}>
               <FeatureCard
@@ -196,7 +209,7 @@ function Index() {
           body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every practice and lab you work with."
           align="center"
         />
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {capabilities.map((item, i) => (
             <Reveal key={item.title} delay={i * 90}>
               <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 shadow-card sm:p-8">
@@ -260,6 +273,7 @@ function Index() {
             <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
               {[
                 "One hub from your practice to many labs",
+                "Quotes patients can purchase after they leave the office",
                 "One place to communicate with labs and patients",
                 "Payments, spend, and turnaround in one view",
               ].map((t) => (
