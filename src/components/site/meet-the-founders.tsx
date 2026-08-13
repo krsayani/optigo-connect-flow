@@ -15,6 +15,8 @@ const people = [
   {
     name: "Dr. Karim Sayani",
     detail: "Optometrist",
+    image: "/founders/karim-sayani.png",
+    alt: "Dr. Karim Sayani, Co-Founder of OptiGo",
   },
   {
     name: "Salman Jiwani",
