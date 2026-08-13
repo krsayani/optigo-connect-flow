@@ -41,9 +41,7 @@ const COLUMNS = [
   "In Production",
   "On Hold",
   "Edging Completed",
-  "Ready for Pick Up (PP)",
-  "Ready for Pick Up (CV)",
-  "Ready for Pick Up (SV)",
+  "Ready for Pick Up",
   "Dispensed",
 ] as const;
 
@@ -429,9 +427,7 @@ function OrderBoard({ query }: { query: string }) {
     "In Production": [],
     "On Hold": [],
     "Edging Completed": [],
-    "Ready for Pick Up (PP)": [],
-    "Ready for Pick Up (CV)": [],
-    "Ready for Pick Up (SV)": [],
+    "Ready for Pick Up": [],
     Dispensed: [],
   };
 
