@@ -48,7 +48,7 @@ const problems = [
   {
     icon: <MessageSquareOff className="h-4 w-4" />,
     title: "Scattered status updates",
-    body: "Progress lives in portals, calls, emails, and notes—so delays and patient answers get lost.",
+    body: "There's no one platform to communicate with labs or patients—progress lives in portals, calls, emails, and notes, so delays and answers get lost.",
   },
   {
     icon: <LineChart className="h-4 w-4" />,
