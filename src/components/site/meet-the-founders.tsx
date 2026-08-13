@@ -4,23 +4,23 @@ import { Section, SectionHeading } from "./primitives";
 const people = [
   {
     name: "Dr. Bilal Ismail",
-    detail: "Optometrist",
+    detail: "CEO",
     image: "/founders/bilal-ismail.png",
     alt: "Dr. Bilal Ismail, Founder of OptiGo",
   },
   {
     name: "Hamza Shaikh",
-    detail: "",
+    detail: "CTO",
   },
   {
     name: "Dr. Karim Sayani",
-    detail: "Optometrist",
+    detail: "Multi-Location Practice Owner",
     image: "/founders/karim-sayani.png",
     alt: "Dr. Karim Sayani, Co-Founder of OptiGo",
   },
   {
     name: "Salman Jiwani",
-    detail: "",
+    detail: "Multi-Location Practice Owner",
   },
 ];
 
