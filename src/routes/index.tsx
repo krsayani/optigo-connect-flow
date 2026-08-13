@@ -42,18 +42,18 @@ export const Route = createFileRoute("/")({
 const problems = [
   {
     icon: <Shuffle className="h-4 w-4" />,
-    title: "Orders leave the PMS and vanish",
-    body: "Once a job is sent out, staff leave the practice system and hunt through lab portals—re-keying specs and hoping nothing gets lost.",
+    title: "Manual, inconsistent ordering",
+    body: "Staff pick labs and re-enter orders across portals—slow, error-prone, and hard to train.",
   },
   {
     icon: <MessageSquareOff className="h-4 w-4" />,
-    title: "Nobody owns the live status",
-    body: "Patients ask “where’s my order?” and the answer is a guess—because progress sits in another system the practice doesn’t control.",
+    title: "Scattered status updates",
+    body: "Progress lives in portals, calls, emails, and notes—so delays and patient answers get lost.",
   },
   {
     icon: <LineChart className="h-4 w-4" />,
-    title: "Leaders can’t see the real cost",
-    body: "Which lab is late, expensive, or remaking jobs? That picture never shows up inside the tools teams already use every day.",
+    title: "No clear lab intelligence",
+    body: "Spend, turnaround, remakes, and lab performance stay fragmented—so leaders can't compare or control cost.",
   },
 ];
 
@@ -144,8 +144,9 @@ function Index() {
       <Section id="problem" tone="mist">
         <SectionHeading
           eyebrow="The problem"
-          title="The order leaves your practice—and the trail goes cold."
-          body="Practice systems and lab systems were never built to work as one. Staff fill the gap with portals, phone calls, and spreadsheets—and patients feel every delay."
+          title="Lab ordering is still fragmented."
+          body="Practices work with many labs—each with its own portal, catalog, pricing, and status process. Staff stitch it together by hand."
+          align="center"
         />
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {problems.map((item, i) => (
