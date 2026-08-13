@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { OptiGoWordmark } from "./logo";
 
 const nav = [
   { label: "Problem", href: "#problem" },
@@ -50,18 +49,6 @@ export function SiteNav() {
       )}
     >
       <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center gap-6 px-5 sm:px-8">
-        <a
-          href="#top"
-          className="shrink-0"
-          aria-label="OptiGo home"
-          onClick={(e) => {
-            e.preventDefault();
-            onNavClick("#top");
-          }}
-        >
-          <OptiGoWordmark />
-        </a>
-
         <nav className="hidden flex-1 items-center gap-0.5 lg:flex" aria-label="Main">
           {nav.map((item) => (
             <a

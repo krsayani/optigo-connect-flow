@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { isDemoLoggedIn } from "@/lib/demo-auth";
 import { LensFlowApp } from "@/components/lensflow/app-shell";
 
-const TITLE = "LensFlow";
+const TITLE = "OptiGo";
 
 export const Route = createFileRoute("/app")({
   head: () => ({

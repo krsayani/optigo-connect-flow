@@ -57,9 +57,8 @@ export function LensFlowApp() {
   return (
     <div className="lf-app">
       <header className="lf-header">
-        <div className="lf-brand" title="LensFlow">
-          <img src="/goto-logo.png" alt="" aria-hidden="true" />
-          <span className="lf-brand-name">LensFlow</span>
+        <div className="lf-brand" title="OptiGo">
+          <span className="lf-brand-name">OptiGo</span>
         </div>
         <div className="lf-filters">
           <button type="button" className="lf-chip" aria-label="Change location">
@@ -107,7 +106,7 @@ export function LensFlowApp() {
       </header>
 
       <div className="lf-body">
-        <nav className="lf-nav" aria-label="LensFlow">
+        <nav className="lf-nav" aria-label="OptiGo">
           {TABS.map((t) => (
             <button
               key={t.id}
