@@ -114,8 +114,9 @@ function Index() {
               </Reveal>
               <Reveal delay={140}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  Centralized automated ordering, tracking, and lab intelligence for eye-care
-                  practices— without juggling portals, spreadsheets, or phone calls.
+                  One centralized platform for automated ordering, communication, tracking,
+                  payments, and lab intelligence—without juggling portals, spreadsheets, emails,
+                  or phone calls.
                 </p>
               </Reveal>
               <Reveal delay={210} className="mt-9 flex flex-wrap gap-3">
