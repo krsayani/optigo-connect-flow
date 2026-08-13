@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -106,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "OptiGo",
           description:
-            "OptiGo connects all Practice Management Systems (PMS) to all Lab Management Systems (LMS) in one place, then verifies and routes every order.",
+            "OptiGo is the centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—connecting every PMS to every LMS.",
           url: "/",
         }),
       },
@@ -134,16 +135,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const isAppShell = pathname === "/login" || pathname === "/app";
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
-        <SiteNav />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <div className={isAppShell ? "min-h-screen bg-[#f4f6f9]" : "flex min-h-screen flex-col bg-background"}>
+        {!isAppShell && <SiteNav />}
+        {isAppShell ? (
           <Outlet />
-        </main>
-        <SiteFooter />
+        ) : (
+          <main className="flex-1">
+            <Outlet />
+          </main>
+        )}
+        {!isAppShell && <SiteFooter />}
       </div>
       <Toaster position="top-center" />
     </QueryClientProvider>

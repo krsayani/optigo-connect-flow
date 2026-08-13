@@ -3,10 +3,10 @@ import {
   BarChart3,
   Building2,
   Cable,
+  CreditCard,
   LayoutDashboard,
+  MessageSquare,
   Search,
-  Settings,
-  Users,
   Clock,
   CircleAlert,
   CheckCircle2,
@@ -21,30 +21,30 @@ import { LensesIcon } from "@/components/site/lenses-icon";
 type ViewId =
   | "Overview"
   | "Orders"
+  | "Messages"
   | "LMS"
-  | "Patients"
+  | "Payments"
   | "Integrations"
-  | "Analytics"
-  | "Settings";
+  | "Analytics";
 
 const sidebar: { id: ViewId; label: string; icon: ComponentType<{ className?: string }> }[] = [
   { id: "Overview", label: "Overview", icon: LayoutDashboard },
   { id: "Orders", label: "Orders", icon: Building2 },
+  { id: "Messages", label: "Messages", icon: MessageSquare },
   { id: "LMS", label: "LMS", icon: LensesIcon },
-  { id: "Patients", label: "Patients", icon: Users },
-  { id: "Integrations", label: "Integrations", icon: Cable },
+  { id: "Payments", label: "Payments", icon: CreditCard },
   { id: "Analytics", label: "Analytics", icon: BarChart3 },
-  { id: "Settings", label: "Settings", icon: Settings },
+  { id: "Integrations", label: "Integrations", icon: Cable },
 ];
 
 const viewPaths: Record<ViewId, string> = {
   Overview: "app.optigo.io/overview",
   Orders: "app.optigo.io/orders",
+  Messages: "app.optigo.io/messages",
   LMS: "app.optigo.io/lms",
-  Patients: "app.optigo.io/patients",
-  Integrations: "app.optigo.io/integrations",
+  Payments: "app.optigo.io/payments",
   Analytics: "app.optigo.io/analytics",
-  Settings: "app.optigo.io/settings",
+  Integrations: "app.optigo.io/integrations",
 };
 
 const filters = ["All", "In Progress", "Completed", "Flagged", "Delayed"] as const;
@@ -185,15 +185,6 @@ const labs = [
     remakes: "2.1%",
     status: "Pending",
   },
-];
-
-const patients = [
-  { name: "A. Rivera", orders: 3, last: "OG-24817", status: "In Production" },
-  { name: "J. Whitfield", orders: 1, last: "OG-24812", status: "Surfacing" },
-  { name: "M. Osei", orders: 2, last: "OG-24806", status: "Quality Inspection" },
-  { name: "L. Tanaka", orders: 4, last: "OG-24799", status: "Coating" },
-  { name: "S. Brennan", orders: 2, last: "OG-24791", status: "Shipped" },
-  { name: "D. Kaur", orders: 1, last: "OG-24784", status: "Ready for Pickup" },
 ];
 
 const integrations = [
@@ -402,19 +393,19 @@ function OverviewView({ onOpen }: { onOpen: (id: ViewId) => void }) {
             body: "148 in flight across 3 locations. 5 need attention.",
           },
           {
-            id: "LMS" as const,
-            title: "Connected LMS",
-            body: "3 lab management systems live. 1 pending onboarding.",
+            id: "Messages" as const,
+            title: "Lab & patient threads",
+            body: "4 unread. One platform to talk with labs and patients.",
+          },
+          {
+            id: "Payments" as const,
+            title: "Payments",
+            body: "$12.4k outstanding. Invoices and lab spend in one view.",
           },
           {
             id: "Analytics" as const,
-            title: "Routing performance",
+            title: "Lab intelligence",
             body: "93% on-time. $6.4k saved via optimized LMS selection.",
-          },
-          {
-            id: "Integrations" as const,
-            title: "PMS ↔ LMS sync",
-            body: "Crystal PMS + 3 LMS connections syncing in real time.",
           },
         ].map((card) => (
           <button
@@ -495,35 +486,152 @@ function LabsView() {
   );
 }
 
-function PatientsView() {
+function MessagesView() {
+  const threads = [
+    {
+      order: "OG-24817",
+      with: "Northline Optical Lab",
+      role: "Lab",
+      preview: "Confirm AR coating on this job before coating starts?",
+      time: "12m",
+      unread: true,
+    },
+    {
+      order: "OG-24799",
+      with: "L. Tanaka",
+      role: "Patient",
+      preview: "Your lenses are in coating — we’ll text when they’re ready.",
+      time: "38m",
+      unread: true,
+    },
+    {
+      order: "OG-24777",
+      with: "Meridian Optical",
+      role: "Lab",
+      preview: "Delay on blank stock. New ETA March 13.",
+      time: "2h",
+      unread: true,
+    },
+    {
+      order: "OG-24784",
+      with: "D. Kaur",
+      role: "Patient",
+      preview: "Your eyewear is ready for pickup at Riverbend.",
+      time: "Yesterday",
+      unread: false,
+    },
+    {
+      order: "OG-24812",
+      with: "Crescent Lens Works",
+      role: "Lab",
+      preview: "Surfacing complete. Moving to quality inspection.",
+      time: "Yesterday",
+      unread: false,
+    },
+  ];
+
   return (
     <>
       <PanelHeader
-        title="Patients"
-        subtitle="Demo patients with active optical orders"
-        searchPlaceholder="Search patients"
+        title="Messages"
+        subtitle="One thread with labs and patients · tied to each order"
+        searchPlaceholder="Search threads"
       />
-      <div className="overflow-x-auto px-1 py-4 sm:px-3">
+      <StatGrid
+        items={[
+          { label: "Unread", value: "4", delta: "2 lab · 2 patient", icon: MessageSquare },
+          { label: "Open threads", value: "18", delta: "Across 3 locations", icon: Activity },
+          { label: "Median reply", value: "14m", delta: "Last 7 days", icon: Clock },
+          { label: "Resolved today", value: "11", delta: "No voicemail chase", icon: CheckCircle2 },
+        ]}
+      />
+      <div className="space-y-2 p-4 sm:p-6">
+        {threads.map((t) => (
+          <div
+            key={t.order + t.with}
+            className={cn(
+              "flex items-start justify-between gap-3 rounded-xl border px-4 py-3",
+              t.unread ? "border-electric/25 bg-accent/50" : "border-border bg-mist/40",
+            )}
+          >
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-[13px] font-semibold text-navy">{t.with}</p>
+                <span
+                  className={cn(
+                    "rounded-full border px-2 py-0.5 text-[10px] font-semibold",
+                    t.role === "Lab"
+                      ? "border-electric/25 bg-electric/10 text-electric"
+                      : "border-aqua/40 bg-aqua/15 text-navy",
+                  )}
+                >
+                  {t.role}
+                </span>
+                {t.unread && (
+                  <span className="h-1.5 w-1.5 rounded-full bg-electric" />
+                )}
+              </div>
+              <p className="mt-1 truncate text-[12px] text-muted-foreground">{t.preview}</p>
+              <p className="mt-1 font-mono text-[10.5px] text-muted-foreground">{t.order}</p>
+            </div>
+            <p className="shrink-0 text-[11px] text-muted-foreground">{t.time}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function PaymentsView() {
+  const invoices = [
+    { lab: "Northline Optical Lab", amount: "$4,280", status: "Due Mar 18", open: true },
+    { lab: "Crescent Lens Works", amount: "$3,110", status: "Paid", open: false },
+    { lab: "Meridian Optical", amount: "$2,640", status: "Due Mar 21", open: true },
+    { lab: "Summit Precision Lab", amount: "$1,890", status: "Draft", open: true },
+    { lab: "Northline Optical Lab", amount: "$5,020", status: "Paid", open: false },
+  ];
+
+  return (
+    <>
+      <PanelHeader
+        title="Payments"
+        subtitle="Lab invoices and spend in one place · demo practice"
+        searchPlaceholder="Search invoices"
+      />
+      <StatGrid
+        items={[
+          { label: "Outstanding", value: "$12.4k", delta: "3 invoices open", icon: CreditCard },
+          { label: "Paid (90d)", value: "$71.8k", delta: "Across 4 labs", icon: CheckCircle2 },
+          { label: "Avg / order", value: "$77", delta: "−3.2% vs prior", icon: BarChart3 },
+          { label: "Next draft", value: "Mar 15", delta: "Northline cycle", icon: Clock },
+        ]}
+      />
+      <div className="overflow-x-auto px-1 pb-5 sm:px-3">
         <table className="w-full min-w-[560px] border-collapse text-left">
           <thead>
             <tr className="text-[10px] uppercase tracking-wider text-muted-foreground">
-              <th className="px-3 py-2 font-semibold">Patient</th>
-              <th className="px-3 py-2 font-semibold">Orders</th>
-              <th className="px-3 py-2 font-semibold">Latest order</th>
+              <th className="px-3 py-2 font-semibold">Laboratory</th>
+              <th className="px-3 py-2 font-semibold">Amount</th>
               <th className="px-3 py-2 font-semibold">Status</th>
             </tr>
           </thead>
           <tbody>
-            {patients.map((p) => (
-              <tr key={p.name} className="border-t border-border/70 hover:bg-muted/50">
-                <td className="px-3 py-3 text-[12.5px] font-medium text-navy">
-                  Demo Patient — {p.name}
+            {invoices.map((inv, i) => (
+              <tr key={`${inv.lab}-${i}`} className="border-t border-border/70 hover:bg-muted/50">
+                <td className="px-3 py-3 text-[12.5px] font-medium text-navy">{inv.lab}</td>
+                <td className="px-3 py-3 text-[12.5px] text-navy">{inv.amount}</td>
+                <td className="px-3 py-3">
+                  <span
+                    className={cn(
+                      "inline-flex rounded-full border px-2.5 py-1 text-[10.5px] font-semibold",
+                      inv.open
+                        ? "border-electric/25 bg-electric/10 text-electric"
+                        : "border-aqua/40 bg-aqua/15 text-navy",
+                    )}
+                  >
+                    {inv.status}
+                  </span>
                 </td>
-                <td className="px-3 py-3 text-[12px] text-muted-foreground">{p.orders}</td>
-                <td className="px-3 py-3 font-mono text-[11.5px] text-muted-foreground">
-                  {p.last}
-                </td>
-                <td className="px-3 py-3 text-[12px] text-navy/80">{p.status}</td>
               </tr>
             ))}
           </tbody>
@@ -636,47 +744,17 @@ function AnalyticsView() {
   );
 }
 
-function SettingsView() {
-  const rows = [
-    { label: "Routing rules", value: "Price · turnaround · preferred LMS" },
-    { label: "Verification", value: "Required before LMS submission" },
-    { label: "Notifications", value: "Practice + patient updates on" },
-    { label: "Locations", value: "3 active locations" },
-    { label: "Roles", value: "Owner · Optician · Front desk" },
-  ];
-  return (
-    <>
-      <PanelHeader
-        title="Settings"
-        subtitle="Demo practice preferences"
-        searchPlaceholder="Search settings"
-      />
-      <div className="space-y-2 p-4 sm:p-6">
-        {rows.map((r) => (
-          <div
-            key={r.label}
-            className="flex items-center justify-between gap-4 rounded-xl border border-border bg-mist/40 px-4 py-3"
-          >
-            <p className="text-[13px] font-semibold text-navy">{r.label}</p>
-            <p className="text-right text-[12px] text-muted-foreground">{r.value}</p>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
-
 export function DashboardMockup() {
   const [view, setView] = useState<ViewId>("Orders");
 
   const content: Record<ViewId, ReactNode> = {
     Overview: <OverviewView onOpen={setView} />,
     Orders: <OrdersView />,
+    Messages: <MessagesView />,
     LMS: <LabsView />,
-    Patients: <PatientsView />,
+    Payments: <PaymentsView />,
     Integrations: <IntegrationsView />,
     Analytics: <AnalyticsView />,
-    Settings: <SettingsView />,
   };
 
   return (
@@ -719,7 +797,7 @@ export function DashboardMockup() {
               Demo data
             </p>
             <p className="mt-1 text-[11px] leading-snug text-sidebar-foreground/60">
-              Click the sidebar to explore LMS, analytics, and more.
+              Click the sidebar to explore messages, payments, analytics, and more.
             </p>
           </div>
         </aside>

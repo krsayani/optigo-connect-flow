@@ -19,7 +19,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden px-5 py-20 sm:px-8 sm:py-28",
+        "relative overflow-hidden scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28",
         tone === "mist" && "bg-mist",
         tone === "dark" && "surface-dark",
         className,
@@ -167,7 +167,7 @@ export function FeatureCard({
       {icon && (
         <div
           className={cn(
-            "mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl",
+            "mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full",
             tone === "dark"
               ? "bg-white/10 text-aqua"
               : "bg-accent text-electric",

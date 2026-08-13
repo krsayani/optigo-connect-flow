@@ -1,9 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { OptiGoWordmark } from "./logo";
+import { goToHomeHash } from "./site-nav";
 
 const columns = [
   {
-    title: "On this page",
+    title: "Product",
     links: [
       { label: "The Problem", href: "#problem" },
       { label: "The Solution", href: "#solution" },
@@ -14,6 +15,7 @@ const columns = [
     title: "Get started",
     links: [
       { label: "Who It's For", href: "#who" },
+      { label: "Log in", to: "/login" },
       { label: "Sign Up", href: "#get-started" },
       { label: "Request a Demo", href: "#contact" },
     ],
@@ -27,13 +29,14 @@ const columns = [
   },
 ] as const;
 
-function scrollToHash(href: string) {
-  const id = href.replace("#", "");
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 export function SiteFooter() {
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const navigate = useNavigate();
+
+  const onHashClick = (href: string) => {
+    goToHomeHash(href, pathname, navigate);
+  };
+
   return (
     <footer className="border-t border-border bg-mist">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
@@ -43,19 +46,18 @@ export function SiteFooter() {
               href="#top"
               onClick={(e) => {
                 e.preventDefault();
-                window.history.pushState(null, "", "#top");
-                scrollToHash("#top");
+                onHashClick("#top");
               }}
             >
               <OptiGoWordmark />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Built for practices and labs.
+              One platform for every optical lab order.
             </p>
             <div className="mt-6 h-px w-24 hairline-x" />
             <p className="mt-6 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              OptiGo connects all Practice Management Systems (PMS) to all Lab Management
-              Systems (LMS) in one place—then verifies and routes each order.
+              Automated ordering, communication, tracking, payments, and lab
+              intelligence—connecting every PMS to every LMS.
             </p>
           </div>
 
@@ -70,8 +72,7 @@ export function SiteFooter() {
                         href={l.href}
                         onClick={(e) => {
                           e.preventDefault();
-                          window.history.pushState(null, "", l.href);
-                          scrollToHash(l.href);
+                          onHashClick(l.href);
                         }}
                         className="text-sm text-muted-foreground transition-colors hover:text-electric"
                       >

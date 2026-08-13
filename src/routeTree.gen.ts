@@ -11,11 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ForLabsRouteImport } from './routes/for-labs'
 import { Route as ForPracticesRouteImport } from './routes/for-practices'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -30,6 +32,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoRoute = DemoRouteImport.update({
@@ -55,6 +62,11 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
 const IntegrationsRoute = IntegrationsRouteImport.update({
   id: '/integrations',
   path: '/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerRoute = PartnerRouteImport.update({
@@ -86,11 +98,13 @@ const TermsRoute = TermsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
@@ -100,11 +114,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
@@ -115,11 +131,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
   '/how-it-works': typeof HowItWorksRoute
   '/integrations': typeof IntegrationsRoute
+  '/login': typeof LoginRoute
   '/partner': typeof PartnerRoute
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
@@ -131,11 +149,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/app'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/login'
     | '/partner'
     | '/platform'
     | '/privacy'
@@ -145,11 +165,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/app'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/login'
     | '/partner'
     | '/platform'
     | '/privacy'
@@ -159,11 +181,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/app'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
     | '/how-it-works'
     | '/integrations'
+    | '/login'
     | '/partner'
     | '/platform'
     | '/privacy'
@@ -174,11 +198,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AppRoute: typeof AppRoute
   DemoRoute: typeof DemoRoute
   ForLabsRoute: typeof ForLabsRoute
   ForPracticesRoute: typeof ForPracticesRoute
   HowItWorksRoute: typeof HowItWorksRoute
   IntegrationsRoute: typeof IntegrationsRoute
+  LoginRoute: typeof LoginRoute
   PartnerRoute: typeof PartnerRoute
   PlatformRoute: typeof PlatformRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -200,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo': {
@@ -235,6 +268,13 @@ declare module '@tanstack/react-router' {
       path: '/integrations'
       fullPath: '/integrations'
       preLoaderRoute: typeof IntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner': {
@@ -278,11 +318,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AppRoute: AppRoute,
   DemoRoute: DemoRoute,
   ForLabsRoute: ForLabsRoute,
   ForPracticesRoute: ForPracticesRoute,
   HowItWorksRoute: HowItWorksRoute,
   IntegrationsRoute: IntegrationsRoute,
+  LoginRoute: LoginRoute,
   PartnerRoute: PartnerRoute,
   PlatformRoute: PlatformRoute,
   PrivacyRoute: PrivacyRoute,

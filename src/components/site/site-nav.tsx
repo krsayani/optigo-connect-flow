@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { OptiGoWordmark } from "./logo";
@@ -10,15 +11,21 @@ const nav = [
   { label: "Who It's For", href: "#who" },
 ] as const;
 
-function scrollToHash(href: string) {
-  const id = href.replace("#", "");
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+export function goToHomeHash(href: string, pathname: string, navigate: ReturnType<typeof useNavigate>) {
+  const hash = href.replace(/^#/, "");
+  if (pathname !== "/") {
+    void navigate({ to: "/", hash });
+    return;
+  }
+  window.history.pushState(null, "", `#${hash}`);
+  document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useLocation({ select: (l) => l.pathname });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,9 +36,7 @@ export function SiteNav() {
 
   const onNavClick = (href: string) => {
     setOpen(false);
-    // Allow the hash to update, then smooth-scroll
-    window.history.pushState(null, "", href);
-    scrollToHash(href);
+    goToHomeHash(href, pathname, navigate);
   };
 
   return (
@@ -83,6 +88,12 @@ export function SiteNav() {
           >
             Request a Demo
           </a>
+          <Link
+            to="/login"
+            className="rounded-xl px-3 py-2 text-[13px] font-medium text-muted-foreground transition-colors hover:text-navy"
+          >
+            Log in
+          </Link>
           <a
             href="#get-started"
             onClick={(e) => {
@@ -133,6 +144,13 @@ export function SiteNav() {
             >
               Request a Demo
             </a>
+            <Link
+              to="/login"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-3 text-sm font-medium text-navy hover:bg-muted"
+            >
+              Log in
+            </Link>
             <a
               href="#get-started"
               onClick={(e) => {

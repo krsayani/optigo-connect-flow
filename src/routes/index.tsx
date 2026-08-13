@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLocation } from "@tanstack/react-router";
 import {
   Building2,
   GitBranch,
-  Radar,
+  MessageSquare,
   BarChart3,
   Shuffle,
   MessageSquareOff,
@@ -19,9 +19,9 @@ import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/
 import { LensesIcon } from "@/components/site/lenses-icon";
 import { cn } from "@/lib/utils";
 
-const TITLE = "OptiGo | Connect Every PMS to Every LMS";
+const TITLE = "OptiGo | One platform for every optical lab order";
 const DESC =
-  "OptiGo connects all Practice Management Systems (PMS) to all Lab Management Systems (LMS) in one place—then verifies and routes every order automatically.";
+  "One centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—without juggling portals, spreadsheets, emails, or phone calls.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -60,38 +60,38 @@ const problems = [
 const capabilities = [
   {
     icon: <GitBranch className="h-4 w-4" />,
-    title: "Verify and route every order",
-    body: "OptiGo checks the order, then routes it to the right Lab Management System based on your rules—pricing, turnaround, insurance, product fit, and preferences.",
+    title: "Order from one place",
+    body: "OptiGo verifies each job and routes it to the right lab—pricing, turnaround, insurance, product fit, and your rules. Staff stop re-entering orders across portals.",
   },
   {
-    icon: <Radar className="h-4 w-4" />,
-    title: "Track across PMS and LMS",
-    body: "A single timeline from PMS submission through LMS production to patient pickup—status, owner, and next action in one view.",
+    icon: <MessageSquare className="h-4 w-4" />,
+    title: "Communicate and track in one thread",
+    body: "Labs and patients hear from one platform. Status, questions, and updates live on the order—so delays and answers don’t get lost in calls and inboxes.",
   },
   {
     icon: <BarChart3 className="h-4 w-4" />,
-    title: "Decide with connected data",
-    body: "Spend, turnaround, remakes, and lab comparisons built from the verified PMS–LMS flow—not from spreadsheets and portals.",
+    title: "Payments and lab intelligence",
+    body: "Invoices, spend, turnaround, remakes, and lab comparisons in one view—so leaders can compare performance and control cost.",
   },
 ];
 
 function Index() {
   const [accountType, setAccountType] = useState<SignupAccountType | null>(null);
+  const hash = useLocation({ select: (l) => l.hash });
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const el = document.getElementById(hash.slice(1));
-      if (el) {
-        requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
-      }
+    if (!hash) return;
+    const id = hash.replace(/^#/, "");
+    const el = document.getElementById(id);
+    if (el) {
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
     }
-  }, []);
+  }, [hash]);
 
   return (
     <>
       {/* HERO */}
-      <section id="top" className="relative overflow-hidden px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14">
+      <section id="top" className="relative scroll-mt-24 overflow-hidden px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14">
         <div className="absolute inset-0 surface-aurora" />
         <div className="absolute inset-0 grid-mesh opacity-45" />
         <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-electric/25 blur-3xl animate-orb" />
@@ -167,14 +167,14 @@ function Index() {
       <Section id="solution">
         <SectionHeading
           eyebrow="The solution"
-          title="OptiGo verifies and routes the order."
-          body="Connect every PMS to every LMS in one place. OptiGo validates what comes in, then sends each order to the right lab management system—so staff stop re-checking and re-routing by hand."
+          title="One platform for the whole workflow."
+          body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every PMS and LMS you work with."
         />
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           {capabilities.map((item, i) => (
             <Reveal key={item.title} delay={i * 90}>
               <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 sm:p-8">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-electric">
                   {item.icon}
                 </span>
                 <p className="mt-5 font-mono text-[11px] tracking-[0.18em] text-electric">
@@ -195,13 +195,13 @@ function Index() {
         <SectionHeading
           eyebrow="The product"
           title="Every PMS–LMS order, in one place."
-          body="One operational surface across PMS and LMS—OptiGo verifies and routes orders, then keeps status, communication, and performance in sync."
+          body="One operational surface across PMS and LMS—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
         />
         <Reveal delay={120} className="mt-12">
           <DashboardMockup />
         </Reveal>
         <p className="mt-5 text-center text-[11px] text-muted-foreground">
-          Interactive demo — click Overview, Orders, LMS, Analytics, and more. All records are
+          Interactive demo — click Overview, Orders, Messages, Payments, and more. All records are
           fictional.
         </p>
       </Section>
@@ -223,13 +223,13 @@ function Index() {
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Connect your Practice Management System once and reach every Lab Management
-              System you work with—without re-keying or portal hopping.
+              System you work with—ordering, communication, and payments in one place.
             </p>
             <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
               {[
                 "One hub from your PMS to many LMS",
-                "Fewer re-entries and status calls",
-                "Clear spend and turnaround insight",
+                "One place to communicate with labs and patients",
+                "Payments, spend, and turnaround in one view",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-electric" />
@@ -270,12 +270,12 @@ function Index() {
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
                 Connect your Lab Management System once and receive structured orders from
-                practices on OptiGo—no one-off portal for every clinic.
+                practices on OptiGo—then talk, track, and settle in one thread.
               </p>
               <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
                 {[
                   "Cleaner handoffs from any connected PMS",
-                  "Fewer repetitive status inquiries",
+                  "One thread instead of repetitive status calls",
                   "One LMS connection to many practices",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2.5">
@@ -318,6 +318,7 @@ function Index() {
           <button
             type="button"
             onClick={() => setAccountType("practice")}
+            aria-pressed={accountType === "practice"}
             className={cn(
               "rounded-3xl border p-6 text-left transition-all sm:p-7",
               accountType === "practice"
@@ -337,6 +338,7 @@ function Index() {
           <button
             type="button"
             onClick={() => setAccountType("lab")}
+            aria-pressed={accountType === "lab"}
             className={cn(
               "rounded-3xl border p-6 text-left transition-all sm:p-7",
               accountType === "lab"
