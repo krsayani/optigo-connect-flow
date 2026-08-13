@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -10,7 +10,7 @@ import {
   Lock,
   User,
 } from "lucide-react";
-import { demoLogin, isDemoLoggedIn } from "@/lib/demo-auth";
+import { requestPasswordReset, signIn } from "@/lib/auth/functions";
 import { OptiGoWordmark } from "@/components/site/logo";
 import { cn } from "@/lib/utils";
 
@@ -23,24 +23,18 @@ const WORKSPACE_POINTS = [
 export function LensFlowLogin() {
   const navigate = useNavigate();
   const passwordRef = useRef<HTMLInputElement>(null);
-  const [username, setUsername] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [ok, setOk] = useState("");
   const [pending, setPending] = useState(false);
 
-  useEffect(() => {
-    if (isDemoLoggedIn()) {
-      void navigate({ to: "/app" });
-    }
-  }, [navigate]);
-
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setOk("");
-    if (!username.trim()) {
-      setError("Enter your username.");
+    if (!identifier.trim()) {
+      setError("Enter your email or username.");
       return;
     }
     if (!password) {
@@ -49,14 +43,37 @@ export function LensFlowLogin() {
     }
     setPending(true);
     setError("");
-    window.setTimeout(() => {
-      if (demoLogin(username, password)) {
+    try {
+      const result = await signIn({
+        data: { identifier: identifier.trim(), password },
+      });
+      if (result.ok) {
         void navigate({ to: "/app" });
         return;
       }
+      setError(result.error);
+    } catch {
+      setError("Sign-in failed. Please try again.");
+    } finally {
       setPending(false);
-      setError("That username or password didn’t match. Try again.");
-    }, 280);
+    }
+  }
+
+  async function onForgotPassword() {
+    setError("");
+    setOk("");
+    if (!identifier.trim()) {
+      setError("Enter your email or username first, then tap Forgot password.");
+      return;
+    }
+    try {
+      const result = await requestPasswordReset({
+        data: { identifier: identifier.trim() },
+      });
+      setOk(result.message);
+    } catch {
+      setOk("If an account exists, an administrator or reset email will follow up.");
+    }
   }
 
   return (
@@ -134,7 +151,7 @@ export function LensFlowLogin() {
                   htmlFor="gl-username"
                   className="mb-2 block text-[0.7rem] font-bold uppercase tracking-[0.1em] text-navy"
                 >
-                  Username
+                  Email or username
                 </label>
                 <div className="relative">
                   <User
@@ -149,13 +166,13 @@ export function LensFlowLogin() {
                     autoCapitalize="none"
                     spellCheck={false}
                     required
-                    placeholder="Username"
-                    aria-invalid={error.includes("username") || undefined}
+                    placeholder="Email or username"
+                    aria-invalid={Boolean(error) || undefined}
                     aria-describedby={error ? "login-message" : undefined}
                     className={fieldClass}
-                    value={username}
+                    value={identifier}
                     onChange={(e) => {
-                      setUsername(e.target.value);
+                      setIdentifier(e.target.value);
                       setError("");
                     }}
                     onKeyDown={(e) => {
@@ -179,16 +196,7 @@ export function LensFlowLogin() {
                   <button
                     type="button"
                     className="text-xs font-semibold text-electric hover:underline"
-                    onClick={() => {
-                      setError("");
-                      if (!username.trim()) {
-                        setError(
-                          "Enter your username first, then tap Forgot password.",
-                        );
-                        return;
-                      }
-                      setOk("Ask an administrator to reset this password.");
-                    }}
+                    onClick={() => void onForgotPassword()}
                   >
                     Forgot password?
                   </button>

@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { isDemoLoggedIn } from "@/lib/demo-auth";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { getAuthSession } from "@/lib/auth/functions";
 import { LensFlowApp } from "@/components/lensflow/app-shell";
 
 const TITLE = "OptiGo";
@@ -9,21 +8,17 @@ export const Route = createFileRoute("/app")({
   head: () => ({
     meta: [{ title: TITLE }],
   }),
+  beforeLoad: async () => {
+    const session = await getAuthSession();
+    if (!session) {
+      throw redirect({ to: "/login" });
+    }
+    return { session };
+  },
   component: AppPage,
 });
 
 function AppPage() {
-  const navigate = useNavigate();
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (!isDemoLoggedIn()) {
-      void navigate({ to: "/login" });
-      return;
-    }
-    setReady(true);
-  }, [navigate]);
-
-  if (!ready) return null;
-  return <LensFlowApp />;
+  const { session } = Route.useRouteContext();
+  return <LensFlowApp displayName={session.displayName} />;
 }

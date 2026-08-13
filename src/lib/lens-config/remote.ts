@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import type { Json } from "@/integrations/supabase/types";
 import { getSupabase } from "@/lib/supabase/server";
+import { readAuthSession } from "@/lib/auth/session.server";
 import { isLensConfigDatabase } from "./guard";
 
 const orgSchema = z.object({
@@ -24,6 +25,10 @@ export const fetchLensConfig = createServerFn({ method: "POST" })
     const supabase = getSupabase();
     if (!supabase) {
       return { ok: true, configured: false, payload: null };
+    }
+    const session = await readAuthSession();
+    if (!session) {
+      return { ok: false, configured: true, error: "Unauthorized", payload: null };
     }
 
     const { data: row, error } = await supabase
@@ -52,6 +57,10 @@ export const persistLensConfig = createServerFn({ method: "POST" })
     if (!supabase) {
       return { ok: true as const, configured: false as const };
     }
+    const session = await readAuthSession();
+    if (!session) {
+      return { ok: false as const, configured: true as const, error: "Unauthorized" };
+    }
 
     let parsed: unknown;
     try {
@@ -67,7 +76,7 @@ export const persistLensConfig = createServerFn({ method: "POST" })
       organization_id: data.organizationId,
       payload: parsed as unknown as Json,
       updated_at: new Date().toISOString(),
-      updated_by: data.updatedBy ?? null,
+      updated_by: session.userId,
     });
 
     if (error) {

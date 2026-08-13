@@ -143,7 +143,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={isAppShell ? "min-h-screen bg-[#f4f6f9]" : "flex min-h-screen flex-col bg-background"}>
+      <div className={isAppShell ? "min-h-screen bg-mist" : "flex min-h-screen flex-col bg-background"}>
         {!isAppShell && <SiteNav />}
         {isAppShell ? (
           <Outlet />

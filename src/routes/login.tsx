@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { getAuthSession } from "@/lib/auth/functions";
 import { LensFlowLogin } from "@/components/lensflow/login-screen";
 
 const TITLE = "Sign in | OptiGo";
@@ -15,6 +16,12 @@ export const Route = createFileRoute("/login")({
     ],
     links: [{ rel: "canonical", href: "/login" }],
   }),
+  beforeLoad: async () => {
+    const session = await getAuthSession();
+    if (session) {
+      throw redirect({ to: "/app" });
+    }
+  },
   component: LoginPage,
 });
 

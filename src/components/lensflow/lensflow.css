@@ -1,262 +1,146 @@
-/* OptiGo workspace chrome. Login UI lives in login-screen.tsx. */
+/* OptiGo workspace chrome — navy, electric blue, aqua. */
 
 .lf-app {
-  --color-accent: #0f8a43;
-  --color-accent-100: #eaf5ee;
-  --color-accent-600: #0c7238;
-  --color-accent-700: #0a5b2d;
-  --color-text: #16225a;
-  --color-neutral-100: #f7f8fa;
-  --color-neutral-300: #e4e6ee;
-  --color-neutral-500: #9aa0b6;
-  --color-neutral-600: #767d96;
-  --color-divider: #dfe2ec;
-  --gto-fill: rgba(118, 118, 128, 0.11);
-  --gto-fill-hi: rgba(118, 118, 128, 0.18);
-  --gto-live: #34c759;
-  --gto-nav-w: 86px;
-  --gto-safe-t: env(safe-area-inset-top, 0px);
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --lf-live: var(--aqua);
   min-height: 100dvh;
   display: flex;
-  flex-direction: column;
   width: 100%;
-  font-family: var(--font-body);
-  color: var(--color-text);
-  background: #fff;
+  font-family: var(--font-sans);
+  color: var(--navy);
+  background: var(--mist);
 }
 
 .lf-app * {
   box-sizing: border-box;
 }
 
-.lf-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--color-divider);
-  min-height: 54px;
-  padding: 8px 16px;
-  padding-top: calc(8px + var(--gto-safe-t));
-  position: sticky;
-  top: 0;
-  z-index: 30;
-}
-
-.lf-brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  flex: none;
-}
-
-.lf-brand img {
-  height: 22px;
-  width: auto;
-  display: block;
-}
-
-.lf-brand-name {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.lf-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 12px;
-  background: var(--gto-fill);
-  border: 0;
-  border-radius: 999px;
-  color: var(--color-text);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  flex: none;
-  max-width: 180px;
-}
-
-.lf-chip:hover {
-  background: var(--gto-fill-hi);
-}
-
-.lf-filters {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: none;
-}
-
-.lf-search {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gto-fill);
-  border-radius: 12px;
-  padding: 0 12px;
-  height: 36px;
-  max-width: 520px;
-  min-width: 120px;
-}
-
-.lf-search input {
-  flex: 1;
-  background: transparent;
-  border: 0;
-  outline: none;
-  color: var(--color-text);
-  font: inherit;
-  font-size: 13.5px;
-  padding: 6px 0;
-  min-width: 0;
-}
-
-.lf-count {
-  display: inline-flex;
-  align-items: center;
-  flex: none;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: var(--color-accent-100);
-  color: var(--color-accent-700);
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.lf-count.is-dark {
-  background: var(--color-text);
-  color: #fff;
-}
-
-.lf-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: none;
-  margin-left: auto;
-  position: relative;
-}
-
-.lf-account-menu {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  min-width: 180px;
-  background: #fff;
-  border: 1px solid var(--color-neutral-300);
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(22, 34, 90, 0.12);
-  padding: 6px;
-  z-index: 40;
-}
-
-.lf-account-menu button {
-  width: 100%;
-  text-align: left;
-  border: 0;
-  background: none;
-  border-radius: 8px;
-  padding: 9px 10px;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-text);
-  cursor: pointer;
-}
-
-.lf-account-menu button:hover {
-  background: var(--gto-fill);
-}
-
-.lf-body {
-  flex: 1;
-  display: flex;
-  align-items: stretch;
-  min-height: 0;
-}
-
-.lf-nav {
-  width: var(--gto-nav-w);
-  flex: none;
-  background: rgba(249, 249, 251, 0.96);
-  backdrop-filter: blur(20px);
-  border-right: 1px solid var(--color-divider);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 6px;
-}
-
-.lf-nav-btn {
-  position: relative;
-  background: none;
-  border: 0;
-  color: var(--color-neutral-600);
-  padding: 9px 4px 8px;
-  cursor: pointer;
-  font: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  border-radius: 14px;
-  min-height: 56px;
-}
-
-.lf-nav-btn:hover {
-  background: rgba(118, 118, 128, 0.1);
-}
-
-.lf-nav-btn.is-on {
-  color: var(--color-accent-700);
-}
-
-.lf-nav-btn.is-on::before {
-  content: "";
-  position: absolute;
-  inset: 2px 8px;
-  background: var(--color-accent-100);
-  border-radius: 14px;
-}
-
-.lf-nav-btn svg,
-.lf-nav-btn span {
-  position: relative;
-}
-
-.lf-nav-btn span {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-
-.lf-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
 .lf-module {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  background: #f7f8fb;
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 12% 0%,
+      color-mix(in oklab, var(--electric) 12%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 92% 8%,
+      color-mix(in oklab, var(--aqua) 12%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(180deg, var(--mist) 0%, oklch(1 0 0) 42%);
+}
+
+.lf-page-head {
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--hairline);
+  background: color-mix(in oklab, var(--color-background) 78%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.lf-page-kicker {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--electric);
+}
+
+.lf-page-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.55rem, 2.2vw, 1.9rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin-top: 4px;
+  color: var(--navy);
+}
+
+.lf-empty-panel {
+  margin: 24px 28px;
+  padding: 52px 28px;
+  text-align: center;
+  border: 1px dashed color-mix(in oklab, var(--electric) 28%, var(--hairline));
+  border-radius: 1.25rem;
+  background: color-mix(in oklab, var(--color-background) 70%, transparent);
+  color: var(--color-muted-foreground);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-card);
+}
+
+.lf-board-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 18px 20px 24px;
+  flex: 1;
+  background:
+    radial-gradient(
+      920px 420px at 8% 0%,
+      color-mix(in oklab, var(--electric) 14%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      780px 360px at 94% 6%,
+      color-mix(in oklab, var(--aqua) 14%, transparent),
+      transparent 52%
+    ),
+    linear-gradient(180deg, var(--mist) 0%, oklch(0.985 0.008 250) 100%);
+}
+
+.lf-board-col {
+  flex: 0 0 min(288px, 84vw);
+  width: min(288px, 84vw);
+  background: color-mix(in oklab, var(--color-background) 92%, transparent);
+  border: 1px solid color-mix(in oklab, var(--hairline) 80%, var(--electric));
+  border-radius: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.lf-col-head {
+  padding: 14px 14px 12px;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(
+    180deg,
+    oklch(1 0 0) 0%,
+    color-mix(in oklab, var(--mist) 80%, white) 100%
+  );
+}
+
+.lf-col-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+
+.lf-col-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--electric) 12%, transparent);
+  color: var(--electric);
+  border: 1px solid color-mix(in oklab, var(--electric) 22%, transparent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .lf-col-cards {
@@ -267,153 +151,48 @@
 }
 
 .lf-order-card {
-  border: 1px solid rgba(22, 34, 90, 0.1);
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  background: var(--color-background);
+  border-radius: 0.9rem;
+  padding: 11px 12px 11px 14px;
+  box-shadow: 0 1px 2px oklch(0.24 0.058 262 / 0.04);
+  position: relative;
+}
+
+.lf-order-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--electric), var(--aqua));
 }
 
 .lf-order-card-title {
-  font-size: 12.5px;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--color-text);
-  line-height: 1.35;
+  color: var(--navy);
+  line-height: 1.4;
 }
 
 .lf-order-card-meta {
-  margin-top: 4px;
-  font-size: 11px;
-  color: var(--color-neutral-600);
-}
-
-.lf-page-head {
-  padding: 18px 24px 14px;
-  border-bottom: 1px solid var(--color-divider);
-}
-
-.lf-page-kicker {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--color-neutral-600);
-}
-
-.lf-page-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 30px;
-  letter-spacing: -0.022em;
-  line-height: 1.06;
-  margin-top: 3px;
-}
-
-.lf-empty-panel {
-  margin: 24px;
-  padding: 48px 24px;
-  text-align: center;
-  border: 1px dashed rgba(22, 34, 90, 0.12);
-  border-radius: 16px;
-  color: var(--color-neutral-500);
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 0.68rem;
   font-weight: 600;
-}
-
-.lf-board-wrap {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  width: 100%;
-  overflow-x: auto;
-  padding: 16px 18px 20px;
-  background:
-    radial-gradient(920px 420px at 10% 0%, rgba(15, 138, 67, 0.09), transparent 58%),
-    radial-gradient(780px 360px at 92% 8%, rgba(22, 34, 90, 0.07), transparent 52%),
-    linear-gradient(180deg, #f4f7f5 0%, #eef1f6 55%, #eceff5 100%);
-  flex: 1;
-}
-
-.lf-board-col {
-  flex: 0 0 min(300px, 84vw);
-  width: min(300px, 84vw);
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(22, 34, 90, 0.08);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  box-shadow:
-    0 1px 0 rgba(22, 34, 90, 0.03),
-    0 12px 28px rgba(22, 34, 90, 0.05);
-  overflow: hidden;
-}
-
-.lf-col-head {
-  padding: 14px 14px 12px;
-  border-bottom: 1px solid rgba(22, 34, 90, 0.08);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(180deg, #ffffff 0%, #f7f9f8 100%);
-}
-
-.lf-col-title {
-  font-family: var(--font-heading);
-  font-size: 13.5px;
-  font-weight: 800;
-  color: var(--color-text);
-  letter-spacing: -0.01em;
-  flex: 1;
-}
-
-.lf-col-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 24px;
-  padding: 0 8px;
-  border-radius: 999px;
-  background: var(--color-accent-100);
-  color: var(--color-accent-700);
-  font-size: 12px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
+  color: var(--color-muted-foreground);
 }
 
 .lf-col-empty {
   margin: 8px 12px 14px;
   padding: 28px 14px;
   text-align: center;
-  font-size: 12.5px;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-neutral-500);
+  color: var(--color-muted-foreground);
   line-height: 1.45;
-  border: 1px dashed rgba(22, 34, 90, 0.12);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.45);
-}
-
-@media (max-width: 760px) {
-  .lf-nav {
-    position: sticky;
-    bottom: 0;
-    top: auto;
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-    border-right: 0;
-    border-top: 1px solid var(--color-divider);
-    z-index: 20;
-  }
-
-  .lf-body {
-    flex-direction: column;
-  }
-
-  .lf-nav-btn {
-    min-width: 72px;
-    min-height: 52px;
-  }
-
-  .lf-count {
-    display: none;
-  }
+  border: 1px dashed color-mix(in oklab, var(--navy) 12%, var(--hairline));
+  border-radius: 0.85rem;
+  background: color-mix(in oklab, var(--mist) 55%, transparent);
 }
