@@ -2,12 +2,24 @@
 
 .lf-app {
   --lf-live: var(--aqua);
+  height: 100dvh;
+  max-height: 100dvh;
   min-height: 100dvh;
   display: flex;
   width: 100%;
+  overflow: hidden;
   font-family: var(--font-sans);
   color: var(--navy);
   background: var(--mist);
+  overscroll-behavior: none;
+}
+
+.lf-app button,
+.lf-app a,
+.lf-app input,
+.lf-app select,
+.lf-app textarea {
+  touch-action: manipulation;
 }
 
 .lf-app * {
@@ -75,9 +87,13 @@
   align-items: flex-start;
   gap: 14px;
   width: 100%;
-  overflow-x: auto;
+  overflow: auto;
+  min-height: 0;
   padding: 18px 20px 24px;
   flex: 1;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  -webkit-overflow-scrolling: touch;
   background:
     radial-gradient(
       920px 420px at 8% 0%,
@@ -95,6 +111,7 @@
 .lf-board-col {
   flex: 0 0 min(288px, 84vw);
   width: min(288px, 84vw);
+  scroll-snap-align: start;
   background: color-mix(in oklab, var(--color-background) 92%, transparent);
   border: 1px solid color-mix(in oklab, var(--hairline) 80%, var(--electric));
   border-radius: 1.15rem;
@@ -195,4 +212,29 @@
   border: 1px dashed color-mix(in oklab, var(--navy) 12%, var(--hairline));
   border-radius: 0.85rem;
   background: color-mix(in oklab, var(--mist) 55%, transparent);
+}
+
+@media (max-width: 767px) {
+  .lf-page-head {
+    padding: 14px 16px 12px;
+  }
+
+  .lf-page-title {
+    font-size: 1.35rem;
+  }
+
+  .lf-empty-panel {
+    margin: 16px;
+    padding: 32px 16px;
+  }
+
+  .lf-board-wrap {
+    gap: 10px;
+    padding: 12px 16px 20px;
+  }
+
+  .lf-board-col {
+    flex: 0 0 min(280px, 82vw);
+    width: min(280px, 82vw);
+  }
 }

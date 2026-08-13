@@ -234,7 +234,7 @@ export function OrderComposer() {
         <div className="lf-page-kicker">New optical order</div>
         <div className="lf-page-title">Configure lens and route to a lab</div>
       </div>
-      <div className="grid gap-6 p-5 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="grid gap-6 p-4 sm:p-5 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-4">
           <div className="grid gap-3 sm:grid-cols-2">
             <NativeSelect

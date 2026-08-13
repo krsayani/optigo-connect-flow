@@ -55,7 +55,7 @@ export function LensLabConfiguration() {
           submitted.
         </p>
       </div>
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <Tabs defaultValue="catalog">
           <TabsList className="flex h-auto w-full flex-wrap justify-start gap-1">
             <TabsTrigger value="catalog">Lens Catalog</TabsTrigger>

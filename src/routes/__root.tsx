@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "author", content: "OptiGo" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "OptiGo" },
@@ -143,7 +143,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={isAppShell ? "min-h-screen bg-mist" : "flex min-h-screen flex-col bg-background"}>
+      <div className={isAppShell ? "min-h-dvh bg-mist" : "flex min-h-dvh flex-col bg-background"}>
         {!isAppShell && <SiteNav />}
         {isAppShell ? (
           <Outlet />

@@ -127,7 +127,7 @@ export function LensFlowLogin() {
           </div>
 
           <form
-            className="card-elevated relative overflow-hidden p-7 sm:p-8"
+            className="card-elevated relative overflow-hidden p-5 sm:p-8"
             onSubmit={onSubmit}
             autoComplete="on"
             aria-labelledby="login-heading"
