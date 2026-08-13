@@ -14,6 +14,18 @@ const people = [
     image: "/founders/hamza-shaikh.jpg",
     alt: "Hamza Shaikh, Co-Founder of OptiGo",
   },
+  {
+    name: "Dr. Karim Sayani",
+    detail: "Optometrist",
+    image: "/founders/karim-sayani.jpg",
+    alt: "Dr. Karim Sayani, Co-Founder of OptiGo",
+  },
+  {
+    name: "Salman Jiwani",
+    detail: "",
+    image: "/founders/salman-jiwani.jpg",
+    alt: "Salman Jiwani, Co-Founder of OptiGo",
+  },
 ];
 
 const founders = people.map((person, i) => ({
@@ -31,7 +43,7 @@ export function MeetTheFounders() {
         body="Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building OptiGo to change that."
       />
 
-      <div className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
+      <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {founders.map((person, i) => (
           <Reveal key={person.name} delay={i * 80}>
             <article className="lift overflow-hidden rounded-3xl border border-border bg-background shadow-card">
