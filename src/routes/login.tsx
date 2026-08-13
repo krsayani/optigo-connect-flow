@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LensFlowLogin } from "@/components/lensflow/login-screen";
 
-const TITLE = "Sign in | LensFlow";
-const DESC = "Sign in to LensFlow.";
+const TITLE = "Sign in | OptiGo";
+const DESC = "Sign in to OptiGo.";
 
 export const Route = createFileRoute("/login")({
   head: () => ({

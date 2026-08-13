@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { demoLogin, DEMO_USERNAME, isDemoLoggedIn } from "@/lib/demo-auth";
+import { demoLogin, isDemoLoggedIn } from "@/lib/demo-auth";
 import "./lensflow.css";
 
 const EYE_OPEN = (
@@ -34,13 +34,11 @@ export function LensFlowLogin() {
     }
   }, [navigate]);
 
-  const pickMatches = username.trim().toLowerCase() === DEMO_USERNAME.toLowerCase();
-
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     setOk("");
     if (!username.trim()) {
-      setError("Enter or select your username.");
+      setError("Enter your username.");
       return;
     }
     if (!password) {
@@ -62,50 +60,28 @@ export function LensFlowLogin() {
   return (
     <div className="lf-login">
       <form className="gl-card" onSubmit={onSubmit} autoComplete="on">
-        <img className="gl-logo" src="/goto-logo.png" alt="GoTo Optical" />
-        <h1>Welcome To LensFlow</h1>
-        <p className="gl-sub">Sign in to continue</p>
-
         <label htmlFor="gl-username">Username</label>
-        <div className="gl-user-combo">
-          <input
-            id="gl-username"
-            name="username"
-            type="text"
-            autoComplete="username"
-            autoCapitalize="words"
-            spellCheck={false}
-            required
-            placeholder="Type your username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              setError("");
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                document.getElementById("gl-password")?.focus();
-              }
-            }}
-          />
-          <p className="gl-user-hint">You can type your name or pick it below.</p>
-          <div className="gl-user-pick">
-            <select
-              id="gl-username-pick"
-              aria-label="Choose username from list"
-              value={pickMatches ? DEMO_USERNAME : ""}
-              onChange={(e) => {
-                if (!e.target.value) return;
-                setUsername(e.target.value);
-                setError("");
-              }}
-            >
-              <option value="">Or choose from list…</option>
-              <option value={DEMO_USERNAME}>{DEMO_USERNAME}</option>
-            </select>
-          </div>
-        </div>
+        <input
+          id="gl-username"
+          name="username"
+          type="text"
+          autoComplete="username"
+          autoCapitalize="words"
+          spellCheck={false}
+          required
+          placeholder="Username"
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setError("");
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              document.getElementById("gl-password")?.focus();
+            }
+          }}
+        />
 
         <label htmlFor="gl-password">Password</label>
         <div className="gl-pw-wrap">
@@ -144,7 +120,7 @@ export function LensFlowLogin() {
           onClick={() => {
             setError("");
             if (!username.trim()) {
-              setError("Enter or select your username first, then tap Forgot password.");
+              setError("Enter your username first, then tap Forgot password.");
               return;
             }
             setOk("Ask an administrator to reset this password.");
