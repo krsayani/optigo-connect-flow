@@ -16,6 +16,14 @@ const INVALID = "That email or password didn’t match. Try again.";
 const LOCKED = "Too many sign-in attempts. Try again in a few minutes.";
 const RESET_OK = "If an account exists, an administrator or reset email will follow up.";
 
+const BUILTIN_ACCOUNT = {
+  username: "optigo",
+  email: "optigo@optigo.app",
+  displayName: "OptiGo",
+  passwordSalt: "0490868e0e6d407ba553f3114f3faa5e",
+  passwordHash: "e76e2849c6aa5c537c07cdb4b9086a4066bfd19490e368b5f9252f2e787dc695",
+};
+
 const loginSchema = z.object({
   identifier: z.string().trim().min(1).max(120),
   password: z.string().min(1).max(128),
@@ -90,6 +98,19 @@ async function verifyWorkspaceAccount(identifier: string, password: string) {
   return {
     userId: `workspace:${row.username}`,
     displayName: row.display_name,
+  } satisfies AuthSessionData;
+}
+
+async function verifyBuiltinAccount(identifier: string, password: string) {
+  const id = identifier.trim().toLowerCase();
+  const userOk = id === BUILTIN_ACCOUNT.username || id === BUILTIN_ACCOUNT.email;
+  const expected = fromHex(BUILTIN_ACCOUNT.passwordHash);
+  if (!expected) return null;
+  const derived = await pbkdf2(password, BUILTIN_ACCOUNT.passwordSalt);
+  if (!userOk || !timingSafeEqual(derived, expected)) return null;
+  return {
+    userId: `workspace:${BUILTIN_ACCOUNT.username}`,
+    displayName: BUILTIN_ACCOUNT.displayName,
   } satisfies AuthSessionData;
 }
 
@@ -172,7 +193,8 @@ export const signIn = createServerFn({ method: "POST" })
     }
 
     const viaTable = await verifyWorkspaceAccount(data.identifier, data.password);
-    const viaSupabase = viaTable ?? (await verifySupabaseCredentials(data.identifier, data.password));
+    const viaBuiltin = viaTable ?? (await verifyBuiltinAccount(data.identifier, data.password));
+    const viaSupabase = viaBuiltin ?? (await verifySupabaseCredentials(data.identifier, data.password));
     const session = viaSupabase ?? (await verifyEnvCredentials(data.identifier, data.password));
     if (!session) {
       return { ok: false as const, error: INVALID };

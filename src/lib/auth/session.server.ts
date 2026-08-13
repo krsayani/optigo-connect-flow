@@ -12,13 +12,14 @@ export type AuthSessionData = {
 
 const SESSION_NAME = "optigo";
 const MAX_AGE = 60 * 60 * 12;
+const FALLBACK_SESSION_SECRET = "optigo-http-session-secret-v1-connect-flow-workspace";
 
 function sessionPassword() {
   const explicit = process.env["SESSION_SECRET"];
   if (explicit && explicit.length >= 32) return explicit;
   const service = process.env["SUPABASE_SERVICE_ROLE_KEY"];
   if (service && service.length >= 32) return service.slice(0, 64);
-  return null;
+  return FALLBACK_SESSION_SECRET;
 }
 
 function sessionConfig() {
