@@ -4,23 +4,47 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: #f4f6f9;
+  background: var(--mist);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px))
     max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
 }
 
+.lf-login-aurora {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 20% 0%,
+      color-mix(in oklab, var(--electric) 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 85% 15%,
+      color-mix(in oklab, var(--aqua) 16%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(180deg, oklch(0.98 0.01 250), var(--mist));
+}
+
 .lf-login .gl-card {
+  position: relative;
   width: 100%;
-  max-width: 380px;
-  background: #fff;
-  border: 1px solid #e4e6ee;
-  border-radius: 16px;
-  box-shadow: 0 18px 50px rgba(22, 34, 90, 0.12);
-  padding: 28px;
+  max-width: 400px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px color-mix(in oklab, var(--navy) 12%, transparent);
+  padding: 32px 28px 28px;
+}
+
+.lf-login .gl-brand {
+  display: flex;
+  justify-content: center;
 }
 
 .lf-login .gl-logo {
@@ -31,26 +55,27 @@
 
 .lf-login h1 {
   margin: 0 0 2px;
+  font-family: var(--font-display);
   font-size: 1.15rem;
-  color: #16225a;
+  color: var(--navy);
   text-align: center;
 }
 
 .lf-login .gl-sub {
-  margin: 0 0 18px;
-  font-size: 0.8rem;
-  color: #767d96;
+  margin: 10px 0 6px;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
   text-align: center;
 }
 
 .lf-login label {
   display: block;
-  margin: 12px 0 4px;
+  margin: 14px 0 6px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #39405a;
+  color: var(--navy);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
 }
 
 .lf-login select,
@@ -59,16 +84,17 @@
   box-sizing: border-box;
   padding: 10px 12px;
   font-size: 16px;
-  border: 1.5px solid #c6cad9;
-  border-radius: 10px;
-  background: #fff;
-  color: #16225a;
+  font-family: inherit;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
+  color: var(--navy);
 }
 
 .lf-login select {
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2339405a' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23323a6b' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 36px;
@@ -78,7 +104,8 @@
 .lf-login select:focus,
 .lf-login input:focus {
   outline: none;
-  border-color: #0f8a43;
+  border-color: var(--electric);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--electric) 15%, transparent);
 }
 
 .lf-login .gl-user-combo {
@@ -90,7 +117,7 @@
 .lf-login .gl-user-hint {
   margin: 0;
   font-size: 0.72rem;
-  color: #9aa0b6;
+  color: var(--muted-foreground);
   line-height: 1.35;
 }
 
@@ -110,9 +137,9 @@
   width: 36px;
   height: 36px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   background: transparent;
-  color: #5a6179;
+  color: var(--muted-foreground);
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -120,12 +147,12 @@
 }
 
 .lf-login .gl-pw-toggle:hover {
-  background: #f2f3f7;
-  color: #16225a;
+  background: var(--accent);
+  color: var(--navy);
 }
 
 .lf-login .gl-pw-toggle:focus {
-  outline: 2px solid #0f8a43;
+  outline: 2px solid var(--electric);
   outline-offset: 1px;
 }
 
@@ -140,9 +167,9 @@
   margin-top: 18px;
   padding: 12px;
   border: none;
-  border-radius: 10px;
-  background: #0f8a43;
-  color: #fff;
+  border-radius: 12px;
+  background: var(--navy);
+  color: var(--primary-foreground);
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
@@ -150,7 +177,7 @@
 }
 
 .lf-login .gl-btn:hover {
-  background: #0c7238;
+  background: var(--electric);
 }
 
 .lf-login .gl-btn:disabled {
@@ -165,7 +192,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: #0f8a43;
+  color: var(--electric);
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
@@ -179,9 +206,9 @@
 .lf-login .gl-error {
   margin: 12px 0 0;
   padding: 9px 12px;
-  border-radius: 8px;
-  background: #fbeae8;
-  color: #c8362b;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--destructive) 12%, white);
+  color: var(--destructive);
   font-size: 0.8rem;
   display: none;
 }
@@ -189,9 +216,9 @@
 .lf-login .gl-ok {
   margin: 12px 0 0;
   padding: 9px 12px;
-  border-radius: 8px;
-  background: #eaf5ee;
-  color: #0a5b2d;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--aqua) 28%, white);
+  color: var(--navy);
   font-size: 0.8rem;
   display: none;
   line-height: 1.45;
@@ -451,6 +478,41 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.lf-module {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #f7f8fb;
+}
+
+.lf-col-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px 14px;
+}
+
+.lf-order-card {
+  border: 1px solid rgba(22, 34, 90, 0.1);
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.lf-order-card-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.lf-order-card-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--color-neutral-600);
 }
 
 .lf-page-head {
@@ -506,7 +568,9 @@
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 0 rgba(22, 34, 90, 0.03), 0 12px 28px rgba(22, 34, 90, 0.05);
+  box-shadow:
+    0 1px 0 rgba(22, 34, 90, 0.03),
+    0 12px 28px rgba(22, 34, 90, 0.05);
   overflow: hidden;
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { demoLogin, isDemoLoggedIn } from "@/lib/demo-auth";
+import { OptiGoWordmark } from "@/components/site/logo";
 import "./lensflow.css";
 
 const EYE_OPEN = (
@@ -59,7 +60,13 @@ export function LensFlowLogin() {
 
   return (
     <div className="lf-login">
+      <div className="lf-login-aurora" aria-hidden="true" />
       <form className="gl-card" onSubmit={onSubmit} autoComplete="on">
+        <div className="gl-brand">
+          <OptiGoWordmark />
+        </div>
+        <p className="gl-sub">Sign in to your practice workspace.</p>
+
         <label htmlFor="gl-username">Username</label>
         <input
           id="gl-username"
