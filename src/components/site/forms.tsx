@@ -190,7 +190,7 @@ export function DemoForm() {
       <Field label="Phone" name="phone" type="tel" />
       <Field label="Number of Locations" name="locations" placeholder="1–5, 6–20, 20+" />
       <Field
-        label="Current Practice Management System"
+        label="Current practice"
         name="ehr"
         className="sm:col-span-2"
       />
@@ -209,7 +209,7 @@ export function DemoForm() {
 
 const partnerTypes = [
   "Optical Laboratory",
-  "Practice Management System",
+  "Practice",
   "Technology Partner",
   "Other",
 ];
@@ -289,7 +289,7 @@ export function SignupForm({
             Signing up as
           </p>
           <p className="mt-0.5 text-sm font-semibold text-navy">
-            {isPractice ? "Practice (PMS)" : "Lab (LMS)"}
+            {isPractice ? "Practice" : "Lab"}
           </p>
         </div>
         {onChangeType && (
@@ -332,14 +332,10 @@ export function SignupForm({
         placeholder={isPractice ? "1–5, 6–20, 20+" : "Approx. count or region"}
       />
       <Field
-        label={
-          isPractice
-            ? "Current Practice Management System"
-            : "Lab Management System"
-        }
+        label={isPractice ? "Current practice" : "Lab"}
         name="systems"
         className="sm:col-span-2"
-        placeholder={isPractice ? "Crystal, DVI, Ocuco…" : "Your lab management system"}
+        placeholder={isPractice ? "Crystal, DVI, Ocuco…" : "Your lab"}
       />
       <Field
         label="Create a password"

@@ -9,7 +9,6 @@ import {
   Lock,
   FileCheck2,
   Building2,
-  Cpu,
   HeartPulse,
 } from "lucide-react";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "./primitives";
@@ -22,8 +21,7 @@ import { LensesIcon } from "@/components/site/lenses-icon";
 const ecosystem = [
   { label: "Patient", icon: HeartPulse },
   { label: "Practice", icon: Building2 },
-  { label: "PMS", icon: Cpu },
-  { label: "LMS", icon: LensesIcon },
+  { label: "Lab", icon: LensesIcon },
 ];
 
 export function EcosystemStrip() {
@@ -37,7 +35,7 @@ export function EcosystemStrip() {
         </Reveal>
         <Reveal
           delay={100}
-          className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
+          className="mt-8 grid grid-cols-3 gap-3 sm:gap-4"
         >
           {ecosystem.map((e) => (
             <div
@@ -285,7 +283,7 @@ export function FinalCTA() {
           align="center"
           tone="dark"
           title="Help build the future of optical connectivity."
-          body="Whether you're an optometry practice, optical laboratory, practice management provider, or technology partner, we'd like to hear from you."
+          body="Whether you're an optometry practice, optical laboratory, or technology partner, we'd like to hear from you."
         />
         <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
           <CTAButton to="/signup" variant="light">

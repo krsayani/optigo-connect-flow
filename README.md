@@ -666,7 +666,7 @@ We're actively working with industry partners to connect OptiGo with the systems
 
 Create three premium integration cards:
 
-Crystal Practice Management
+Crystal
 
 Status:
 
@@ -942,7 +942,7 @@ Phone
 
 Number of Locations
 
-Current EHR / Practice Management System
+Current practice
 
 Primary Optical Labs
 
@@ -958,7 +958,7 @@ Type:
 
 Optical Laboratory
 
-EHR / Practice Management
+Practice
 
 Technology Partner
 

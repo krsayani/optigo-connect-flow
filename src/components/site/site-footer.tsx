@@ -57,7 +57,7 @@ export function SiteFooter() {
             <div className="mt-6 h-px w-24 hairline-x" />
             <p className="mt-6 max-w-xs text-xs leading-relaxed text-muted-foreground">
               Automated ordering, communication, tracking, payments, and lab
-              intelligence—connecting every PMS to every LMS.
+              intelligence—connecting every practice to every lab.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ export function SiteFooter() {
             © 2026 OptiGo. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Connecting every PMS to every LMS.
+            Connecting every practice to every lab.
           </p>
         </div>
       </div>

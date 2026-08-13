@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import { Building2, Cpu, Factory, HeartPulse } from "lucide-react";
+import { Building2, Factory, HeartPulse } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LensesIcon } from "@/components/site/lenses-icon";
 
 const ring = [
   { label: "Patient", icon: HeartPulse, angle: 210 },
-  { label: "Practice", icon: Building2, angle: 255 },
-  { label: "PMS", icon: Cpu, angle: 300 },
-  { label: "LMS", icon: LensesIcon, angle: 45 },
-  { label: "Lab", icon: Factory, angle: 90 },
+  { label: "Practice", icon: Building2, angle: 300 },
+  { label: "Lab", icon: Factory, angle: 60 },
 ];
 
 export function InfrastructureGraphic() {

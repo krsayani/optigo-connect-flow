@@ -168,7 +168,7 @@ function Index() {
         <SectionHeading
           eyebrow="The solution"
           title="One platform for the whole workflow."
-          body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every PMS and LMS you work with."
+          body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every practice and lab you work with."
         />
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           {capabilities.map((item, i) => (
@@ -194,8 +194,8 @@ function Index() {
       <Section id="product" tone="mist">
         <SectionHeading
           eyebrow="The product"
-          title="Every PMS–LMS order, in one place."
-          body="One operational surface across PMS and LMS—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
+          title="Every practice–lab order, in one place."
+          body="One operational surface across practices and labs—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
         />
         <Reveal delay={120} className="mt-12">
           <DashboardMockup />
@@ -211,7 +211,7 @@ function Index() {
         <SectionHeading
           eyebrow="Who it's for"
           title="Built for both sides of the connection."
-          body="Practices on a PMS and labs on an LMS—finally linked through OptiGo."
+          body="Practices and labs—finally linked through OptiGo."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal className="lift flex flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
@@ -219,15 +219,15 @@ function Index() {
               <Building2 className="h-4 w-4" />
             </span>
             <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
-              Practices using a PMS
+              Practices
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Connect your Practice Management System once and reach every Lab Management
-              System you work with—ordering, communication, and payments in one place.
+              Connect your practice once and reach every lab you work with—ordering,
+              communication, and payments in one place.
             </p>
             <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
               {[
-                "One hub from your PMS to many LMS",
+                "One hub from your practice to many labs",
                 "One place to communicate with labs and patients",
                 "Payments, spend, and turnaround in one view",
               ].map((t) => (
@@ -266,17 +266,17 @@ function Index() {
                 <LensesIcon className="h-4 w-4" />
               </span>
               <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
-                Labs using an LMS
+                Labs
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Connect your Lab Management System once and receive structured orders from
-                practices on OptiGo—then talk, track, and settle in one thread.
+                Connect your lab once and receive structured orders from practices on
+                OptiGo—then talk, track, and settle in one thread.
               </p>
               <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
                 {[
-                  "Cleaner handoffs from any connected PMS",
+                  "Cleaner handoffs from any connected practice",
                   "One thread instead of repetitive status calls",
-                  "One LMS connection to many practices",
+                  "One lab connection to many practices",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2.5">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
@@ -311,7 +311,7 @@ function Index() {
         <SectionHeading
           eyebrow="Sign up"
           title="Create your OptiGo account."
-          body="Join as a practice (PMS) or lab (LMS). We’ll connect you into the OptiGo network."
+          body="Join as a practice or lab. We’ll connect you into the OptiGo network."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -329,9 +329,9 @@ function Index() {
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
-            <h3 className="mt-4 text-lg font-bold text-navy">Practice (PMS)</h3>
+            <h3 className="mt-4 text-lg font-bold text-navy">Practice</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Connect your Practice Management System to every LMS you work with.
+              Connect your practice to every lab you work with.
             </p>
           </button>
 
@@ -360,7 +360,7 @@ function Index() {
                 accountType === "lab" ? "text-on-dark" : "text-navy",
               )}
             >
-              Lab (LMS)
+              Lab
             </h3>
             <p
               className={cn(
@@ -368,7 +368,7 @@ function Index() {
                 accountType === "lab" ? "text-on-dark-muted" : "text-muted-foreground",
               )}
             >
-              Connect your Lab Management System to practices on OptiGo.
+              Connect your lab to practices on OptiGo.
             </p>
           </button>
         </div>

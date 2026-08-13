@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "OptiGo",
           description:
-            "OptiGo is the centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—connecting every PMS to every LMS.",
+            "OptiGo is the centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—connecting every practice to every lab.",
           url: "/",
         }),
       },

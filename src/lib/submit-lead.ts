@@ -26,7 +26,7 @@ export type LeadPayload = z.infer<typeof leadSchema>;
 function subjectFor(formType: LeadPayload["formType"], data: LeadPayload) {
   if (formType === "demo") return `OptiGo demo request — ${data.company || data.name}`;
   if (formType === "partner") return `OptiGo partner inquiry — ${data.company || data.name}`;
-  const kind = data.accountType === "lab" ? "Lab Management System" : "Practice";
+  const kind = data.accountType === "lab" ? "Lab" : "Practice";
   return `OptiGo ${kind} signup — ${data.company || data.name}`;
 }
 
@@ -41,7 +41,7 @@ function buildBody(data: LeadPayload) {
   if (data.company) lines.push(`Company / org: ${data.company}`);
   if (data.role) lines.push(`Role: ${data.role}`);
   if (data.locations) lines.push(`Locations / scale: ${data.locations}`);
-  if (data.ehr) lines.push(`Practice Management System: ${data.ehr}`);
+  if (data.ehr) lines.push(`Practice: ${data.ehr}`);
   if (data.labs) lines.push(`Labs: ${data.labs}`);
   if (data.type) lines.push(`Partner type: ${data.type}`);
   if (data.accountType) lines.push(`Account type: ${data.accountType}`);

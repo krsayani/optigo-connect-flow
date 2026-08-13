@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Cable, GitBranch, Radar, MessagesSquare } from "lucide-react";
+import { Cable, GitBranch, Radar } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 
@@ -13,24 +13,17 @@ const steps = [
   },
   {
     n: "02",
-    title: "Practice → PMS",
+    title: "Practice → OptiGo",
     icon: GitBranch,
-    body: "The practice enters the order into its Practice Management System.",
-    lane: ["Practice", "PMS"],
+    body: "The practice sends the order to OptiGo, which verifies and routes it.",
+    lane: ["Practice", "OptiGo"],
   },
   {
     n: "03",
-    title: "PMS → OptiGo",
+    title: "OptiGo → Lab",
     icon: Radar,
-    body: "OptiGo receives the order from the PMS, then verifies and routes it.",
-    lane: ["PMS", "OptiGo"],
-  },
-  {
-    n: "04",
-    title: "OptiGo → LMS → Lab",
-    icon: MessagesSquare,
-    body: "OptiGo sends the order to the Lab Management System, which reaches the lab. OptiGo also communicates directly with PMS, LMS, and Patient.",
-    lane: ["OptiGo", "LMS / Lab"],
+    body: "OptiGo sends the order to the lab, and stays in communication with the practice, lab, and patient.",
+    lane: ["OptiGo", "Lab"],
   },
 ];
 
@@ -47,7 +40,7 @@ export function HowItWorksStages() {
       <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-mist p-6 sm:p-10">
         <div className="absolute inset-0 grid-mesh opacity-70" />
         <div className="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {["Patient", "Practice", "PMS", "OptiGo", "LMS", "Lab"].map((label, i) => (
+          {["Patient", "Practice", "OptiGo", "Lab"].map((label, i) => (
             <div key={`${label}-${i}`} className="flex flex-1 items-center gap-3">
               <div
                 className={cn(
@@ -60,7 +53,7 @@ export function HowItWorksStages() {
               >
                 {label}
               </div>
-              {i < 4 && (
+              {i < 3 && (
                 <div className="relative hidden h-px w-8 bg-border sm:block">
                   <span
                     className={cn(
@@ -75,7 +68,7 @@ export function HowItWorksStages() {
         </div>
       </Reveal>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 90}>
             <button

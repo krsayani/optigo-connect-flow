@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Simple dual-lens mark for Lab Management System (LMS) nodes. */
+/** Simple dual-lens mark for lab nodes. */
 export function LensesIcon({ className }: { className?: string }) {
   return (
     <svg

@@ -408,7 +408,7 @@ function OptigoFlow() {
         <div className="relative text-center">
           <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One entry. Every loop closed.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-on-dark-muted">
-            Enter the order once in your practice management system. OptiGo routes it to the lab and keeps the patient
+            Enter the order once in your practice. OptiGo routes it to the lab and keeps the patient
             informed at every step.
           </p>
         </div>

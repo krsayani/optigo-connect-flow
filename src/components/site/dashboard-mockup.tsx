@@ -22,7 +22,7 @@ type ViewId =
   | "Overview"
   | "Orders"
   | "Messages"
-  | "LMS"
+  | "Labs"
   | "Payments"
   | "Integrations"
   | "Analytics";
@@ -31,7 +31,7 @@ const sidebar: { id: ViewId; label: string; icon: ComponentType<{ className?: st
   { id: "Overview", label: "Overview", icon: LayoutDashboard },
   { id: "Orders", label: "Orders", icon: Building2 },
   { id: "Messages", label: "Messages", icon: MessageSquare },
-  { id: "LMS", label: "LMS", icon: LensesIcon },
+  { id: "Labs", label: "Labs", icon: LensesIcon },
   { id: "Payments", label: "Payments", icon: CreditCard },
   { id: "Analytics", label: "Analytics", icon: BarChart3 },
   { id: "Integrations", label: "Integrations", icon: Cable },
@@ -41,7 +41,7 @@ const viewPaths: Record<ViewId, string> = {
   Overview: "app.optigo.io/overview",
   Orders: "app.optigo.io/orders",
   Messages: "app.optigo.io/messages",
-  LMS: "app.optigo.io/lms",
+  Labs: "app.optigo.io/labs",
   Payments: "app.optigo.io/payments",
   Analytics: "app.optigo.io/analytics",
   Integrations: "app.optigo.io/integrations",
@@ -151,7 +151,6 @@ const orderStats = [
 const labs = [
   {
     name: "Northline Optical Lab",
-    lms: "Northline LMS",
     orders: 62,
     turnaround: "5.8 days",
     onTime: "96%",
@@ -160,7 +159,6 @@ const labs = [
   },
   {
     name: "Crescent Lens Works",
-    lms: "Crescent Hub",
     orders: 41,
     turnaround: "6.1 days",
     onTime: "94%",
@@ -169,7 +167,6 @@ const labs = [
   },
   {
     name: "Meridian Optical",
-    lms: "Meridian LMS",
     orders: 28,
     turnaround: "7.4 days",
     onTime: "88%",
@@ -178,7 +175,6 @@ const labs = [
   },
   {
     name: "Summit Precision Lab",
-    lms: "Summit Portal",
     orders: 17,
     turnaround: "6.9 days",
     onTime: "91%",
@@ -188,12 +184,12 @@ const labs = [
 ];
 
 const integrations = [
-  { name: "Crystal Practice Management", type: "PMS", status: "Connected", sync: "2 min ago" },
-  { name: "Ocuco", type: "PMS", status: "In development", sync: "—" },
-  { name: "DVI", type: "PMS", status: "In development", sync: "—" },
-  { name: "Northline LMS", type: "LMS", status: "Connected", sync: "1 min ago" },
-  { name: "Crescent Hub", type: "LMS", status: "Connected", sync: "4 min ago" },
-  { name: "Meridian LMS", type: "LMS", status: "Connected", sync: "8 min ago" },
+  { name: "Crystal", type: "Practice", status: "Connected", sync: "2 min ago" },
+  { name: "Ocuco", type: "Practice", status: "In development", sync: "—" },
+  { name: "DVI", type: "Practice", status: "In development", sync: "—" },
+  { name: "Northline Optical Lab", type: "Lab", status: "Connected", sync: "1 min ago" },
+  { name: "Crescent Lens Works", type: "Lab", status: "Connected", sync: "4 min ago" },
+  { name: "Meridian Optical", type: "Lab", status: "Connected", sync: "8 min ago" },
 ];
 
 const analytics = [
@@ -381,7 +377,7 @@ function OverviewView({ onOpen }: { onOpen: (id: ViewId) => void }) {
     <>
       <PanelHeader
         title="Practice Overview"
-        subtitle="Riverbend Eyecare · PMS connected"
+        subtitle="Riverbend Eyecare · practice connected"
         searchPlaceholder="Search"
       />
       <StatGrid items={orderStats} />
@@ -405,7 +401,7 @@ function OverviewView({ onOpen }: { onOpen: (id: ViewId) => void }) {
           {
             id: "Analytics" as const,
             title: "Lab intelligence",
-            body: "93% on-time. $6.4k saved via optimized LMS selection.",
+            body: "93% on-time. $6.4k saved via optimized lab selection.",
           },
         ].map((card) => (
           <button
@@ -431,13 +427,13 @@ function LabsView() {
   return (
     <>
       <PanelHeader
-        title="Lab Management Systems"
-        subtitle="Connected LMS partners · demo network"
-        searchPlaceholder="Search LMS"
+        title="Labs"
+        subtitle="Connected lab partners · demo network"
+        searchPlaceholder="Search labs"
       />
       <StatGrid
         items={[
-          { label: "Connected LMS", value: "3", delta: "1 pending", icon: LensesIcon },
+          { label: "Connected labs", value: "3", delta: "1 pending", icon: LensesIcon },
           { label: "Orders routed", value: "148", delta: "This week", icon: Activity },
           { label: "Best turnaround", value: "5.8d", delta: "Northline", icon: Clock },
           { label: "Avg on-time", value: "93%", delta: "+1.8% vs prior", icon: CheckCircle2 },
@@ -448,7 +444,6 @@ function LabsView() {
           <thead>
             <tr className="text-[10px] uppercase tracking-wider text-muted-foreground">
               <th className="px-3 py-2 font-semibold">Laboratory</th>
-              <th className="px-3 py-2 font-semibold">LMS</th>
               <th className="px-3 py-2 font-semibold">Active orders</th>
               <th className="px-3 py-2 font-semibold">Turnaround</th>
               <th className="px-3 py-2 font-semibold">On-time</th>
@@ -460,7 +455,6 @@ function LabsView() {
             {labs.map((lab) => (
               <tr key={lab.name} className="border-t border-border/70 hover:bg-muted/50">
                 <td className="px-3 py-3 text-[12.5px] font-medium text-navy">{lab.name}</td>
-                <td className="px-3 py-3 text-[12px] text-muted-foreground">{lab.lms}</td>
                 <td className="px-3 py-3 text-[12.5px] text-navy">{lab.orders}</td>
                 <td className="px-3 py-3 text-[12px] text-muted-foreground">{lab.turnaround}</td>
                 <td className="px-3 py-3 text-[12px] font-semibold text-electric">{lab.onTime}</td>
@@ -646,7 +640,7 @@ function IntegrationsView() {
     <>
       <PanelHeader
         title="Integrations"
-        subtitle="PMS and LMS connections in one place"
+        subtitle="Practice and lab connections in one place"
         searchPlaceholder="Search systems"
       />
       <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-6">
@@ -658,7 +652,7 @@ function IntegrationsView() {
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-2.5">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-accent text-electric">
-                  {item.type === "PMS" ? (
+                  {item.type === "Practice" ? (
                     <Cpu className="h-4 w-4" />
                   ) : (
                     <LensesIcon className="h-4 w-4" />
@@ -693,7 +687,7 @@ function AnalyticsView() {
     <>
       <PanelHeader
         title="Analytics"
-        subtitle="Decision support from verified PMS → LMS orders"
+        subtitle="Decision support from verified practice → lab orders"
         searchPlaceholder="Filter metrics"
       />
       <div className="grid grid-cols-2 gap-3 border-b border-border px-4 py-4 sm:px-6 lg:grid-cols-4">
@@ -721,7 +715,7 @@ function AnalyticsView() {
       </div>
       <div className="p-4 sm:p-6">
         <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          Orders by LMS (90 days)
+          Orders by lab (90 days)
         </p>
         <div className="mt-4 space-y-3">
           {bars.map((b) => (
@@ -751,7 +745,7 @@ export function DashboardMockup() {
     Overview: <OverviewView onOpen={setView} />,
     Orders: <OrdersView />,
     Messages: <MessagesView />,
-    LMS: <LabsView />,
+    Labs: <LabsView />,
     Payments: <PaymentsView />,
     Integrations: <IntegrationsView />,
     Analytics: <AnalyticsView />,
