@@ -3,11 +3,6 @@ import {
   Cable,
   Eye,
   Sparkles,
-  ShieldCheck,
-  KeyRound,
-  ServerCog,
-  Lock,
-  FileCheck2,
   Building2,
   Glasses,
 } from "lucide-react";
@@ -239,69 +234,6 @@ export function BuiltForMore() {
             </div>
           </div>
 
-        </Reveal>
-      </div>
-    </Section>
-  );
-}
-
-/* ---------- Trust ---------- */
-
-const trust = [
-  { title: "Security-conscious architecture", icon: <ShieldCheck className="h-4 w-4" /> },
-  { title: "Responsible data handling", icon: <FileCheck2 className="h-4 w-4" /> },
-  { title: "Role-based access", icon: <KeyRound className="h-4 w-4" /> },
-  { title: "Reliable infrastructure", icon: <ServerCog className="h-4 w-4" /> },
-  { title: "Privacy-focused design", icon: <Lock className="h-4 w-4" /> },
-];
-
-export function TrustSection() {
-  return (
-    <Section>
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-        <SectionHeading
-          eyebrow="Trust"
-          title="Built with healthcare workflows in mind."
-          body="Designed with security and privacy as foundational considerations."
-        />
-        <div className="grid gap-3 sm:grid-cols-2">
-          {trust.map((t, i) => (
-            <Reveal key={t.title} delay={i * 70}>
-              <div className="lift flex items-center gap-3 rounded-2xl border border-border bg-background px-4 py-4 shadow-card">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent text-electric">
-                  {t.icon}
-                </span>
-                <span className="text-[13px] font-semibold text-navy">{t.title}</span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-/* ---------- Final CTA ---------- */
-
-export function FinalCTA() {
-  return (
-    <Section tone="dark">
-      <div className="absolute inset-0 grid-mesh-dark opacity-60" />
-      <div className="absolute -bottom-24 left-1/3 h-80 w-80 rounded-full bg-aqua/15 blur-3xl animate-drift" />
-      <div className="relative mx-auto max-w-3xl text-center">
-        <SectionHeading
-          align="center"
-          tone="dark"
-          title="Help build the future of optical connectivity."
-          body="Whether you're an optometry practice, optical laboratory, or technology partner, we'd like to hear from you."
-        />
-        <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
-          <CTAButton href="#get-started" variant="light">
-            Sign Up
-          </CTAButton>
-          <CTAButton href="#contact" variant="outline-light">
-            Request a Demo
-          </CTAButton>
         </Reveal>
       </div>
     </Section>

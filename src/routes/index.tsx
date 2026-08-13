@@ -16,7 +16,7 @@ import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
-import { EcosystemStrip, FinalCTA, TrustSection, WhyOptiGo } from "@/components/site/sections";
+import { EcosystemStrip, WhyOptiGo } from "@/components/site/sections";
 import { MeetTheFounders } from "@/components/site/meet-the-founders";
 import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/forms";
 import { LensesIcon } from "@/components/site/lenses-icon";
@@ -340,8 +340,6 @@ function Index() {
 
       <MeetTheFounders />
 
-      <TrustSection />
-
       {/* GET STARTED / SIGNUP */}
       <Section id="get-started" tone="mist">
         <SectionHeading
@@ -469,8 +467,6 @@ function Index() {
           </Reveal>
         </div>
       </Section>
-
-      <FinalCTA />
     </>
   );
 }
