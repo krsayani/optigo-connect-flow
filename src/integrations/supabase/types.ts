@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      workspace_accounts: {
+        Row: {
+          username: string;
+          email: string | null;
+          password_salt: string;
+          password_hash: string;
+          display_name: string;
+          created_at: string;
+        };
+        Insert: {
+          username: string;
+          email?: string | null;
+          password_salt: string;
+          password_hash: string;
+          display_name?: string;
+          created_at?: string;
+        };
+        Update: {
+          username?: string;
+          email?: string | null;
+          password_salt?: string;
+          password_hash?: string;
+          display_name?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       lens_config_state: {
         Row: {
           organization_id: string;

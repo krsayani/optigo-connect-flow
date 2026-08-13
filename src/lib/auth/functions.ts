@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { getSupabaseAuth } from "@/lib/supabase/server";
-import { secretsMatch } from "./crypto.server";
+import { getSupabase, getSupabaseAuth } from "@/lib/supabase/server";
+import { pbkdf2, secretsMatch, timingSafeEqual } from "./crypto.server";
 import { consumeRateLimit } from "./rate-limit.server";
 import {
   clientIp,
@@ -37,6 +37,62 @@ async function runDummyWork(salt: string) {
   await secretsMatch("optigo-dummy-candidate", "optigo-dummy-expected", salt);
 }
 
+function fromHex(hex: string) {
+  if (!/^[0-9a-f]+$/i.test(hex) || hex.length % 2 !== 0) return null;
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < bytes.length; i += 1) {
+    bytes[i] = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+  }
+  return bytes;
+}
+
+async function verifyWorkspaceAccount(identifier: string, password: string) {
+  const supabase = getSupabase();
+  const dummySalt = process.env["SESSION_SECRET"] || "optigo-auth-salt";
+  if (!supabase) {
+    await runDummyWork(dummySalt);
+    return null;
+  }
+
+  const id = identifier.trim().toLowerCase();
+  const byUsername = await supabase
+    .from("workspace_accounts")
+    .select("username, display_name, password_salt, password_hash")
+    .eq("username", id)
+    .maybeSingle();
+
+  const row =
+    byUsername.data ??
+    (isEmail(id)
+      ? (
+          await supabase
+            .from("workspace_accounts")
+            .select("username, display_name, password_salt, password_hash")
+            .eq("email", id)
+            .maybeSingle()
+        ).data
+      : null);
+
+  if (!row) {
+    await runDummyWork(dummySalt);
+    return null;
+  }
+
+  const expected = fromHex(row.password_hash);
+  if (!expected) {
+    await runDummyWork(dummySalt);
+    return null;
+  }
+
+  const derived = await pbkdf2(password, row.password_salt);
+  if (!timingSafeEqual(derived, expected)) return null;
+
+  return {
+    userId: `workspace:${row.username}`,
+    displayName: row.display_name,
+  } satisfies AuthSessionData;
+}
+
 async function verifyEnvCredentials(identifier: string, password: string) {
   const username = (process.env["AUTH_USERNAME"] || "").trim().toLowerCase();
   const expectedPassword = process.env["AUTH_PASSWORD"] || "";
@@ -64,8 +120,8 @@ async function verifySupabaseCredentials(identifier: string, password: string) {
   }
 
   const id = identifier.trim();
-  const mappedEmail = (process.env["AUTH_EMAIL"] || "").trim();
-  const mappedUser = (process.env["AUTH_USERNAME"] || "").trim().toLowerCase();
+  const mappedEmail = (process.env["AUTH_EMAIL"] || "optigo@optigo.app").trim();
+  const mappedUser = (process.env["AUTH_USERNAME"] || "optigo").trim().toLowerCase();
   const email = isEmail(id)
     ? id
     : mappedEmail && id.toLowerCase() === mappedUser
@@ -115,7 +171,8 @@ export const signIn = createServerFn({ method: "POST" })
       return { ok: false as const, error: LOCKED };
     }
 
-    const viaSupabase = await verifySupabaseCredentials(data.identifier, data.password);
+    const viaTable = await verifyWorkspaceAccount(data.identifier, data.password);
+    const viaSupabase = viaTable ?? (await verifySupabaseCredentials(data.identifier, data.password));
     const session = viaSupabase ?? (await verifyEnvCredentials(data.identifier, data.password));
     if (!session) {
       return { ok: false as const, error: INVALID };
@@ -139,8 +196,8 @@ export const requestPasswordReset = createServerFn({ method: "POST" })
 
     const auth = getSupabaseAuth();
     const id = data.identifier.trim();
-    const mappedEmail = (process.env["AUTH_EMAIL"] || "").trim();
-    const mappedUser = (process.env["AUTH_USERNAME"] || "").trim().toLowerCase();
+    const mappedEmail = (process.env["AUTH_EMAIL"] || "optigo@optigo.app").trim();
+    const mappedUser = (process.env["AUTH_USERNAME"] || "optigo").trim().toLowerCase();
     const email = isEmail(id)
       ? id
       : mappedEmail && id.toLowerCase() === mappedUser
