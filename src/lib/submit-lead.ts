@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "krsayani11@gmail.com";
+const NOTIFY_EMAIL = process.env["NOTIFY_EMAIL"] || "krsayani11@gmail.com";
 
 const leadSchema = z.object({
   formType: z.enum(["demo", "partner", "signup"]),
@@ -57,12 +57,12 @@ function buildBody(data: LeadPayload) {
 }
 
 async function sendWithResend(data: LeadPayload) {
-  const key = process.env.RESEND_API_KEY;
+  const key = process.env["RESEND_API_KEY"];
   if (!key) return null;
 
   const { Resend } = await import("resend");
   const resend = new Resend(key);
-  const from = process.env.RESEND_FROM || "OptiGo <onboarding@resend.dev>";
+  const from = process.env["RESEND_FROM"] || "OptiGo <onboarding@resend.dev>";
 
   const { error } = await resend.emails.send({
     from,
@@ -78,8 +78,8 @@ async function sendWithResend(data: LeadPayload) {
 
 async function sendWithFormSubmit(data: LeadPayload) {
   const origin =
-    process.env.PUBLIC_SITE_URL ||
-    process.env.SITE_URL ||
+    process.env["PUBLIC_SITE_URL"] ||
+    process.env["SITE_URL"] ||
     "https://optigo.app";
 
   const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(NOTIFY_EMAIL)}`, {

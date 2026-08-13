@@ -1,7 +1,12 @@
 import { Reveal } from "./reveal";
 import { Section, SectionHeading } from "./primitives";
 
-const people = [
+const people: Array<{
+  name: string;
+  detail: string;
+  image?: string;
+  alt?: string;
+}> = [
   {
     name: "Dr. Bilal Ismail",
     detail: "CEO",
