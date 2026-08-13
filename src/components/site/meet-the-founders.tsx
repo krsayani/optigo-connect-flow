@@ -59,16 +59,19 @@ export function MeetTheFounders() {
         {founders.map((person, i) => (
           <Reveal key={person.name} delay={i * 80}>
             <article className="lift overflow-hidden rounded-3xl border border-border bg-background shadow-card">
-              <div className="aspect-[4/5] overflow-hidden bg-mist">
+              <div className="relative aspect-[4/5] overflow-hidden bg-mist">
                 {person.image ? (
-                  <img
-                    src={person.image}
-                    alt={person.alt ?? person.name}
-                    className="h-full w-full object-cover object-top"
-                  />
+                  <>
+                    <img
+                      src={person.image}
+                      alt={person.alt ?? person.name}
+                      className="h-full w-full object-cover object-top"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/90 to-transparent" />
+                  </>
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-mist to-accent">
-                    <span className="font-display text-4xl font-extrabold tracking-tight text-navy/35">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-mist via-accent to-electric/15">
+                    <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-navy font-display text-2xl font-extrabold tracking-tight text-on-dark">
                       {initials(person.name)}
                     </span>
                   </div>

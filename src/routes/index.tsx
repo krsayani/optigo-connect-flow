@@ -9,12 +9,14 @@ import {
   MessageSquareOff,
   LineChart,
   CheckCircle2,
+  Activity,
+  CreditCard,
 } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
-import { TrustSection } from "@/components/site/sections";
+import { EcosystemStrip, FinalCTA, TrustSection, WhyOptiGo } from "@/components/site/sections";
 import { MeetTheFounders } from "@/components/site/meet-the-founders";
 import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/forms";
 import { LensesIcon } from "@/components/site/lenses-icon";
@@ -58,6 +60,14 @@ const problems = [
   },
 ];
 
+const heroChips = [
+  { label: "Ordering", icon: GitBranch },
+  { label: "Communication", icon: MessageSquare },
+  { label: "Tracking", icon: Activity },
+  { label: "Payments", icon: CreditCard },
+  { label: "Intelligence", icon: BarChart3 },
+] as const;
+
 const capabilities = [
   {
     icon: <GitBranch className="h-4 w-4" />,
@@ -97,6 +107,7 @@ function Index() {
         <div className="absolute inset-0 grid-mesh opacity-45" />
         <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-electric/25 blur-3xl animate-orb" />
         <div className="absolute right-0 top-24 h-96 w-96 rounded-full bg-aqua/20 blur-3xl animate-orb" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-mist" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.15fr] lg:gap-10">
@@ -121,16 +132,15 @@ function Index() {
                 </p>
               </Reveal>
               <Reveal delay={210} className="mt-8 flex flex-wrap gap-2">
-                {["Ordering", "Communication", "Tracking", "Payments", "Intelligence"].map(
-                  (label) => (
-                    <span
-                      key={label}
-                      className="rounded-full border border-border bg-background/80 px-3 py-1 text-[12px] font-semibold text-navy/80"
-                    >
-                      {label}
-                    </span>
-                  ),
-                )}
+                {heroChips.map((chip) => (
+                  <span
+                    key={chip.label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-[12px] font-semibold text-navy/80 shadow-sm backdrop-blur"
+                  >
+                    <chip.icon className="h-3.5 w-3.5 text-electric" />
+                    {chip.label}
+                  </span>
+                ))}
               </Reveal>
               <Reveal delay={250} className="mt-6 flex flex-wrap gap-3">
                 <CTAButton href="#get-started">Sign Up</CTAButton>
@@ -153,6 +163,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <EcosystemStrip />
 
       {/* PROBLEM */}
       <Section id="problem" tone="mist">
@@ -187,7 +199,8 @@ function Index() {
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {capabilities.map((item, i) => (
             <Reveal key={item.title} delay={i * 90}>
-              <div className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-7 sm:p-8">
+              <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 shadow-card sm:p-8">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-electric via-electric-soft to-aqua" />
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-electric">
                   {item.icon}
                 </span>
@@ -204,6 +217,8 @@ function Index() {
         </div>
       </Section>
 
+      <WhyOptiGo />
+
       {/* PRODUCT */}
       <Section id="product" tone="mist">
         <SectionHeading
@@ -212,7 +227,8 @@ function Index() {
           body="One operational surface across practices and labs—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
           align="center"
         />
-        <Reveal delay={120} className="mt-12">
+        <Reveal delay={120} className="relative mt-12">
+          <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-electric/20 via-transparent to-aqua/25 blur-2xl" />
           <DashboardMockup />
         </Reveal>
         <p className="mt-5 text-center text-[11px] text-muted-foreground">
@@ -341,12 +357,15 @@ function Index() {
             onClick={() => setAccountType("practice")}
             aria-pressed={accountType === "practice"}
             className={cn(
-              "h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
+              "relative h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
               accountType === "practice"
                 ? "border-electric bg-accent shadow-card"
                 : "border-border bg-background hover:border-electric/40",
             )}
           >
+            {accountType === "practice" ? (
+              <CheckCircle2 className="absolute right-5 top-5 h-5 w-5 text-electric" />
+            ) : null}
             <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
@@ -361,12 +380,15 @@ function Index() {
             onClick={() => setAccountType("lab")}
             aria-pressed={accountType === "lab"}
             className={cn(
-              "h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
+              "relative h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
               accountType === "lab"
                 ? "border-electric/40 surface-dark shadow-glow"
                 : "border-border bg-background hover:border-electric/40",
             )}
           >
+            {accountType === "lab" ? (
+              <CheckCircle2 className="absolute right-5 top-5 h-5 w-5 text-aqua" />
+            ) : null}
             <span
               className={cn(
                 "inline-flex h-10 w-10 items-center justify-center rounded-xl",
@@ -447,6 +469,8 @@ function Index() {
           </Reveal>
         </div>
       </Section>
+
+      <FinalCTA />
     </>
   );
 }

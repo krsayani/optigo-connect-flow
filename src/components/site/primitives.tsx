@@ -54,7 +54,23 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p className={cn("eyebrow", tone === "dark" && "text-aqua")}>{eyebrow}</p>
+        <p
+          className={cn(
+            "eyebrow",
+            align === "center" && "flex items-center justify-center gap-3",
+            tone === "dark" ? "text-aqua" : "text-electric",
+          )}
+        >
+          {align === "center" ? (
+            <>
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-current opacity-70" />
+              {eyebrow}
+              <span className="h-px w-8 bg-gradient-to-l from-transparent to-current opacity-70" />
+            </>
+          ) : (
+            eyebrow
+          )}
+        </p>
       )}
       <h2
         className={cn(
@@ -157,7 +173,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "lift rounded-2xl p-6 sm:p-7",
+        "lift rounded-3xl p-6 sm:p-7",
         tone === "dark"
           ? "border border-white/10 bg-white/[0.04] backdrop-blur-sm"
           : "card-elevated",
@@ -167,7 +183,7 @@ export function FeatureCard({
       {icon && (
         <div
           className={cn(
-            "mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full",
+            "mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl",
             tone === "dark"
               ? "bg-white/10 text-aqua"
               : "bg-accent text-electric",
@@ -178,7 +194,7 @@ export function FeatureCard({
       )}
       <h3
         className={cn(
-          "text-base font-semibold",
+          "text-lg font-semibold tracking-tight",
           tone === "dark" ? "text-on-dark" : "text-navy",
         )}
       >

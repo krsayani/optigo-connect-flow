@@ -151,7 +151,7 @@ const Submit = ({ label, pending }: { label: string; pending?: boolean }) => (
   <button
     type="submit"
     disabled={pending}
-    className="group mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-electric disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-2"
+    className="group mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-14px_oklch(0.24_0.058_262/0.6)] transition-all hover:-translate-y-0.5 hover:bg-electric disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 sm:col-span-2"
   >
     {pending ? (
       <>

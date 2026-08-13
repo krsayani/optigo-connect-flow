@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LensesIcon } from "@/components/site/lenses-icon";
+import { OptiGoMark } from "@/components/site/logo";
 
 type ViewId =
   | "Overview"
@@ -754,9 +755,9 @@ export function DashboardMockup() {
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-background shadow-float">
       <div className="flex items-center gap-2 border-b border-border bg-mist px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-border" />
-        <span className="h-2.5 w-2.5 rounded-full bg-border" />
-        <span className="h-2.5 w-2.5 rounded-full bg-border" />
+        <span className="h-2.5 w-2.5 rounded-full bg-electric/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-aqua/80" />
+        <span className="h-2.5 w-2.5 rounded-full bg-navy/35" />
         <span className="mx-auto rounded-md bg-background px-3 py-1 font-mono text-[10px] text-muted-foreground">
           {viewPaths[view]}
         </span>
@@ -765,7 +766,7 @@ export function DashboardMockup() {
       <div className="flex flex-col md:flex-row">
         <aside className="hidden w-52 shrink-0 flex-col bg-sidebar px-3 py-4 md:flex">
           <div className="flex items-center gap-2 px-2 pb-5">
-            <span className="h-6 w-6 rounded-lg bg-gradient-to-br from-electric to-aqua" />
+            <OptiGoMark className="h-6 w-6" />
             <span className="font-display text-sm font-bold text-sidebar-foreground">OptiGo</span>
           </div>
           <nav className="space-y-0.5">

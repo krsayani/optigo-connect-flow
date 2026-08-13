@@ -26,24 +26,29 @@ const ecosystem = [
 
 export function EcosystemStrip() {
   return (
-    <section className="border-y border-border bg-mist px-5 py-12 sm:px-8">
+    <section className="relative border-y border-border bg-mist px-5 py-12 sm:px-8">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/40 to-transparent" />
       <div className="mx-auto max-w-7xl">
         <Reveal className="text-center">
           <p className="text-sm font-semibold tracking-tight text-navy sm:text-base">
             Built for the optical ecosystem.
           </p>
         </Reveal>
-        <Reveal
-          delay={100}
-          className="mt-8 grid grid-cols-3 gap-3 sm:gap-4"
-        >
-          {ecosystem.map((e) => (
-            <div
-              key={e.label}
-              className="lift flex items-center justify-center gap-2.5 rounded-xl border border-border bg-background px-4 py-4"
-            >
-              <e.icon className="h-4 w-4 text-electric" />
-              <span className="text-[13px] font-semibold text-navy">{e.label}</span>
+        <Reveal delay={100} className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          {ecosystem.map((e, i) => (
+            <div key={e.label} className="flex items-center gap-3 sm:gap-4">
+              <div className="lift flex items-center gap-2.5 rounded-2xl border border-border bg-background px-4 py-3.5 shadow-card">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent text-electric">
+                  <e.icon className="h-4 w-4" />
+                </span>
+                <span className="text-[13px] font-semibold text-navy">{e.label}</span>
+              </div>
+              {i < ecosystem.length - 1 ? (
+                <span
+                  className="hidden h-px w-10 bg-gradient-to-r from-electric to-aqua sm:block"
+                  aria-hidden="true"
+                />
+              ) : null}
             </div>
           ))}
         </Reveal>
@@ -112,13 +117,18 @@ const why = [
 export function WhyOptiGo() {
   return (
     <Section tone="mist">
-      <SectionHeading eyebrow="Why OptiGo" title="What a shared connectivity layer changes." />
+      <SectionHeading
+        align="center"
+        eyebrow="Why OptiGo"
+        title="What a shared connectivity layer changes."
+        body="Four shifts that happen when practices and labs share one place to order, communicate, and track."
+      />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {why.map((w, i) => (
           <Reveal key={w.title} delay={i * 80}>
             <FeatureCard
               icon={w.icon}
-              title={w.title.toUpperCase()}
+              title={w.title}
               body={w.body}
               className="h-full"
             />
@@ -257,8 +267,8 @@ export function TrustSection() {
         <div className="grid gap-3 sm:grid-cols-2">
           {trust.map((t, i) => (
             <Reveal key={t.title} delay={i * 70}>
-              <div className="lift flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3.5">
-                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-electric">
+              <div className="lift flex items-center gap-3 rounded-2xl border border-border bg-background px-4 py-4 shadow-card">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent text-electric">
                   {t.icon}
                 </span>
                 <span className="text-[13px] font-semibold text-navy">{t.title}</span>
@@ -286,10 +296,10 @@ export function FinalCTA() {
           body="Whether you're an optometry practice, optical laboratory, or technology partner, we'd like to hear from you."
         />
         <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
-          <CTAButton to="/signup" variant="light">
+          <CTAButton href="#get-started" variant="light">
             Sign Up
           </CTAButton>
-          <CTAButton to="/demo" variant="outline-light">
+          <CTAButton href="#contact" variant="outline-light">
             Request a Demo
           </CTAButton>
         </Reveal>
