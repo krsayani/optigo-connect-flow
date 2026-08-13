@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Building2, Factory, HeartPulse } from "lucide-react";
+import { Building2, Factory, Glasses } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ring = [
-  { label: "Patient", icon: HeartPulse, angle: 210 },
+  { label: "Patient", icon: Glasses, angle: 210 },
   { label: "Practice", icon: Building2, angle: 300 },
   { label: "Lab", icon: Factory, angle: 60 },
 ];

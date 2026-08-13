@@ -1,6 +1,11 @@
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
+/** Navy squircle + optical “O” (lens, iris, pupil, catchlight). */
 export function OptiGoMark({ className }: { className?: string }) {
+  const uid = `og${useId().replace(/:/g, "")}`;
+  const gradient = `${uid}-g`;
+
   return (
     <svg
       viewBox="0 0 32 32"
@@ -9,20 +14,28 @@ export function OptiGoMark({ className }: { className?: string }) {
       fill="none"
     >
       <defs>
-        <linearGradient id="og-mark" x1="0" y1="0" x2="32" y2="32">
-          <stop offset="0%" stopColor="oklch(0.58 0.19 258)" />
-          <stop offset="100%" stopColor="oklch(0.78 0.11 195)" />
+        <linearGradient id={gradient} x1="6" y1="4" x2="26" y2="28">
+          <stop stopColor="#4C7DFF" />
+          <stop offset="1" stopColor="#5EEAD4" />
         </linearGradient>
       </defs>
-      <rect width="32" height="32" rx="8" fill="oklch(0.17 0.045 262)" />
-      <path
-        d="M4 16c4.2-6.4 8.9-9.6 12-9.6S23.8 9.6 28 16c-4.2 6.4-8.9 9.6-12 9.6S8.2 22.4 4 16Z"
-        stroke="url(#og-mark)"
-        strokeWidth="1.7"
-        opacity="0.95"
+      <rect width="32" height="32" rx="8" fill="#0B1638" />
+      <circle
+        cx="16"
+        cy="16"
+        r="9.2"
+        stroke={`url(#${gradient})`}
+        strokeWidth="2.15"
       />
-      <circle cx="16" cy="16" r="5" stroke="url(#og-mark)" strokeWidth="1.7" />
-      <circle cx="16" cy="16" r="1.75" fill="url(#og-mark)" />
+      <circle
+        cx="16"
+        cy="16"
+        r="4.85"
+        stroke={`url(#${gradient})`}
+        strokeWidth="1.65"
+      />
+      <circle cx="16" cy="16" r="2.05" fill={`url(#${gradient})`} />
+      <circle cx="14.55" cy="14.4" r="0.85" fill="#F4FBFF" opacity="0.95" />
     </svg>
   );
 }
@@ -35,11 +48,11 @@ export function OptiGoWordmark({
   tone?: "dark" | "light";
 }) {
   return (
-    <span className={cn("flex items-center gap-2.5", className)}>
+    <span className={cn("flex items-center gap-2", className)}>
       <OptiGoMark />
       <span
         className={cn(
-          "font-display text-[1.35rem] font-extrabold tracking-[-0.04em]",
+          "font-display text-[1.4rem] font-extrabold leading-none tracking-[-0.045em]",
           tone === "light" ? "text-on-dark" : "text-navy",
         )}
       >

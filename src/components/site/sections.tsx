@@ -9,7 +9,7 @@ import {
   Lock,
   FileCheck2,
   Building2,
-  HeartPulse,
+  Glasses,
 } from "lucide-react";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "./primitives";
 import { Reveal } from "./reveal";
@@ -19,7 +19,7 @@ import { LensesIcon } from "@/components/site/lenses-icon";
 /* ---------- Ecosystem strip ---------- */
 
 const ecosystem = [
-  { label: "Patient", icon: HeartPulse },
+  { label: "Patient", icon: Glasses },
   { label: "Practice", icon: Building2 },
   { label: "Lab", icon: LensesIcon },
 ];

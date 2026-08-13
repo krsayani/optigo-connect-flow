@@ -1,5 +1,5 @@
 import { useEffect, useState, type ComponentType } from "react";
-import { Building2, Factory, HeartPulse } from "lucide-react";
+import { Building2, Factory, Glasses } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { OptiGoWordmark } from "@/components/site/logo";
 
@@ -12,7 +12,7 @@ type Vertex = {
 };
 
 const VERTICES: Vertex[] = [
-  { id: "patient", label: "Patient", icon: HeartPulse, x: "50%", y: "2%" },
+  { id: "patient", label: "Patient", icon: Glasses, x: "50%", y: "2%" },
   { id: "practice", label: "Practice", icon: Building2, x: "4%", y: "92%" },
   { id: "lab", label: "Lab", icon: Factory, x: "96%", y: "92%" },
 ];
