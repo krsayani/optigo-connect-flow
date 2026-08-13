@@ -9,6 +9,7 @@ const nav = [
   { label: "The Solution", href: "#solution" },
   { label: "The Product", href: "#product" },
   { label: "Who It's For", href: "#who" },
+  { label: "Founders", href: "#founders" },
 ] as const;
 
 export function goToHomeHash(href: string, pathname: string, navigate: ReturnType<typeof useNavigate>) {

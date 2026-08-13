@@ -9,6 +9,7 @@ const columns = [
       { label: "The Problem", href: "#problem" },
       { label: "The Solution", href: "#solution" },
       { label: "The Product", href: "#product" },
+      { label: "Founders", href: "#founders" },
     ],
   },
   {

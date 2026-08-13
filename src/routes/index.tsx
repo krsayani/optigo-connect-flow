@@ -15,6 +15,7 @@ import { HeroFlow } from "@/components/site/hero-flow";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
 import { TrustSection } from "@/components/site/sections";
+import { MeetTheFounders } from "@/components/site/meet-the-founders";
 import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/forms";
 import { LensesIcon } from "@/components/site/lenses-icon";
 import { cn } from "@/lib/utils";
@@ -426,6 +427,8 @@ function Index() {
           </Reveal>
         </div>
       </Section>
+
+      <MeetTheFounders />
 
       <TrustSection />
     </>
