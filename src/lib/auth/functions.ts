@@ -37,6 +37,10 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function publicDisplayName(name: string) {
+  return name.trim().toLowerCase() === "optigo" ? "LensFlow" : name;
+}
+
 function siteUrl() {
   return process.env["PUBLIC_SITE_URL"] || process.env["SITE_URL"] || "https://optigo.app";
 }
@@ -97,7 +101,7 @@ async function verifyWorkspaceAccount(identifier: string, password: string) {
 
   return {
     userId: `workspace:${row.username}`,
-    displayName: row.display_name,
+    displayName: publicDisplayName(row.display_name),
   } satisfies AuthSessionData;
 }
 
@@ -128,7 +132,7 @@ async function verifyEnvCredentials(identifier: string, password: string) {
   if (!userOk || !passOk) return null;
   return {
     userId: `local:${username}`,
-    displayName: process.env["AUTH_DISPLAY_NAME"]?.trim() || username,
+    displayName: publicDisplayName(process.env["AUTH_DISPLAY_NAME"]?.trim() || username),
   } satisfies AuthSessionData;
 }
 
@@ -162,10 +166,11 @@ async function verifySupabaseCredentials(identifier: string, password: string) {
 
   const meta = data.user.user_metadata as Record<string, unknown>;
   const fromMeta = typeof meta["full_name"] === "string" ? meta["full_name"] : "";
-  const displayName =
+  const displayName = publicDisplayName(
     fromMeta.trim() ||
-    data.user.email?.split("@")[0] ||
-    "LensFlow";
+      data.user.email?.split("@")[0] ||
+      "LensFlow",
+  );
 
   return {
     userId: data.user.id,

@@ -86,7 +86,11 @@ function initials(name: string) {
   if (parts.length >= 2) {
     return `${parts[0]?.[0] ?? ""}${parts[1]?.[0] ?? ""}`.toUpperCase();
   }
-  return name.slice(0, 2).toUpperCase() || "OG";
+  return name.slice(0, 2).toUpperCase() || "LF";
+}
+
+function brandedName(name: string) {
+  return name.trim().toLowerCase() === "optigo" ? "LensFlow" : name;
 }
 
 export function LensFlowApp({ displayName }: { displayName: string }) {
@@ -100,6 +104,7 @@ export function LensFlowApp({ displayName }: { displayName: string }) {
 function AppShellInner({ displayName }: { displayName: string }) {
   const navigate = useNavigate();
   const { db, storage } = useLensConfig();
+  const accountName = brandedName(displayName);
   const [tab, setTab] = useState<TabId>("jobs");
   const [query, setQuery] = useState("");
   const [moreOpen, setMoreOpen] = useState(false);
@@ -191,17 +196,17 @@ function AppShellInner({ displayName }: { displayName: string }) {
                   aria-label="Account menu"
                 >
                   <span className="grid h-8 w-8 place-items-center rounded-full bg-navy font-display text-[11px] font-bold text-primary-foreground md:h-7 md:w-7">
-                    {initials(displayName)}
+                    {initials(accountName)}
                   </span>
                   <span className="hidden max-w-[140px] truncate text-[13px] font-semibold text-navy sm:inline">
-                    {displayName}
+                    {accountName}
                   </span>
                   <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-52">
                 <DropdownMenuLabel className="font-normal">
-                  <p className="font-semibold text-navy">{displayName}</p>
+                  <p className="font-semibold text-navy">{accountName}</p>
                   <p className="text-xs font-normal text-muted-foreground">{storageLabel}</p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />

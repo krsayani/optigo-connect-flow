@@ -40,7 +40,7 @@ export function OrderTracker() {
           </span>
           <p className="eyebrow">Practice view</p>
           <span className="ml-auto font-mono text-[11px] text-muted-foreground">
-            OG-24817 · Demo Patient — A. Rivera
+            LF-24817 · Demo Patient — A. Rivera
           </span>
         </div>
 

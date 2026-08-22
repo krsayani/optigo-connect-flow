@@ -84,7 +84,7 @@ const orders: {
 }[] = [
   {
     patient: "Demo Patient — A. Rivera",
-    id: "OG-24817",
+    id: "LF-24817",
     lab: "Northline Optical Lab",
     submitted: "Mar 4",
     status: "In Production",
@@ -92,7 +92,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — J. Whitfield",
-    id: "OG-24812",
+    id: "LF-24812",
     lab: "Crescent Lens Works",
     submitted: "Mar 4",
     status: "Surfacing",
@@ -100,7 +100,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — M. Osei",
-    id: "OG-24806",
+    id: "LF-24806",
     lab: "Northline Optical Lab",
     submitted: "Mar 3",
     status: "Quality Inspection",
@@ -108,7 +108,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — L. Tanaka",
-    id: "OG-24799",
+    id: "LF-24799",
     lab: "Meridian Optical",
     submitted: "Mar 2",
     status: "Coating",
@@ -117,7 +117,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — S. Brennan",
-    id: "OG-24791",
+    id: "LF-24791",
     lab: "Crescent Lens Works",
     submitted: "Mar 1",
     status: "Shipped",
@@ -125,7 +125,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — D. Kaur",
-    id: "OG-24784",
+    id: "LF-24784",
     lab: "Meridian Optical",
     submitted: "Feb 28",
     status: "Ready for Pickup",
@@ -133,7 +133,7 @@ const orders: {
   },
   {
     patient: "Demo Patient — P. Alvarez",
-    id: "OG-24777",
+    id: "LF-24777",
     lab: "Northline Optical Lab",
     submitted: "Feb 27",
     status: "Order Review",
@@ -484,7 +484,7 @@ function LabsView() {
 function MessagesView() {
   const threads = [
     {
-      order: "OG-24817",
+      order: "LF-24817",
       with: "Northline Optical Lab",
       role: "Lab",
       preview: "Confirm AR coating on this job before coating starts?",
@@ -492,7 +492,7 @@ function MessagesView() {
       unread: true,
     },
     {
-      order: "OG-24799",
+      order: "LF-24799",
       with: "L. Tanaka",
       role: "Patient",
       preview: "Your lenses are in coating — we’ll text when they’re ready.",
@@ -500,7 +500,7 @@ function MessagesView() {
       unread: true,
     },
     {
-      order: "OG-24777",
+      order: "LF-24777",
       with: "Meridian Optical",
       role: "Lab",
       preview: "Delay on blank stock. New ETA March 13.",
@@ -508,7 +508,7 @@ function MessagesView() {
       unread: true,
     },
     {
-      order: "OG-24784",
+      order: "LF-24784",
       with: "D. Kaur",
       role: "Patient",
       preview: "Your eyewear is ready for pickup at Riverbend.",
@@ -516,7 +516,7 @@ function MessagesView() {
       unread: false,
     },
     {
-      order: "OG-24812",
+      order: "LF-24812",
       with: "Crescent Lens Works",
       role: "Lab",
       preview: "Surfacing complete. Moving to quality inspection.",
