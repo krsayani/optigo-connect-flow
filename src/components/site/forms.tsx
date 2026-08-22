@@ -200,7 +200,7 @@ export function DemoForm() {
       <Submit label="Request a Demo" pending={pending} />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
-          Request received. A member of the OptiGo team will follow up by email.
+          Request received. A member of the LensFlow team will follow up by email.
         </p>
       )}
     </form>
@@ -218,7 +218,7 @@ export function PartnerForm() {
   const { errors, done, pending, onSubmit } = useFormSubmit(
     partnerSchema,
     "partner",
-    "Thanks — we'll reach out about integrating with OptiGo.",
+    "Thanks — we'll reach out about integrating with LensFlow.",
   );
 
   return (
@@ -254,7 +254,7 @@ export function PartnerForm() {
       <Field label="Phone" name="phone" type="tel" />
       <TextArea label="Message" name="message" />
       <Note />
-      <Submit label="Partner With OptiGo" pending={pending} />
+      <Submit label="Partner With LensFlow" pending={pending} />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
           Thanks for reaching out — we'll be in touch about integration options.
@@ -274,7 +274,7 @@ export function SignupForm({
   const { errors, done, pending, onSubmit } = useFormSubmit(
     signupSchema,
     "signup",
-    "Welcome to OptiGo — your signup request was received.",
+    "Welcome to LensFlow — your signup request was received.",
   );
 
   const isPractice = accountType === "practice";
@@ -358,7 +358,7 @@ export function SignupForm({
       />
       {done && (
         <p className="text-[12px] font-medium text-electric sm:col-span-2">
-          Account request received. We'll email you next steps to activate OptiGo.
+          Account request received. We'll email you next steps to activate LensFlow.
         </p>
       )}
       {errors["accountType"] && (

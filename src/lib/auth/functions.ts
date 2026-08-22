@@ -19,7 +19,7 @@ const RESET_OK = "If an account exists, an administrator or reset email will fol
 const BUILTIN_ACCOUNT = {
   username: "optigo",
   email: "optigo@optigo.app",
-  displayName: "OptiGo",
+  displayName: "LensFlow",
   passwordSalt: "0490868e0e6d407ba553f3114f3faa5e",
   passwordHash: "e76e2849c6aa5c537c07cdb4b9086a4066bfd19490e368b5f9252f2e787dc695",
 };
@@ -165,7 +165,7 @@ async function verifySupabaseCredentials(identifier: string, password: string) {
   const displayName =
     fromMeta.trim() ||
     data.user.email?.split("@")[0] ||
-    "OptiGo";
+    "LensFlow";
 
   return {
     userId: data.user.id,

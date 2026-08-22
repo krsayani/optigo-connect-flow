@@ -363,14 +363,14 @@ function BetterWay() {
         )}
       >
         <span className="font-display text-4xl font-extrabold tracking-tight text-gradient sm:text-5xl">
-          OptiGo
+          LensFlow
         </span>
       </div>
     </div>
   );
 }
 
-/* ---------------- SECTION 2: the OptiGo experience ---------------- */
+/* ---------------- SECTION 2: the LensFlow experience ---------------- */
 
 const patientUpdates = [
   { label: "Order submitted", stage: 0 },
@@ -379,7 +379,7 @@ const patientUpdates = [
   { label: "Ready for pickup", stage: 3 },
 ];
 
-function OptigoFlow() {
+function LensFlowHub() {
   const { ref, inView } = useInViewOnce<HTMLDivElement>(0.3);
   const [phase, setPhase] = useState(0);
   useEffect(() => {
@@ -408,7 +408,7 @@ function OptigoFlow() {
         <div className="relative text-center">
           <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One entry. Every loop closed.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-on-dark-muted">
-            Enter the order once in your practice. OptiGo routes it to the lab and keeps the patient
+            Enter the order once in your practice. LensFlow routes it to the lab and keeps the patient
             informed at every step.
           </p>
         </div>
@@ -508,7 +508,7 @@ function OptigoFlow() {
                 <span className="relative mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl border border-aqua/30 bg-aqua/20 text-aqua">
                   <Sparkles className="h-6 w-6" />
                 </span>
-                <p className="relative mt-3 font-display text-lg font-bold text-aqua">OptiGo</p>
+                <p className="relative mt-3 font-display text-lg font-bold text-aqua">LensFlow</p>
                 <p className="relative mt-1 text-[10px] text-on-dark-muted">Routes & updates</p>
               </div>
             </div>
@@ -604,7 +604,7 @@ function OptigoFlow() {
             <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-xl border border-aqua/30 bg-aqua/20 text-aqua">
               <Sparkles className="h-6 w-6" />
             </span>
-            <p className="mt-3 font-display text-lg font-bold text-aqua">OptiGo</p>
+            <p className="mt-3 font-display text-lg font-bold text-aqua">LensFlow</p>
             <p className="mt-1 text-[10px] text-on-dark-muted">Routes & updates</p>
           </div>
 
@@ -657,7 +657,7 @@ function OptigoFlow() {
           <div className="w-full max-w-xs rounded-[1.5rem] border border-white/12 bg-background p-4">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-navy">
-                <Smartphone className="h-3 w-3 text-electric" /> OptiGo updates
+                <Smartphone className="h-3 w-3 text-electric" /> LensFlow updates
               </span>
               <span className="font-mono text-[9px] text-muted-foreground">live</span>
             </div>
@@ -731,7 +731,7 @@ function Comparison() {
         >
           <div className="absolute inset-0 grid-mesh-dark opacity-60" />
           <div className="relative">
-            <p className="eyebrow text-aqua">OptiGo</p>
+            <p className="eyebrow text-aqua">LensFlow</p>
             <ul className="mt-5 space-y-3">
               {after.map((a) => (
                 <li key={a} className="flex items-center gap-3 text-sm text-on-dark">
@@ -752,7 +752,7 @@ function Comparison() {
           <span className="text-gradient">More visibility.</span>
         </p>
         <div className="mt-6 flex justify-center">
-          <CTAButton to="/how-it-works">See How OptiGo Works</CTAButton>
+          <CTAButton to="/how-it-works">See How LensFlow Works</CTAButton>
         </div>
       </Reveal>
     </div>
@@ -768,7 +768,7 @@ export function WhyStory() {
         <div className="absolute inset-0 grid-mesh opacity-40" />
         <div className="relative mx-auto max-w-7xl">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow">Why OptiGo exists</p>
+            <p className="eyebrow">Why LensFlow exists</p>
             <h2 className="mt-3 text-3xl font-bold leading-[1.05] text-navy sm:text-4xl lg:text-[3.1rem]">
               A patient orders glasses.{" "}
               <span className="text-gradient">That should be the easy part.</span>
@@ -821,7 +821,7 @@ export function WhyStory() {
         <div className="absolute inset-0 grid-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl space-y-12 sm:space-y-16">
           <Reveal>
-            <OptigoFlow />
+            <LensFlowHub />
           </Reveal>
           <Comparison />
         </div>

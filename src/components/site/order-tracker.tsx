@@ -125,7 +125,7 @@ export function OrderTracker() {
         <div className="rounded-3xl border border-border bg-mist p-6 sm:p-8">
           <p className="eyebrow">Designed, not assumed</p>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Status detail varies across laboratory systems. OptiGo is being designed to surface
+            Status detail varies across laboratory systems. LensFlow is being designed to surface
             the milestones a connected laboratory workflow can share, and to present them
             consistently to practices and patients.
           </p>

@@ -11,7 +11,7 @@ import {
   User,
 } from "lucide-react";
 import { requestPasswordReset, signIn } from "@/lib/auth/functions";
-import { OptiGoWordmark } from "@/components/site/logo";
+import { LensFlowWordmark } from "@/components/site/logo";
 import { cn } from "@/lib/utils";
 
 const WORKSPACE_POINTS = [
@@ -83,7 +83,7 @@ export function LensFlowLogin() {
         <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-electric/25 blur-3xl animate-orb" />
         <div className="absolute -right-16 bottom-10 h-64 w-64 rounded-full bg-aqua/20 blur-3xl animate-drift" />
         <div className="relative z-10 flex min-h-full w-full flex-col justify-between px-10 py-10 xl:px-14 xl:py-12">
-          <OptiGoWordmark tone="light" />
+          <LensFlowWordmark tone="light" />
 
           <div className="max-w-md">
             <p className="eyebrow text-aqua">Practice workspace</p>
@@ -92,7 +92,7 @@ export function LensFlowLogin() {
             </h1>
             <p className="mt-5 text-base leading-relaxed text-on-dark-muted">
               Sign in to order, communicate, track, and get paid — without
-              leaving OptiGo.
+              leaving LensFlow.
             </p>
             <ul className="mt-8 space-y-3">
               {WORKSPACE_POINTS.map((point) => (
@@ -123,7 +123,7 @@ export function LensFlowLogin() {
 
         <div className="relative w-full max-w-[420px] animate-rise">
           <div className="mb-8 flex justify-center lg:hidden">
-            <OptiGoWordmark />
+            <LensFlowWordmark />
           </div>
 
           <form
@@ -281,7 +281,7 @@ export function LensFlowLogin() {
               className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-electric"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
-              Back to OptiGo
+              Back to LensFlow
             </Link>
           </p>
         </div>

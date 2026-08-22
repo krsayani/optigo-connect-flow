@@ -65,7 +65,7 @@ export function InfrastructureSection() {
             tone="dark"
             eyebrow="Infrastructure"
             title="The infrastructure connecting optical care."
-            body="Instead of forcing practices to operate across disconnected systems, OptiGo is building a connectivity layer designed to help information move where it needs to go."
+            body="Instead of forcing practices to operate across disconnected systems, LensFlow is building a connectivity layer designed to help information move where it needs to go."
           />
           <Reveal delay={140} className="mt-9 flex flex-wrap gap-3">
             <CTAButton to="/platform" variant="light">
@@ -84,7 +84,7 @@ export function InfrastructureSection() {
   );
 }
 
-/* ---------- Why OptiGo ---------- */
+/* ---------- Why LensFlow ---------- */
 
 const why = [
   {
@@ -109,12 +109,12 @@ const why = [
   },
 ];
 
-export function WhyOptiGo() {
+export function WhyLensFlow() {
   return (
     <Section tone="mist">
       <SectionHeading
         align="center"
-        eyebrow="Why OptiGo"
+        eyebrow="Why LensFlow"
         title="What a shared connectivity layer changes."
         body="Four shifts that happen when practices and labs share one place to order, communicate, and track."
       />
@@ -144,7 +144,7 @@ export function BuiltForMore() {
           <SectionHeading
             eyebrow="Built for what's next"
             title="Today's workflow is only the beginning."
-            body="OptiGo is starting by tackling one of the most fragmented workflows in optometry. But we're building the foundation for something much larger — a more connected, intelligent, and efficient future for the modern optometry practice."
+            body="LensFlow is starting by tackling one of the most fragmented workflows in optometry. But we're building the foundation for something much larger — a more connected, intelligent, and efficient future for the modern optometry practice."
           />
           <Reveal delay={140}>
             <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.18em] text-electric">

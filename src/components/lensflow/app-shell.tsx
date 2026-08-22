@@ -17,7 +17,7 @@ import { LensConfigProvider, useLensConfig } from "@/components/lens-config/prov
 import { LensLabConfiguration } from "@/components/lens-config/lens-lab-configuration";
 import { OrderComposer } from "@/components/lens-config/order-composer";
 import { LensesIcon } from "@/components/site/lenses-icon";
-import { OptiGoMark } from "@/components/site/logo";
+import { LensFlowMark } from "@/components/site/logo";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -116,19 +116,19 @@ function AppShellInner({ displayName }: { displayName: string }) {
   const lifetime = orders.length;
   const inFlow = orders.filter((order) => order.status !== "manual_review").length;
   const storageLabel =
-    storage === "cloud" ? "OptiGo Cloud" : storage === "loading" ? "Connecting…" : "This device";
+    storage === "cloud" ? "LensFlow Cloud" : storage === "loading" ? "Connecting…" : "This device";
   const moreActive = MORE_TABS.some((item) => item.id === tab);
 
   return (
     <div className="lf-app font-sans">
       <aside className="hidden w-[13.5rem] shrink-0 flex-col bg-sidebar px-3 py-4 md:flex">
         <div className="flex items-center gap-2 px-2 pb-6">
-          <OptiGoMark className="h-7 w-7" />
+          <LensFlowMark className="h-7 w-7" />
           <span className="font-display text-[1.05rem] font-extrabold tracking-[-0.04em] text-sidebar-foreground">
-            Opti<span className="text-electric-soft">Go</span>
+            Lens<span className="text-electric-soft">Flow</span>
           </span>
         </div>
-        <nav className="flex flex-1 flex-col gap-0.5" aria-label="OptiGo">
+        <nav className="flex flex-1 flex-col gap-0.5" aria-label="LensFlow">
           {TABS.map((item) => (
             <NavButton
               key={item.id}
@@ -154,9 +154,9 @@ function AppShellInner({ displayName }: { displayName: string }) {
         <header className="sticky top-0 z-30 border-b border-hairline bg-background/80 px-3 py-2 pt-[max(0.5rem,env(safe-area-inset-top))] backdrop-blur-xl sm:px-5">
           <div className="flex items-center gap-2">
             <div className="flex min-w-0 items-center gap-2 md:hidden">
-              <OptiGoMark className="h-7 w-7 shrink-0" />
+              <LensFlowMark className="h-7 w-7 shrink-0" />
               <span className="font-display text-lg font-extrabold tracking-[-0.04em] text-navy">
-                Opti<span className="text-electric">Go</span>
+                Lens<span className="text-electric">Flow</span>
               </span>
             </div>
 
@@ -233,9 +233,9 @@ function AppShellInner({ displayName }: { displayName: string }) {
               body={
                 tab === "settings"
                   ? storage === "cloud"
-                    ? "Workspace catalog, labs, and orders are saved to OptiGo Cloud."
+                    ? "Workspace catalog, labs, and orders are saved to LensFlow Cloud."
                     : storage === "loading"
-                      ? "Connecting to OptiGo Cloud…"
+                      ? "Connecting to LensFlow Cloud…"
                       : "Workspace data is stored on this device until Cloud is connected."
                   : EMPTY[tab].body
               }
@@ -245,7 +245,7 @@ function AppShellInner({ displayName }: { displayName: string }) {
 
         <nav
           className="grid grid-cols-4 gap-1 border-t border-hairline bg-background/95 px-2 py-1 pb-[max(0.45rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden"
-          aria-label="OptiGo"
+          aria-label="LensFlow"
         >
           {TABS.filter((item) => MOBILE_PRIMARY.includes(item.id)).map((item) => (
             <NavButton

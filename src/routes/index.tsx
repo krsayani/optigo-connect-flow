@@ -18,13 +18,13 @@ import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
-import { EcosystemStrip, WhyOptiGo } from "@/components/site/sections";
+import { EcosystemStrip, WhyLensFlow } from "@/components/site/sections";
 import { MeetTheFounders } from "@/components/site/meet-the-founders";
 import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/forms";
 import { LensesIcon } from "@/components/site/lenses-icon";
 import { cn } from "@/lib/utils";
 
-const TITLE = "OptiGo | One platform for every optical lab order";
+const TITLE = "LensFlow | One platform for every optical lab order";
 const DESC =
   "One centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—without juggling portals, spreadsheets, emails, or phone calls.";
 
@@ -85,7 +85,7 @@ const capabilities = [
   {
     icon: <GitBranch className="h-4 w-4" />,
     title: "Order from one place",
-    body: "OptiGo verifies each job and routes it to the right lab—pricing, turnaround, insurance, product fit, and your rules. Staff stop re-entering orders across portals.",
+    body: "LensFlow verifies each job and routes it to the right lab—pricing, turnaround, insurance, product fit, and your rules. Staff stop re-entering orders across portals.",
   },
   {
     icon: <MessageSquare className="h-4 w-4" />,
@@ -230,14 +230,14 @@ function Index() {
         </div>
       </Section>
 
-      <WhyOptiGo />
+      <WhyLensFlow />
 
       {/* PRODUCT */}
       <Section id="product" tone="mist">
         <SectionHeading
           eyebrow="The product"
           title="Every practice–lab order, in one place."
-          body="One operational surface across practices and labs—OptiGo verifies and routes orders, then keeps status, communication, payments, and performance in sync."
+          body="One operational surface across practices and labs—LensFlow verifies and routes orders, then keeps status, communication, payments, and performance in sync."
           align="center"
         />
         <Reveal delay={120} className="relative mt-12">
@@ -255,7 +255,7 @@ function Index() {
         <SectionHeading
           eyebrow="Who it's for"
           title="Built for both sides of the connection."
-          body="Practices and labs—finally linked through OptiGo."
+          body="Practices and labs—finally linked through LensFlow."
           align="center"
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -316,7 +316,7 @@ function Index() {
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
                 Connect your lab once and receive structured orders from practices on
-                OptiGo—then talk, track, and settle in one thread.
+                LensFlow—then talk, track, and settle in one thread.
               </p>
               <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
                 {[
@@ -358,8 +358,8 @@ function Index() {
       <Section id="get-started" tone="mist">
         <SectionHeading
           eyebrow="Sign up"
-          title="Create your OptiGo account."
-          body="Join as a practice or lab. We’ll connect you into the OptiGo network."
+          title="Create your LensFlow account."
+          body="Join as a practice or lab. We’ll connect you into the LensFlow network."
           align="center"
         />
 
@@ -423,7 +423,7 @@ function Index() {
                 accountType === "lab" ? "text-on-dark-muted" : "text-muted-foreground",
               )}
             >
-              Connect your lab to practices on OptiGo.
+              Connect your lab to practices on LensFlow.
             </p>
           </button>
         </div>
@@ -445,7 +445,7 @@ function Index() {
             <SectionHeading
               eyebrow="Request a demo"
               title="Want a walkthrough first?"
-              body="Tell us about your practice or lab and we’ll follow up to show you OptiGo."
+              body="Tell us about your practice or lab and we’ll follow up to show you LensFlow."
             />
             <Reveal className="mt-8 rounded-3xl border border-border bg-background p-6 shadow-card sm:p-8">
               <DemoForm />
@@ -457,7 +457,7 @@ function Index() {
               <ul className="mt-4 space-y-3 text-sm text-navy/85">
                 {[
                   "A short conversation about your current lab ordering workflow",
-                  "A walkthrough of the OptiGo experience",
+                  "A walkthrough of the LensFlow experience",
                   "Clear next steps for signup or partnership",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2.5">

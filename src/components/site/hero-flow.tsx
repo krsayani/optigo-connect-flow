@@ -1,7 +1,7 @@
 import { useEffect, useState, type ComponentType } from "react";
 import { Building2, Factory, Glasses } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { OptiGoWordmark } from "@/components/site/logo";
+import { LensFlowWordmark } from "@/components/site/logo";
 
 type Vertex = {
   id: string;
@@ -18,13 +18,13 @@ const VERTICES: Vertex[] = [
 ];
 
 const TICKER = [
-  "OptiGo ↔ Patient",
-  "OptiGo ↔ Practice",
-  "OptiGo ↔ Lab",
-  "Patient ↔ Practice ↔ Lab — via OptiGo",
+  "LensFlow ↔ Patient",
+  "LensFlow ↔ Practice",
+  "LensFlow ↔ Lab",
+  "Patient ↔ Practice ↔ Lab — via LensFlow",
 ];
 
-/** Equilateral triangle picture: Patient / Practice / Lab at corners, OptiGo at center. */
+/** Equilateral triangle picture: Patient / Practice / Lab at corners, LensFlow at center. */
 export function HeroFlow() {
   const [tick, setTick] = useState(0);
 
@@ -153,7 +153,7 @@ export function HeroFlow() {
               </g>
             ))}
 
-            {/* Spokes to OptiGo */}
+            {/* Spokes to LensFlow */}
             {[
               { d: "M 50 38 L 50 18", key: "to-patient" },
               { d: "M 38 58 L 20 82", key: "to-practice" },
@@ -186,7 +186,7 @@ export function HeroFlow() {
             ))}
           </svg>
 
-          {/* Center OptiGo */}
+          {/* Center LensFlow */}
           <div className="absolute left-1/2 top-[52%] z-20 -translate-x-1/2 -translate-y-1/2">
             <div className="relative">
               <div className="absolute inset-0 -m-6 rounded-full bg-electric/30 blur-xl animate-pulse-soft" />
@@ -196,7 +196,7 @@ export function HeroFlow() {
                   tick === 3 && "scale-[1.03]",
                 )}
               >
-                <OptiGoWordmark tone="light" className="scale-90 sm:scale-95" />
+                <LensFlowWordmark tone="light" className="scale-90 sm:scale-95" />
               </div>
             </div>
           </div>
@@ -232,7 +232,7 @@ export function HeroFlow() {
                       {v.label}
                     </p>
                     <p className="mt-1 text-[9px] font-semibold tracking-wide text-electric">
-                      ↔ OptiGo
+                      ↔ LensFlow
                     </p>
                   </div>
                 </div>

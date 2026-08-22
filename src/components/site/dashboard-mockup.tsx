@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LensesIcon } from "@/components/site/lenses-icon";
-import { OptiGoMark } from "@/components/site/logo";
+import { LensFlowMark } from "@/components/site/logo";
 
 type ViewId =
   | "Overview"
@@ -39,13 +39,13 @@ const sidebar: { id: ViewId; label: string; icon: ComponentType<{ className?: st
 ];
 
 const viewPaths: Record<ViewId, string> = {
-  Overview: "app.optigo.io/overview",
-  Orders: "app.optigo.io/orders",
-  Messages: "app.optigo.io/messages",
-  Labs: "app.optigo.io/labs",
-  Payments: "app.optigo.io/payments",
-  Analytics: "app.optigo.io/analytics",
-  Integrations: "app.optigo.io/integrations",
+  Overview: "app.lensflow.io/overview",
+  Orders: "app.lensflow.io/orders",
+  Messages: "app.lensflow.io/messages",
+  Labs: "app.lensflow.io/labs",
+  Payments: "app.lensflow.io/payments",
+  Analytics: "app.lensflow.io/analytics",
+  Integrations: "app.lensflow.io/integrations",
 };
 
 const filters = ["All", "In Progress", "Completed", "Flagged", "Delayed"] as const;
@@ -766,8 +766,8 @@ export function DashboardMockup() {
       <div className="flex flex-col md:flex-row">
         <aside className="hidden w-52 shrink-0 flex-col bg-sidebar px-3 py-4 md:flex">
           <div className="flex items-center gap-2 px-2 pb-5">
-            <OptiGoMark className="h-6 w-6" />
-            <span className="font-display text-sm font-bold text-sidebar-foreground">OptiGo</span>
+            <LensFlowMark className="h-6 w-6" />
+            <span className="font-display text-sm font-bold text-sidebar-foreground">LensFlow</span>
           </div>
           <nav className="space-y-0.5">
             {sidebar.map((item) => (

@@ -82,9 +82,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "author", content: "OptiGo" },
+      { name: "author", content: "LensFlow" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "OptiGo" },
+      { property: "og:site_name", content: "LensFlow" },
       { property: "og:image", content: "/icon-512.png" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:image", content: "/icon-512.png" },
@@ -108,9 +108,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "OptiGo",
+          name: "LensFlow",
           description:
-            "OptiGo is the centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—connecting every practice to every lab.",
+            "LensFlow is the centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—connecting every practice to every lab.",
           url: "/",
         }),
       },

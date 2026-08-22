@@ -2,8 +2,8 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { getAuthSession } from "@/lib/auth/functions";
 import { LensFlowLogin } from "@/components/lensflow/login-screen";
 
-const TITLE = "Sign in | OptiGo";
-const DESC = "Sign in to OptiGo.";
+const TITLE = "Sign in | LensFlow";
+const DESC = "Sign in to LensFlow.";
 
 export const Route = createFileRoute("/login")({
   head: () => ({

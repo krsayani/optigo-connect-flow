@@ -11,7 +11,7 @@ const people: Array<{
     name: "Dr. Bilal Ismail",
     detail: "CEO",
     image: "/founders/bilal-ismail.png",
-    alt: "Dr. Bilal Ismail, Founder of OptiGo",
+    alt: "Dr. Bilal Ismail, Founder of LensFlow",
   },
   {
     name: "Hamza Shaikh",
@@ -21,7 +21,7 @@ const people: Array<{
     name: "Dr. Karim Sayani",
     detail: "Multi-Location Practice Owner",
     image: "/founders/karim-sayani.png",
-    alt: "Dr. Karim Sayani, Co-Founder of OptiGo",
+    alt: "Dr. Karim Sayani, Co-Founder of LensFlow",
   },
   {
     name: "Salman Jiwani",
@@ -52,7 +52,7 @@ export function MeetTheFounders() {
         align="center"
         eyebrow="Meet the Founders"
         title="Built by people who understand the problem."
-        body="Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building OptiGo to change that."
+        body="Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building LensFlow to change that."
       />
 
       <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">

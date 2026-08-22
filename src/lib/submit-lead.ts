@@ -24,10 +24,10 @@ const leadSchema = z.object({
 export type LeadPayload = z.infer<typeof leadSchema>;
 
 function subjectFor(formType: LeadPayload["formType"], data: LeadPayload) {
-  if (formType === "demo") return `OptiGo demo request — ${data.company || data.name}`;
-  if (formType === "partner") return `OptiGo partner inquiry — ${data.company || data.name}`;
+  if (formType === "demo") return `LensFlow demo request — ${data.company || data.name}`;
+  if (formType === "partner") return `LensFlow partner inquiry — ${data.company || data.name}`;
   const kind = data.accountType === "lab" ? "Lab" : "Practice";
-  return `OptiGo ${kind} signup — ${data.company || data.name}`;
+  return `LensFlow ${kind} signup — ${data.company || data.name}`;
 }
 
 function buildBody(data: LeadPayload) {
@@ -62,7 +62,7 @@ async function sendWithResend(data: LeadPayload) {
 
   const { Resend } = await import("resend");
   const resend = new Resend(key);
-  const from = process.env["RESEND_FROM"] || "OptiGo <onboarding@resend.dev>";
+  const from = process.env["RESEND_FROM"] || "LensFlow <onboarding@resend.dev>";
 
   const { error } = await resend.emails.send({
     from,

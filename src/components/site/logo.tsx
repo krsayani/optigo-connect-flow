@@ -2,7 +2,7 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /** Navy squircle + optical “O” (lens, iris, pupil, catchlight). */
-export function OptiGoMark({ className }: { className?: string }) {
+export function LensFlowMark({ className }: { className?: string }) {
   const uid = `og${useId().replace(/:/g, "")}`;
   const gradient = `${uid}-g`;
 
@@ -40,7 +40,7 @@ export function OptiGoMark({ className }: { className?: string }) {
   );
 }
 
-export function OptiGoWordmark({
+export function LensFlowWordmark({
   className,
   tone = "dark",
 }: {
@@ -49,14 +49,14 @@ export function OptiGoWordmark({
 }) {
   return (
     <span className={cn("flex items-center gap-2", className)}>
-      <OptiGoMark />
+      <LensFlowMark />
       <span
         className={cn(
           "font-display text-[1.4rem] font-extrabold leading-none tracking-[-0.045em]",
           tone === "light" ? "text-on-dark" : "text-navy",
         )}
       >
-        Opti<span className="text-electric">Go</span>
+        Lens<span className="text-electric">Flow</span>
       </span>
     </span>
   );

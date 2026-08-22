@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/site/primitives";
 import { LegalBody } from "@/components/site/legal-body";
 
-const TITLE = "Terms of Use | OptiGo";
+const TITLE = "Terms of Use | LensFlow";
 const DESC =
-  "The terms governing use of the OptiGo website and the informational nature of the content presented here.";
+  "The terms governing use of the LensFlow website and the informational nature of the content presented here.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -28,14 +28,14 @@ function TermsPage() {
       <PageHero
         eyebrow="Legal"
         title="Terms of Use"
-        body="Last updated: January 2026. These terms govern your use of the OptiGo website."
+        body="Last updated: January 2026. These terms govern your use of the LensFlow website."
       />
       <Section>
         <LegalBody
           sections={[
             {
               h: "Informational purpose",
-              p: "This website is provided for general informational purposes. OptiGo is an early-stage software company, and platform capabilities described here are in active development. Nothing on this site constitutes a commitment to deliver a specific feature, integration, or timeline.",
+              p: "This website is provided for general informational purposes. LensFlow is an early-stage software company, and platform capabilities described here are in active development. Nothing on this site constitutes a commitment to deliver a specific feature, integration, or timeline.",
             },
             {
               h: "Demonstration content",
@@ -51,11 +51,11 @@ function TermsPage() {
             },
             {
               h: "Intellectual property",
-              p: "The OptiGo name, wordmark, site design, and content are the property of OptiGo and may not be used without permission.",
+              p: "The LensFlow name, wordmark, site design, and content are the property of LensFlow and may not be used without permission.",
             },
             {
               h: "Limitation of liability",
-              p: "This website is provided on an \u201Cas is\u201D basis without warranties of any kind. To the fullest extent permitted by law, OptiGo is not liable for any damages arising from your use of this site.",
+              p: "This website is provided on an \u201Cas is\u201D basis without warranties of any kind. To the fullest extent permitted by law, LensFlow is not liable for any damages arising from your use of this site.",
             },
             {
               h: "Contact",

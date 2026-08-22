@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { OptiGoWordmark } from "./logo";
+import { LensFlowWordmark } from "./logo";
 
 const nav = [
   { label: "Problem", href: "#problem" },
@@ -53,13 +53,13 @@ export function SiteNav() {
         <a
           href="#top"
           className="shrink-0"
-          aria-label="OptiGo home"
+          aria-label="LensFlow home"
           onClick={(e) => {
             e.preventDefault();
             onNavClick("#top");
           }}
         >
-          <OptiGoWordmark />
+          <LensFlowWordmark />
         </a>
 
         <nav className="hidden flex-1 items-center gap-0.5 lg:flex" aria-label="Main">

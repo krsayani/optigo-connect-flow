@@ -2,7 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { getAuthSession } from "@/lib/auth/functions";
 import { LensFlowApp } from "@/components/lensflow/app-shell";
 
-const TITLE = "OptiGo";
+const TITLE = "LensFlow";
 
 export const Route = createFileRoute("/app")({
   head: () => ({

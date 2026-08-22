@@ -22,9 +22,9 @@ const painPoints = [
   "Staff time",
 ];
 
-const optigoSteps = [
+const lensflowSteps = [
   "Order originates in the practice",
-  "OptiGo normalizes and routes the order",
+  "LensFlow normalizes and routes the order",
   "Laboratory workflow receives a clean handoff",
   "Status flows back to practice and patient",
 ];
@@ -79,7 +79,7 @@ export function ProblemContrast() {
         </div>
       </Reveal>
 
-      {/* WITH OPTIGO */}
+      {/* WITH LENSFLOW */}
       <Reveal
         delay={200}
         className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8"
@@ -88,7 +88,7 @@ export function ProblemContrast() {
         <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full bg-aqua/15 blur-3xl animate-drift" />
         <div className="relative">
           <div className="flex items-center justify-between">
-            <p className="eyebrow text-aqua">With OptiGo</p>
+            <p className="eyebrow text-aqua">With LensFlow</p>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-aqua">
               <Sparkles className="h-3 w-3" /> Connected
             </span>
@@ -99,7 +99,7 @@ export function ProblemContrast() {
           </h3>
 
           <ol className="mt-6 space-y-3">
-            {optigoSteps.map((step) => (
+            {lensflowSteps.map((step) => (
               <li
                 key={step}
                 className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3 backdrop-blur-sm"

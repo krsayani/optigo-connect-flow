@@ -52,8 +52,8 @@ export function InfrastructureGraphic() {
         <div className="relative">
           <div className="absolute -inset-10 rounded-full bg-electric/25 blur-3xl animate-pulse-soft" />
           <div className="relative flex h-24 w-24 flex-col items-center justify-center rounded-full border border-electric/40 bg-navy-deep shadow-glow sm:h-28 sm:w-28">
-            <span className="font-display text-base font-extrabold text-on-dark sm:text-lg">
-              OptiGo
+            <span className="font-display text-sm font-extrabold text-on-dark sm:text-base">
+              LensFlow
             </span>
             <span className="mt-0.5 text-[8px] font-semibold uppercase tracking-[0.18em] text-aqua">
               Hub

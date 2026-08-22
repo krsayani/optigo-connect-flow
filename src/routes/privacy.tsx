@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/site/primitives";
 import { LegalBody } from "@/components/site/legal-body";
 
-const TITLE = "Privacy Policy | OptiGo";
+const TITLE = "Privacy Policy | LensFlow";
 const DESC =
-  "How OptiGo handles information submitted through this website, and the privacy principles guiding our platform development.";
+  "How LensFlow handles information submitted through this website, and the privacy principles guiding our platform development.";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -28,7 +28,7 @@ function PrivacyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
-        body="Last updated: January 2026. This policy describes how OptiGo handles information submitted through this website."
+        body="Last updated: January 2026. This policy describes how LensFlow handles information submitted through this website."
       />
       <Section>
         <LegalBody
@@ -47,7 +47,7 @@ function PrivacyPage() {
             },
             {
               h: "Privacy-focused design",
-              p: "OptiGo is being developed with security and privacy as foundational considerations, including role-based access and responsible data handling practices in our platform architecture.",
+              p: "LensFlow is being developed with security and privacy as foundational considerations, including role-based access and responsible data handling practices in our platform architecture.",
             },
             {
               h: "Data retention",
@@ -59,7 +59,7 @@ function PrivacyPage() {
             },
             {
               h: "Changes to this policy",
-              p: "As OptiGo's platform develops, this policy may be updated. Material changes will be reflected by the updated date above.",
+              p: "As LensFlow's platform develops, this policy may be updated. Material changes will be reflected by the updated date above.",
             },
           ]}
         />

@@ -13,17 +13,17 @@ const steps = [
   },
   {
     n: "02",
-    title: "Practice → OptiGo",
+    title: "Practice → LensFlow",
     icon: GitBranch,
-    body: "The practice sends the order to OptiGo, which verifies and routes it.",
-    lane: ["Practice", "OptiGo"],
+    body: "The practice sends the order to LensFlow, which verifies and routes it.",
+    lane: ["Practice", "LensFlow"],
   },
   {
     n: "03",
-    title: "OptiGo → Lab",
+    title: "LensFlow → Lab",
     icon: Radar,
-    body: "OptiGo sends the order to the lab, and stays in communication with the practice, lab, and patient.",
-    lane: ["OptiGo", "Lab"],
+    body: "LensFlow sends the order to the lab, and stays in communication with the practice, lab, and patient.",
+    lane: ["LensFlow", "Lab"],
   },
 ];
 
@@ -40,12 +40,12 @@ export function HowItWorksStages() {
       <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-mist p-6 sm:p-10">
         <div className="absolute inset-0 grid-mesh opacity-70" />
         <div className="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {["Patient", "Practice", "OptiGo", "Lab"].map((label, i) => (
+          {["Patient", "Practice", "LensFlow", "Lab"].map((label, i) => (
             <div key={`${label}-${i}`} className="flex flex-1 items-center gap-3">
               <div
                 className={cn(
                   "flex-1 rounded-xl border px-3 py-2.5 text-center text-xs font-semibold transition-all duration-500",
-                  label === "OptiGo"
+                  label === "LensFlow"
                     ? "border-electric/30 bg-navy text-on-dark"
                     : "border-border bg-background text-navy",
                   active === i && "shadow-glow",

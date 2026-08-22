@@ -1,4 +1,4 @@
--- OptiGo lens configuration schema (Supabase / Postgres).
+-- LensFlow lens configuration schema (Supabase / Postgres).
 -- Apply in the Cloud SQL editor if tables are not created automatically.
 -- Do not drop existing tables.
 

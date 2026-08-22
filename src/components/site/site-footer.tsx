@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
-import { OptiGoWordmark } from "./logo";
+import { LensFlowWordmark } from "./logo";
 import { goToHomeHash } from "./site-nav";
 
 const columns = [
@@ -52,7 +52,7 @@ export function SiteFooter() {
                 onHashClick("#top");
               }}
             >
-              <OptiGoWordmark tone="light" />
+              <LensFlowWordmark tone="light" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-on-dark-muted">
               One platform for every optical lab order.
@@ -97,7 +97,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-on-dark-muted">© 2026 OptiGo. All rights reserved.</p>
+          <p className="text-xs text-on-dark-muted">© 2026 LensFlow. All rights reserved.</p>
           <p className="text-xs text-on-dark-muted">Connecting every practice to every lab.</p>
         </div>
       </div>
