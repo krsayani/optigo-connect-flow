@@ -19,8 +19,7 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About us", to: "/about" },
-      { label: "Team", to: "/team" },
+      { label: "Team", to: "/", hash: "founders" },
       { label: "Contact", to: "/contact" },
     ],
   },
@@ -55,6 +54,7 @@ export function SiteFooter() {
                   <li key={l.label}>
                     <Link
                       to={l.to}
+                      hash={"hash" in l ? l.hash : undefined}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {l.label}

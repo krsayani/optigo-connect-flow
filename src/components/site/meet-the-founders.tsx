@@ -16,6 +16,8 @@ const people: Array<{
   {
     name: "Hamza Shaikh",
     detail: "CTO",
+    image: "/founders/hamza-shaikh.jpg",
+    alt: "Hamza Shaikh, Co-Founder of LensFlow",
   },
   {
     name: "Dr. Karim Sayani",
@@ -38,7 +40,7 @@ const founders = people.map((person, i) => ({
 
 export function MeetTheFounders({ compact = false }: { compact?: boolean }) {
   return (
-    <LfSection id="founders">
+    <LfSection id="founders" className="scroll-mt-28">
       <div className="mx-auto max-w-3xl text-center">
         <LfEyebrow>The team</LfEyebrow>
         <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">

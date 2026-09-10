@@ -137,6 +137,19 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function HashScroll() {
+  const hash = useLocation({ select: (l) => l.hash });
+  useEffect(() => {
+    const id = hash.replace(/^#/, "");
+    if (!id) return;
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [hash]);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useLocation({ select: (l) => l.pathname });
@@ -144,6 +157,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <HashScroll />
       <div className={isAppShell ? "min-h-dvh bg-mist" : "flex min-h-dvh flex-col bg-background"}>
         {!isAppShell && <SiteNav />}
         {isAppShell ? (

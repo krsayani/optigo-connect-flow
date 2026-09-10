@@ -9,8 +9,7 @@ const nav = [
   { label: "Technology", to: "/technology" },
   { label: "For practices", to: "/for-practices" },
   { label: "For labs", to: "/for-labs" },
-  { label: "About us", to: "/about" },
-  { label: "Team", to: "/team" },
+  { label: "Team", to: "/", hash: "founders" },
 ] as const;
 
 export function SiteNav() {
@@ -44,8 +43,10 @@ export function SiteNav() {
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           {nav.map((item) => (
             <Link
-              key={item.to}
+              key={item.label}
               to={item.to}
+              hash={"hash" in item ? item.hash : undefined}
+              activeOptions={"hash" in item ? { exact: true, includeHash: true } : undefined}
               className="rounded-full px-3.5 py-2 text-[13.5px] text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground"
               activeProps={{ className: "text-foreground bg-secondary/70" }}
             >
@@ -77,8 +78,9 @@ export function SiteNav() {
           <nav className="grid gap-1" aria-label="Mobile">
             {nav.map((item) => (
               <Link
-                key={item.to}
+                key={item.label}
                 to={item.to}
+                hash={"hash" in item ? item.hash : undefined}
                 className="rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-secondary"
               >
                 {item.label}

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LfButton, LfEyebrow, LfSection, Marquee, FinalBand, CheckList } from "@/components/site/lf";
+import { MeetTheFounders } from "@/components/site/meet-the-founders";
 import { OrderStatusCard } from "@/components/site/order-status-card";
 import { EcosystemHub } from "@/components/site/adapter-flow";
 import { Reveal } from "@/components/site/reveal";
@@ -299,6 +300,8 @@ function Index() {
           </Reveal>
         </div>
       </LfSection>
+
+      <MeetTheFounders />
 
       <FinalBand
         eyebrow="Now onboarding"
