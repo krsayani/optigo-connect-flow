@@ -5,25 +5,27 @@ const columns = [
   {
     title: "Platform",
     links: [
-      { label: "Platform", to: "/platform" },
-      { label: "What We Do", to: "/what-we-do" },
-      { label: "How It Works", to: "/how-it-works" },
-      { label: "Integrations", to: "/integrations" },
+      { label: "What we do", to: "/what-we-do" },
+      { label: "Technology", to: "/technology" },
     ],
   },
   {
-    title: "Who It's For",
+    title: "Audiences",
     links: [
-      { label: "For Practices", to: "/for-practices" },
-      { label: "For Labs", to: "/for-labs" },
-      { label: "Partner With Us", to: "/partner" },
+      { label: "For practices", to: "/for-practices" },
+      { label: "For labs", to: "/for-labs" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About", to: "/about" },
-      { label: "Contact", to: "/demo" },
+      { label: "About us", to: "/about" },
+      { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
       { label: "Privacy", to: "/privacy" },
       { label: "Terms", to: "/terms" },
     ],
@@ -32,30 +34,27 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-mist">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="grid gap-12 md:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
             <LensFlowWordmark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Building the connected future of optometry.
-            </p>
-            <div className="mt-6 h-px w-24 hairline-x" />
-            <p className="mt-6 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              LensFlow is an early-stage software infrastructure company. Product capabilities
-              described on this site are in active development.
+              The connectivity layer for eyecare — one flow for every optical order, from exam
+              room to lab to patient.
             </p>
           </div>
-
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="eyebrow">{col.title}</h4>
+              <h4 className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                {col.title}
+              </h4>
               <ul className="mt-4 space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       to={l.to}
-                      className="text-sm text-muted-foreground transition-colors hover:text-electric"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {l.label}
                     </Link>
@@ -65,13 +64,10 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-
         <div className="mt-14 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-muted-foreground">© 2026 LensFlow. All rights reserved.</p>
           <p className="text-xs text-muted-foreground">
-            © 2026 LensFlow. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Starting with optical. Building for the future of optometry.
+            Early-stage software company. Product capabilities in active development.
           </p>
         </div>
       </div>

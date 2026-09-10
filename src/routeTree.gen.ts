@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ForLabsRouteImport } from './routes/for-labs'
 import { Route as ForPracticesRouteImport } from './routes/for-practices'
@@ -22,6 +23,7 @@ import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhatWeDoRouteImport } from './routes/what-we-do'
 
@@ -38,6 +40,11 @@ const AboutRoute = AboutRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoRoute = DemoRouteImport.update({
@@ -90,6 +97,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -105,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/app': typeof AppRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
@@ -115,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
 }
@@ -122,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/app': typeof AppRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
@@ -132,6 +147,7 @@ export interface FileRoutesByTo {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
 }
@@ -140,6 +156,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/app': typeof AppRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/for-labs': typeof ForLabsRoute
   '/for-practices': typeof ForPracticesRoute
@@ -150,6 +167,7 @@ export interface FileRoutesById {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
 }
@@ -159,6 +177,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/app'
+    | '/contact'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
@@ -169,6 +188,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/technology'
     | '/terms'
     | '/what-we-do'
   fileRoutesByTo: FileRoutesByTo
@@ -176,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/app'
+    | '/contact'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
@@ -186,6 +207,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/technology'
     | '/terms'
     | '/what-we-do'
   id:
@@ -193,6 +215,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/app'
+    | '/contact'
     | '/demo'
     | '/for-labs'
     | '/for-practices'
@@ -203,6 +226,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/technology'
     | '/terms'
     | '/what-we-do'
   fileRoutesById: FileRoutesById
@@ -211,6 +235,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AppRoute: typeof AppRoute
+  ContactRoute: typeof ContactRoute
   DemoRoute: typeof DemoRoute
   ForLabsRoute: typeof ForLabsRoute
   ForPracticesRoute: typeof ForPracticesRoute
@@ -221,6 +246,7 @@ export interface RootRouteChildren {
   PlatformRoute: typeof PlatformRoute
   PrivacyRoute: typeof PrivacyRoute
   SignupRoute: typeof SignupRoute
+  TechnologyRoute: typeof TechnologyRoute
   TermsRoute: typeof TermsRoute
   WhatWeDoRoute: typeof WhatWeDoRoute
 }
@@ -246,6 +272,13 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo': {
@@ -318,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -339,6 +379,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AppRoute: AppRoute,
+  ContactRoute: ContactRoute,
   DemoRoute: DemoRoute,
   ForLabsRoute: ForLabsRoute,
   ForPracticesRoute: ForPracticesRoute,
@@ -349,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlatformRoute: PlatformRoute,
   PrivacyRoute: PrivacyRoute,
   SignupRoute: SignupRoute,
+  TechnologyRoute: TechnologyRoute,
   TermsRoute: TermsRoute,
   WhatWeDoRoute: WhatWeDoRoute,
 }

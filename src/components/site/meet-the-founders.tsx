@@ -1,5 +1,5 @@
 import { Reveal } from "./reveal";
-import { Section, SectionHeading } from "./primitives";
+import { LfEyebrow, LfSection } from "./lf";
 
 const people: Array<{
   name: string;
@@ -49,53 +49,50 @@ function initials(name: string) {
 
 export function MeetTheFounders({ compact = false }: { compact?: boolean }) {
   return (
-    <Section id="founders" tone="mist">
-      <SectionHeading
-        align="center"
-        eyebrow="Meet the Founders"
-        title={compact ? "The team building LensFlow." : "Built by people who understand the problem."}
-        body={
-          compact
-            ? undefined
-            : "Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building LensFlow to change that."
-        }
-      />
-
-      <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <LfSection id="founders">
+      <div className="mx-auto max-w-3xl text-center">
+        <LfEyebrow>The team</LfEyebrow>
+        <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">
+          {compact ? "The team building LensFlow." : "Built by people who understand the problem."}
+        </h2>
+        {!compact ? (
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            Optical technology has advanced dramatically, but many of the workflows connecting
+            practices, laboratories, and patients remain fragmented. We're building LensFlow to
+            change that.
+          </p>
+        ) : null}
+      </div>
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {founders.map((person, i) => (
           <Reveal key={person.name} delay={i * 80}>
-            <article className="lift overflow-hidden rounded-3xl border border-border bg-background shadow-card">
-              <div className="relative aspect-[4/5] overflow-hidden bg-mist">
+            <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+              <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
                 {person.image ? (
-                  <>
-                    <img
-                      src={person.image}
-                      alt={person.alt ?? person.name}
-                      className="h-full w-full object-cover object-top"
-                    />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/90 to-transparent" />
-                  </>
+                  <img
+                    src={person.image}
+                    alt={person.alt ?? person.name}
+                    className="h-full w-full object-cover object-top"
+                  />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-mist via-accent to-electric/15">
-                    <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-navy font-display text-2xl font-extrabold tracking-tight text-on-dark">
+                  <div className="flex h-full w-full items-center justify-center">
+                    <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-foreground font-display text-2xl font-semibold text-background">
                       {initials(person.name)}
                     </span>
                   </div>
                 )}
               </div>
               <div className="px-6 py-6 text-center">
-                <h3 className="font-display text-xl font-bold tracking-tight text-navy">
-                  {person.name}
-                </h3>
-                <p className="mt-1.5 text-sm font-semibold text-electric">{person.role}</p>
-                {person.detail && (
+                <h3 className="font-display text-xl font-semibold tracking-tight">{person.name}</h3>
+                <p className="mt-1.5 text-sm font-medium text-signal">{person.role}</p>
+                {person.detail ? (
                   <p className="mt-1 text-sm text-muted-foreground">{person.detail}</p>
-                )}
+                ) : null}
               </div>
             </article>
           </Reveal>
         ))}
       </div>
-    </Section>
+    </LfSection>
   );
 }

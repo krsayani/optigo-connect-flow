@@ -4,7 +4,7 @@ import { z } from "zod";
 const NOTIFY_EMAIL = process.env["NOTIFY_EMAIL"] || "krsayani11@gmail.com";
 
 const leadSchema = z.object({
-  formType: z.enum(["demo", "partner", "signup"]),
+  formType: z.enum(["demo", "partner", "signup", "contact"]),
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
   phone: z.string().trim().max(40).optional(),
@@ -24,6 +24,7 @@ const leadSchema = z.object({
 export type LeadPayload = z.infer<typeof leadSchema>;
 
 function subjectFor(formType: LeadPayload["formType"], data: LeadPayload) {
+  if (formType === "contact") return `LensFlow contact — ${data.type || data.name}`;
   if (formType === "demo") return `LensFlow demo request — ${data.company || data.name}`;
   if (formType === "partner") return `LensFlow partner inquiry — ${data.company || data.name}`;
   const kind = data.accountType === "lab" ? "Lab" : "Practice";

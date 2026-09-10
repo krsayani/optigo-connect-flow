@@ -45,7 +45,7 @@ const signupSchema = z.object({
 export type SignupAccountType = "practice" | "lab";
 
 type Errors = Record<string, string>;
-type FormType = "demo" | "partner" | "signup";
+type FormType = "demo" | "partner" | "signup" | "contact";
 
 function Field({
   label,
@@ -364,6 +364,84 @@ export function SignupForm({
       {errors["accountType"] && (
         <p className="text-[11px] text-destructive sm:col-span-2">{errors["accountType"]}</p>
       )}
+    </form>
+  );
+}
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  type: z.string().trim().min(1, "Select who you're with"),
+  message: z.string().trim().min(1, "Tell us what you'd like to solve").max(1000),
+});
+
+const contactTypes = [
+  "Optometry practice",
+  "Optical lab",
+  "EHR / technology partner",
+  "Other",
+];
+
+export function ContactForm() {
+  const { errors, done, pending, onSubmit } = useFormSubmit(
+    contactSchema,
+    "contact",
+    "Thanks — we'll be in touch shortly.",
+  );
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="grid gap-4">
+      <Field label="Name" name="name" required error={errors["name"]} />
+      <Field label="Work email" name="email" type="email" required error={errors["email"]} />
+      <label className="block">
+        <span className="text-[12px] font-semibold text-foreground">
+          I'm with a<span className="text-signal"> *</span>
+        </span>
+        <select
+          name="type"
+          defaultValue=""
+          className={cn(
+            "mt-1.5 w-full rounded-xl border bg-background px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-signal focus:ring-4 focus:ring-signal/10",
+            errors["type"] ? "border-destructive" : "border-border",
+          )}
+        >
+          <option value="" disabled>
+            Select one
+          </option>
+          {contactTypes.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
+        {errors["type"] ? (
+          <span className="mt-1 block text-[11px] text-destructive">{errors["type"]}</span>
+        ) : null}
+      </label>
+      <TextArea label="What would you like to solve?" name="message" error={errors["message"]} />
+      <Note />
+      <button
+        type="submit"
+        disabled={pending}
+        className="group mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {pending ? (
+          <>
+            Sending
+            <Loader2 className="h-4 w-4 animate-spin" />
+          </>
+        ) : (
+          <>
+            Send message
+            <ArrowRight className="h-4 w-4" />
+          </>
+        )}
+      </button>
+      {done ? (
+        <p className="text-[12px] font-medium text-signal">
+          Message received. A member of the LensFlow team will follow up by email.
+        </p>
+      ) : null}
     </form>
   );
 }

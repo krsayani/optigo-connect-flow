@@ -1,26 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ArrowLeftRight,
-  Network,
-  Radar,
-  PhoneOff,
-  Blocks,
-  Handshake,
-} from "lucide-react";
+import { CheckList, FinalBand, LfEyebrow, LfPageHero, LfSection } from "@/components/site/lf";
+import { AdapterFlow } from "@/components/site/adapter-flow";
 import { Reveal } from "@/components/site/reveal";
-import { InfrastructureGraphic } from "@/components/site/infrastructure-graphic";
-import {
-  PageHero,
-  Section,
-  SectionHeading,
-  CTAButton,
-  FeatureCard,
-} from "@/components/site/primitives";
-import { TrustSection, FinalCTA } from "@/components/site/sections";
 
-const TITLE = "For Laboratories | LensFlow Lab Connectivity Infrastructure";
+const TITLE = "For labs | LensFlow";
 const DESC =
-  "LensFlow is building modern infrastructure designed to make digital communication between optical laboratories and practices simpler, more transparent, and more scalable.";
+  "Integrate once. Receive from the whole network. LensFlow delivers clean, structured jobs into the system you already run.";
 
 export const Route = createFileRoute("/for-labs")({
   head: () => ({
@@ -38,98 +23,56 @@ export const Route = createFileRoute("/for-labs")({
   component: ForLabsPage,
 });
 
-const benefits = [
+const reasons = [
   {
-    icon: <ArrowLeftRight className="h-4 w-4" />,
-    title: "Cleaner digital handoffs",
-    body: "Structured order information instead of re-keyed details and follow-up clarifications.",
+    title: "Clean jobs at intake",
+    body: "Orders arrive validated against your requirements, so your team stops calling practices to fix a missing measurement or an ambiguous lens design.",
+    items: ["Validated at the edge", "Fewer clarification calls", "Fewer remakes"],
   },
   {
-    icon: <Network className="h-4 w-4" />,
-    title: "Better practice connectivity",
-    body: "A modern path to the practices you already serve.",
+    title: "Inside your LMS, not a portal",
+    body: "We deliver natively into lab management systems, including Ocuco LMS. Your techs keep the workflow they already know.",
+    items: ["Native delivery", "No new screens", "No re-entry"],
   },
   {
-    icon: <Radar className="h-4 w-4" />,
-    title: "Order visibility",
-    body: "Progress shared once and surfaced consistently to the practice and patient.",
+    title: "New order volume",
+    body: "Every practice that joins the network can route to you without a bespoke project. Distribution is the point of a network.",
+    items: ["One integration, many practices", "Faster practice onboarding", "Growth without sales overhead"],
   },
   {
-    icon: <PhoneOff className="h-4 w-4" />,
-    title: "Reduced status inquiries",
-    body: "Fewer repetitive calls and emails asking where an order stands.",
-  },
-  {
-    icon: <Blocks className="h-4 w-4" />,
-    title: "Modern integration infrastructure",
-    body: "Built to fit alongside existing lab management systems and processes.",
-  },
-  {
-    icon: <Handshake className="h-4 w-4" />,
-    title: "Ecosystem reach",
-    body: "An opportunity to connect with practices through the LensFlow ecosystem.",
+    title: "Disputes end with a record",
+    body: "Every event is timestamped and attributable, so a disagreement about when a job was submitted or shipped is settled in seconds.",
+    items: ["Append-only event log", "Shared status language", "Audit-ready"],
   },
 ];
 
 function ForLabsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="For laboratories"
-        title={
-          <>
-            A better connection between{" "}
-            <span className="text-gradient">labs and practices.</span>
-          </>
-        }
-        body="Orders arrive structured and complete, status flows back once, and the practices you already serve stay in sync without a phone call."
-      >
-        <CTAButton to="/partner">Become an Integration Partner</CTAButton>
-      </PageHero>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Positioning"
-          title="Infrastructure for your customer relationships — not a replacement for your lab."
-          body="LensFlow does not manufacture, fulfill, or compete for lab work. We're building the connective layer that helps laboratories exchange order and status information with practices more effectively."
-        />
-      </Section>
-
-      <Section tone="mist">
-        <SectionHeading eyebrow="Benefits" title="What connecting to LensFlow is designed to offer." />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 60}>
-              <FeatureCard icon={b.icon} title={b.title} body={b.body} className="h-full" />
+      <LfPageHero
+        eyebrow="For labs"
+        title="Integrate once. Receive from the whole network."
+        body="LensFlow is not another portal asking your techs to change how they work. It is a single pipe that delivers clean, structured jobs into the system you already run."
+      />
+      <LfSection>
+        <AdapterFlow />
+      </LfSection>
+      <LfSection className="bg-secondary/40">
+        <LfEyebrow>Why labs join</LfEyebrow>
+        <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">
+          Four reasons it is worth the pipe.
+        </h2>
+        <div className="mt-12 grid gap-4 lg:grid-cols-2">
+          {reasons.map((reason, i) => (
+            <Reveal key={reason.title} delay={i * 50} className="rounded-3xl border border-border bg-card p-6 sm:p-7">
+              <h3 className="font-display text-xl font-semibold">{reason.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{reason.body}</p>
+              <CheckList items={reason.items} />
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      <Section tone="dark">
-        <div className="absolute inset-0 grid-mesh-dark opacity-60" />
-        <div className="relative grid items-center gap-14 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              tone="dark"
-              eyebrow="Integration model"
-              title="One connection. Many practices."
-              body="Rather than building and maintaining separate connections practice by practice, laboratories can connect once into an architecture designed to reach practices across the LensFlow ecosystem."
-            />
-            <Reveal delay={140} className="mt-9">
-              <CTAButton to="/partner" variant="light">
-                Talk to our team
-              </CTAButton>
-            </Reveal>
-          </div>
-          <Reveal delay={120}>
-            <InfrastructureGraphic />
-          </Reveal>
-        </div>
-      </Section>
-
-      <TrustSection />
-      <FinalCTA />
+      </LfSection>
+      <FinalBand title="Join the network" primary={{ to: "/contact", label: "Request early access" }} />
     </>
   );
 }

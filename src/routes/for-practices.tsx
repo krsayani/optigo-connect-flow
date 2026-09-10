@@ -1,28 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  ClipboardCheck,
-  Layers,
-  Eye,
-  PhoneOff,
-  Users,
-  Smile,
-  Cable,
-} from "lucide-react";
-import { DashboardMockup } from "@/components/site/dashboard-mockup";
-import { OrderTracker } from "@/components/site/order-tracker";
+import { CheckList, FinalBand, LfButton, LfEyebrow, LfPageHero, LfSection } from "@/components/site/lf";
+import { OrderStatusCard } from "@/components/site/order-status-card";
 import { Reveal } from "@/components/site/reveal";
-import {
-  PageHero,
-  Section,
-  SectionHeading,
-  CTAButton,
-  FeatureCard,
-} from "@/components/site/primitives";
-import { TrustSection, FinalCTA } from "@/components/site/sections";
 
-const TITLE = "For Practices | LensFlow Optical Order Management";
+const TITLE = "For practices | LensFlow";
 const DESC =
-  "LensFlow helps optometry practices centralize optical orders, reduce repetitive data entry, and improve visibility from submission through pickup.";
+  "Your team ordered it once. That should be enough. LensFlow works alongside the practice system you already run.";
 
 export const Route = createFileRoute("/for-practices")({
   head: () => ({
@@ -40,95 +23,72 @@ export const Route = createFileRoute("/for-practices")({
   component: ForPracticesPage,
 });
 
-const benefits = [
+const reasons = [
   {
-    icon: <ClipboardCheck className="h-4 w-4" />,
-    title: "Reduce repetitive data entry",
-    body: "Order details are designed to carry through instead of being retyped.",
+    title: "Give the front desk its day back",
+    body: "Every order is entered once. Nobody retypes an Rx into a lab portal, and nobody calls the lab to ask where a job is.",
+    items: ["No duplicate entry", "No portal logins", "No status phone tag"],
   },
   {
-    icon: <Layers className="h-4 w-4" />,
-    title: "Centralize optical orders",
-    body: "One place for orders across locations and connected laboratories.",
+    title: "One queue, every lab",
+    body: "Whether a job went to your in-house lab or three outside labs, it shows up in the same list with the same status language.",
+    items: ["Multi-lab view", "Per-location access", "Exceptions ranked first"],
   },
   {
-    icon: <Eye className="h-4 w-4" />,
-    title: "Improve order visibility",
-    body: "See progress without digging through separate portals.",
+    title: "Patients who stop worrying",
+    body: "Automatic milestone updates mean the patient hears from you before they think to call — and they show up when the job is actually ready.",
+    items: ["Submitted → ready alerts", "Fewer no-shows", "Fewer angry calls"],
   },
   {
-    icon: <PhoneOff className="h-4 w-4" />,
-    title: "Reduce unnecessary status calls",
-    body: "Fewer inbound and outbound calls chasing the same answer.",
-  },
-  {
-    icon: <Users className="h-4 w-4" />,
-    title: "Keep staff informed",
-    body: "Shared context so anyone at the front desk can answer confidently.",
-  },
-  {
-    icon: <Smile className="h-4 w-4" />,
-    title: "A better patient experience",
-    body: "Clear, plain-language updates on where an order stands.",
-  },
-  {
-    icon: <Cable className="h-4 w-4" />,
-    title: "Connect laboratory workflows",
-    body: "Designed to work with the laboratory relationships you already have.",
+    title: "Keep your EHR",
+    body: "LensFlow's proprietary workflow runs alongside Eyefinity, Crystal PM, RevolutionEHR, Compulink and other practice systems, so there is no migration project and no waiting on a vendor integration.",
+    items: ["Fits your current workflow", "No forced system change"],
   },
 ];
 
 function ForPracticesPage() {
   return (
     <>
-      <PageHero
+      <LfPageHero
         eyebrow="For practices"
-        title={
-          <>
-            Less chasing.
-            <br />
-            <span className="text-gradient">More patient care.</span>
-          </>
-        }
-        body="Optical ordering takes staff time that belongs with patients. LensFlow is being built to take the repetitive parts off their plate."
-      >
-        <CTAButton to="/demo">Bring LensFlow to Your Practice</CTAButton>
-      </PageHero>
-
-      <Section>
-        <SectionHeading eyebrow="Value" title="Built around how practices actually work." />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 60}>
-              <FeatureCard icon={b.icon} title={b.title} body={b.body} className="h-full" />
+        title="Your team ordered it once. That should be enough."
+        body="LensFlow works alongside the practice system you already run and takes the coordination work off your staff — ordering, lab communication, tracking, payments, patient updates and analytics."
+        actions={<LfButton to="/contact">Book a practice demo</LfButton>}
+      />
+      <LfSection>
+        <OrderStatusCard />
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {[
+            ["~2 min saved", "per order on entry alone"],
+            ["Fewer calls", "status questions handled automatically"],
+            ["Faster remakes", "problems caught the day they happen"],
+          ].map(([k, v]) => (
+            <div key={k} className="rounded-3xl border border-border bg-card p-5">
+              <p className="font-display text-lg font-semibold">{k}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{v}</p>
+            </div>
+          ))}
+        </div>
+      </LfSection>
+      <LfSection className="bg-secondary/40">
+        <LfEyebrow>Why practices pay for it</LfEyebrow>
+        <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">
+          It removes work, not just clicks.
+        </h2>
+        <div className="mt-12 grid gap-4 lg:grid-cols-2">
+          {reasons.map((reason, i) => (
+            <Reveal key={reason.title} delay={i * 50} className="rounded-3xl border border-border bg-card p-6 sm:p-7">
+              <h3 className="font-display text-xl font-semibold">{reason.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{reason.body}</p>
+              <CheckList items={reason.items} />
             </Reveal>
           ))}
         </div>
-      </Section>
-
-      <Section tone="mist">
-        <SectionHeading
-          eyebrow="Practice view"
-          title="Every optical order, at a glance."
-        />
-        <Reveal delay={120} className="mt-12">
-          <DashboardMockup />
-        </Reveal>
-        <p className="mt-5 text-center text-[11px] text-muted-foreground">
-          Interface shown for illustration. All records are fictional demo data.
-        </p>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          eyebrow="Patient communication"
-          title="Answers before the phone rings."
-        />
-        <OrderTracker />
-      </Section>
-
-      <TrustSection />
-      <FinalCTA />
+      </LfSection>
+      <FinalBand
+        title="Use LensFlow on your terms"
+        primary={{ to: "/contact", label: "Book a practice demo" }}
+      />
     </>
   );
 }

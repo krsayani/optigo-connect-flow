@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHero, Section } from "@/components/site/primitives";
+import { LfPageHero, LfSection } from "@/components/site/lf";
 import { LegalBody } from "@/components/site/legal-body";
 
 const TITLE = "Terms of Use | LensFlow";
-const DESC =
-  "The terms governing use of the LensFlow website and the informational nature of the content presented here.";
+const DESC = "Terms governing use of the LensFlow website.";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -25,45 +24,37 @@ export const Route = createFileRoute("/terms")({
 function TermsPage() {
   return (
     <>
-      <PageHero
+      <LfPageHero
         eyebrow="Legal"
         title="Terms of Use"
-        body="Last updated: January 2026. These terms govern your use of the LensFlow website."
+        body="Last updated August 2026."
       />
-      <Section>
+      <LfSection width="copy">
         <LegalBody
           sections={[
             {
-              h: "Informational purpose",
-              p: "This website is provided for general informational purposes. LensFlow is an early-stage software company, and platform capabilities described here are in active development. Nothing on this site constitutes a commitment to deliver a specific feature, integration, or timeline.",
+              h: "About this site",
+              p: "This website describes LensFlow, an early-stage software company. Product capabilities described here are in active development and may change.",
             },
             {
-              h: "Demonstration content",
-              p: "Product interfaces, orders, patient names, laboratories, and statuses shown on this site are fictional examples created for illustration.",
-            },
-            {
-              h: "Third-party names",
-              p: "References to third-party systems are for identification only. A reference does not indicate an active integration, endorsement, partnership, or supported connection unless specifically stated.",
-            },
-            {
-              h: "No professional advice",
-              p: "Content on this site is not clinical, legal, or regulatory advice. You are responsible for your own compliance obligations.",
+              h: "Acceptable use",
+              p: "You agree not to misuse this site, attempt to disrupt it, or access it in a way that violates applicable law.",
             },
             {
               h: "Intellectual property",
-              p: "The LensFlow name, wordmark, site design, and content are the property of LensFlow and may not be used without permission.",
+              p: "The LensFlow name, brand, content, and design on this site are owned by LensFlow unless otherwise noted.",
             },
             {
-              h: "Limitation of liability",
-              p: "This website is provided on an \u201Cas is\u201D basis without warranties of any kind. To the fullest extent permitted by law, LensFlow is not liable for any damages arising from your use of this site.",
+              h: "No warranty",
+              p: "This site is provided on an as-is basis without warranties of any kind. Nothing here constitutes a binding offer or clinical guidance.",
             },
             {
               h: "Contact",
-              p: "Questions about these terms can be submitted through the contact forms on this site.",
+              p: "Questions about these terms can be sent to us through the contact page.",
             },
           ]}
         />
-      </Section>
+      </LfSection>
     </>
   );
 }

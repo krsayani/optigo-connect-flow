@@ -1,26 +1,12 @@
-import { useEffect } from "react";
-import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
-import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { LfButton, LfEyebrow, LfSection, Marquee, FinalBand, CheckList } from "@/components/site/lf";
+import { OrderStatusCard } from "@/components/site/order-status-card";
+import { EcosystemHub } from "@/components/site/adapter-flow";
 import { Reveal } from "@/components/site/reveal";
-import { HeroFlow } from "@/components/site/hero-flow";
-import { WhyStory } from "@/components/site/why-story";
-import { HowItWorksStages } from "@/components/site/how-it-works-stages";
-import { DashboardMockup } from "@/components/site/dashboard-mockup";
-import { OrderTracker } from "@/components/site/order-tracker";
-import { Section, SectionHeading, CTAButton } from "@/components/site/primitives";
-import { LensesIcon } from "@/components/site/lenses-icon";
-import {
-  EcosystemStrip,
-  InfrastructureSection,
-  WhyLensFlow,
-  BuiltForMore,
-  TrustSection,
-  FinalCTA,
-} from "@/components/site/sections";
 
-const TITLE = "LensFlow | The Connected Future of Optical Ordering";
+const TITLE = "LensFlow — The optical platform that works with your practice";
 const DESC =
-  "LensFlow is building modern infrastructure connecting optometry practices, EHR systems, optical laboratories, and patients through streamlined optical workflows.";
+  "Order creation, lab communication, tracking, payments, patient updates and analytics — connected in one platform, whatever EHR your practice already runs.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,228 +24,289 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const afterSale = [
+  {
+    title: "Create the order",
+    body: "Built in LensFlow the moment the patient buys, with the optical detail the lab actually needs.",
+  },
+  {
+    title: "Validate it",
+    body: "Rules catch missing measurements and impossible lens combinations before the job leaves the practice.",
+  },
+  {
+    title: "Send it to the lab",
+    body: "Routed to a participating optical laboratory as a structured job, not a fax or a PDF.",
+  },
+  {
+    title: "Communicate and track",
+    body: "One shared status and one thread with the lab — no portal logins, no chasing calls.",
+  },
+  {
+    title: "Update the patient",
+    body: "Automatic milestone messages, so the front desk stops fielding 'is it ready yet' calls.",
+  },
+  {
+    title: "Handle payments",
+    body: "Capture what is owed and reconcile the optical side of the sale in the same place.",
+  },
+  {
+    title: "Capture the data",
+    body: "Turnaround, remakes, lab performance and revenue mix — measured instead of guessed.",
+  },
+];
+
 function Index() {
-  const hash = useLocation({ select: (l) => l.hash });
-
-  useEffect(() => {
-    if (!hash) return;
-    const id = hash.replace(/^#/, "");
-    const el = document.getElementById(id);
-    if (el) {
-      requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
-    }
-  }, [hash]);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20">
-        <div className="absolute inset-0 surface-hero" />
-        <div className="absolute inset-0 grid-mesh opacity-50" />
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_1.15fr] lg:gap-12">
-            <div>
-              <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1.5 text-[11px] font-semibold text-navy backdrop-blur">
-                  <span className="h-1.5 w-1.5 rounded-full bg-electric animate-pulse-soft" />
-                  Software infrastructure for optometry
-                </span>
-              </Reveal>
-              <Reveal delay={80}>
-                <h1 className="mt-6 text-4xl font-bold leading-[1.03] text-navy sm:text-5xl lg:text-[4rem]">
-                  Optical Ordering.
-                  <br />
-                  <span className="text-gradient">Reimagined.</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={160}>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  LensFlow connects practices, EHR systems, optical laboratories, and patients
-                  through one intelligent workflow—reducing manual work and bringing visibility
-                  to every order.
-                </p>
-              </Reveal>
-              <Reveal delay={240} className="mt-9 flex flex-wrap gap-3">
-                <CTAButton to="/demo">Request a Demo</CTAButton>
-                <CTAButton to="/partner" variant="ghost">
-                  Become an Integration Partner
-                </CTAButton>
-              </Reveal>
-            </div>
-
-            <Reveal delay={180}>
-              <HeroFlow />
-            </Reveal>
+      <section className="relative overflow-hidden px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-28">
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="soft-wash absolute -inset-x-[20%] -top-[30%] h-[160%] opacity-90" />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, transparent 55%, var(--background) 100%)" }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-5xl text-center">
+          <div className="lf-reveal" style={{ animationDelay: "60ms" }}>
+            <h1 className="mx-auto max-w-4xl text-[2.7rem] leading-[1.02] sm:text-6xl lg:text-[4.5rem]">
+              The <span className="holo-text">optical platform</span> that works with your practice.
+            </h1>
           </div>
+          <div className="lf-reveal" style={{ animationDelay: "130ms" }}>
+            <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {DESC}
+            </p>
+          </div>
+          <div className="lf-reveal" style={{ animationDelay: "200ms" }}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <LfButton to="/contact">Request early access</LfButton>
+              <LfButton to="/for-labs" variant="ghost">
+                For optical labs
+              </LfButton>
+            </div>
+          </div>
+        </div>
+        <div className="lf-reveal relative mx-auto mt-16 max-w-6xl" style={{ animationDelay: "280ms" }}>
+          <OrderStatusCard />
         </div>
       </section>
 
-      <EcosystemStrip />
+      <Marquee
+        items={[
+          "Works alongside any EHR",
+          "Structured lab orders",
+          "Ocuco lab connectivity",
+          "Live order tracking",
+          "Automatic patient updates",
+          "No migration required",
+        ]}
+      />
 
-      {/* WHY OPTIGO EXISTS — storytelling */}
-      <WhyStory />
-
-
-      {/* HOW IT WORKS */}
-      <Section tone="mist">
-        <SectionHeading
-          eyebrow="How LensFlow works"
-          title="How the connection works."
-          body="Order information moves from the practice or EHR into LensFlow, through the appropriate laboratory workflow, and back as the order progresses."
-        />
-        <HowItWorksStages />
-      </Section>
-
-      {/* PRODUCT */}
-      <Section>
-        <SectionHeading
-          eyebrow="The product"
-          title="Every optical order, in one place."
-          body="A single operational surface for optical orders across locations and connected laboratories."
-        />
-        <Reveal delay={120} className="mt-12">
-          <DashboardMockup />
-        </Reveal>
-        <p className="mt-5 text-center text-[11px] text-muted-foreground">
-          Product interface shown for illustration. All patient names and orders are fictional
-          demo data.
+      <LfSection>
+        <LfEyebrow>Works alongside your system</LfEyebrow>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
+          Keep your EHR. Upgrade your optical workflow.
+        </h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          LensFlow works alongside the systems your practice already uses, giving your optical team
+          a modern ordering, lab communication, tracking, patient communication, payment and
+          analytics platform without requiring you to replace your EHR.
         </p>
-      </Section>
-
-      {/* VISIBILITY */}
-      <Section tone="mist">
-        <SectionHeading
-          eyebrow="Real-time visibility"
-          title="Know where every order stands."
-          body="LensFlow is being designed to give practices better visibility into the optical order lifecycle from submission through completion."
-        />
-        <OrderTracker />
-      </Section>
-
-      {/* WHO */}
-      <Section id="who">
-        <SectionHeading
-          eyebrow="Who it's for"
-          title="Built for both sides of the connection."
-          body="Practices and labs—finally linked through LensFlow."
-          align="center"
-        />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <Reveal className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
-              <Building2 className="h-4 w-4" />
-            </span>
-            <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
-              Practices
-            </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Connect your practice once and reach every lab you work with—ordering,
-              communication, and payments in one place.
+          <Reveal className="rounded-3xl border border-border bg-card p-7 shadow-soft sm:p-9">
+            <h3 className="font-display text-xl font-semibold">Your EHR doesn't have to change</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Whether your practice uses Eyefinity, Crystal PM, RevolutionEHR, Compulink or another
+              platform, LensFlow is designed to fit into your existing workflow.
             </p>
-            <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
-              {[
-                "One hub from your practice to many labs",
-                "Quotes patients can purchase after they leave the office",
-                "One place to communicate with labs and patients",
-                "Payments, spend, and turnaround in one view",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-electric" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-auto pt-8">
-              <Link
-                to="/signup"
-                search={{ type: "practice" }}
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-electric"
-              >
-                Sign up as a practice
-              </Link>
-            </div>
+            <CheckList
+              items={[
+                "Fits your current workflow",
+                "No forced system change",
+                "Works with any practice platform",
+              ]}
+            />
           </Reveal>
-
-          <Reveal
-            delay={120}
-            className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
-          >
-            <div className="absolute inset-0 grid-mesh-dark opacity-60" />
-            <div className="relative flex flex-1 flex-col">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-aqua">
-                <LensesIcon className="h-4 w-4" />
-              </span>
-              <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
-                Labs
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Connect your lab once and receive structured orders from practices on
-                LensFlow—then talk, track, and settle in one thread.
-              </p>
-              <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
-                {[
-                  "Cleaner handoffs from any connected practice",
-                  "One thread instead of repetitive status calls",
-                  "One lab connection to many practices",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-8">
-                <Link
-                  to="/signup"
-                  search={{ type: "lab" }}
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-on-dark px-5 py-3 text-sm font-semibold text-navy transition-all hover:-translate-y-0.5 hover:bg-aqua"
-                >
-                  Sign up as a lab
-                </Link>
-              </div>
-            </div>
+          <Reveal delay={80} className="rounded-3xl border border-border bg-card p-7 shadow-soft sm:p-9">
+            <h3 className="font-display text-xl font-semibold">Two things, said precisely</h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <span className="font-semibold text-foreground">Works alongside.</span> Our proprietary
+              workflow lets a practice use LensFlow regardless of its EHR or PMS.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <span className="font-semibold text-foreground">Native integration.</span> A system
+              exchanges data directly with LensFlow through an approved technical connection. We only
+              use that phrase where the connection actually exists.
+            </p>
           </Reveal>
         </div>
-      </Section>
+      </LfSection>
 
-      {/* INTEGRATIONS TEASER */}
-      <Section tone="mist">
-        <SectionHeading
-          eyebrow="Integrations"
-          title="Building the connected optical ecosystem."
-          body="We're actively working with industry partners to connect LensFlow with the systems practices and laboratories already use."
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-3">
-          {["Crystal Practice Management", "DVI", "Ocuco"].map((name, i) => (
-            <Reveal key={name} delay={i * 90}>
-              <div className="lift h-full rounded-2xl border border-border bg-background p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-electric/15 to-aqua/20 font-display text-sm font-bold text-navy">
-                  {name.slice(0, 2).toUpperCase()}
-                </div>
-                <h3 className="mt-5 text-base font-semibold text-navy">{name}</h3>
-                <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-electric/25 bg-accent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-electric">
-                  Integration in development
+      <LfSection className="bg-secondary/40">
+        <LfEyebrow>One platform</LfEyebrow>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
+          One optical platform. Whatever EHR you use.
+        </h2>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          LensFlow sits between the practice workflow and the optical ecosystem, rather than being
+          tied to one EHR.
+        </p>
+        <div className="mt-12">
+          <EcosystemHub />
+        </div>
+        <div className="mt-8">
+          <LfButton to="/technology" variant="ghost">
+            How the technology works
+          </LfButton>
+        </div>
+      </LfSection>
+
+      <LfSection>
+        <LfEyebrow>The story</LfEyebrow>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
+          LensFlow meets your practice where it is.
+        </h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Your practice shouldn't have to change its EHR just to modernize its optical. LensFlow's
+          proprietary workflow is designed to work across different practice environments, so
+          optical teams can begin using LensFlow regardless of which EHR they run.
+        </p>
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <Reveal className="rounded-3xl border border-border bg-card p-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Traditional approach
+            </p>
+            <ol className="mt-5 space-y-4">
+              {[
+                "Practice chooses an EHR",
+                "Practice is limited by what that EHR integrates with",
+                "Practice waits for vendors to build integrations",
+                "Optical workflow stays fragmented",
+              ].map((item, i) => (
+                <li key={item} className="flex gap-3 text-sm">
+                  <span className="font-mono text-muted-foreground">0{i + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+          <Reveal delay={80} className="rounded-3xl border border-signal/30 bg-foreground p-7 text-background">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-signal-soft">
+              The LensFlow approach
+            </p>
+            <ol className="mt-5 space-y-4">
+              {[
+                "Your existing EHR — Eyefinity, Crystal, RevolutionEHR, Compulink or other",
+                "LensFlow",
+                "Participating optical lab",
+                "Tracking, communication, payments, analytics",
+                "Patient",
+              ].map((item, i) => (
+                <li key={item} className="flex gap-3 text-sm text-background/90">
+                  <span className="font-mono text-signal-soft">0{i + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+      </LfSection>
+
+      <LfSection className="bg-secondary/40">
+        <LfEyebrow>After the sale</LfEyebrow>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
+          Don't change your EHR. Change what happens after the sale.
+        </h2>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          The patient buys their glasses. From that moment, LensFlow takes over the optical workflow.
+        </p>
+        <div className="mt-12 grid gap-4">
+          {afterSale.map((step, i) => (
+            <Reveal key={step.title} delay={i * 40} className="rounded-3xl border border-border bg-card p-6 sm:p-7">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-signal">
+                  0{i + 1}
                 </span>
+                <div>
+                  <h3 className="font-display text-xl font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                </div>
               </div>
             </Reveal>
           ))}
+          <Reveal delay={280} className="rounded-3xl bg-foreground p-7 text-background sm:p-9">
+            <h3 className="font-display text-2xl font-semibold">Understand the business</h3>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-background/75">
+              The result: a practice that finally sees its optical operation clearly — and a patient
+              who is never left wondering.
+            </p>
+          </Reveal>
         </div>
-        <Reveal delay={200} className="mt-8 flex flex-wrap items-center gap-3">
-          <CTAButton to="/integrations" variant="ghost">
-            View all integrations
-          </CTAButton>
-          <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-            Interested in integrating with LensFlow?
-            <ArrowRight className="h-3 w-3" />
-          </span>
-        </Reveal>
-      </Section>
+      </LfSection>
 
-      <InfrastructureSection />
-      <WhyLensFlow />
-      <BuiltForMore />
-      <TrustSection />
-      <FinalCTA />
+      <LfSection>
+        <LfEyebrow>Connectivity</LfEyebrow>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
+          Built to connect with the optical ecosystem.
+        </h2>
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Two different kinds of connection — and we are careful about which is which.
+        </p>
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <Reveal className="rounded-3xl border border-border bg-card p-7 sm:p-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Practice systems
+            </p>
+            <h3 className="mt-3 font-display text-xl font-semibold">
+              LensFlow works alongside your existing practice system.
+            </h3>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {["Eyefinity", "Crystal PM", "RevolutionEHR", "Compulink", "More"].map((name) => (
+                <span key={name} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium">
+                  {name}
+                </span>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+              These are environments LensFlow is designed to operate alongside. Practices do not need
+              to wait for their EHR provider to approve a specific integration before they can
+              benefit from LensFlow.
+            </p>
+          </Reveal>
+          <Reveal delay={80} className="rounded-3xl border border-signal/30 bg-foreground p-7 text-background sm:p-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-signal-soft">
+              Lab connectivity
+            </p>
+            <p className="mt-5 font-display text-3xl font-semibold">Ocuco</p>
+            <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-background/50">
+              lab management connectivity
+            </p>
+            <span className="mt-4 inline-flex rounded-full border border-signal/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-signal-soft">
+              Connected
+            </span>
+            <p className="mt-5 text-sm leading-relaxed text-background/75">
+              LensFlow's connectivity with Ocuco helps create a digital bridge between participating
+              optical laboratories and practices using LensFlow.
+            </p>
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-background/45">
+              Additional laboratory connections expanding
+            </p>
+            <div className="mt-6">
+              <LfButton to="/for-labs" variant="ghost" className="border-white/15 bg-white/5 text-background hover:border-signal/50">
+                Become a LensFlow lab partner
+              </LfButton>
+            </div>
+          </Reveal>
+        </div>
+      </LfSection>
+
+      <FinalBand
+        eyebrow="Now onboarding"
+        title="Use LensFlow today. Get even more automation tomorrow."
+        body="Twenty minutes is enough to see the whole loop: create an order, watch it reach the lab, and watch the patient get updated."
+        primary={{ to: "/contact", label: "Request early access" }}
+        secondary={{ to: "/for-labs", label: "For optical labs" }}
+      />
     </>
   );
 }

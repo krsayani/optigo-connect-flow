@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Reveal } from "@/components/site/reveal";
-import { PageHero, Section, SectionHeading } from "@/components/site/primitives";
-import { FinalCTA } from "@/components/site/sections";
+import { FinalBand, LfEyebrow, LfPageHero, LfSection } from "@/components/site/lf";
 import { MeetTheFounders } from "@/components/site/meet-the-founders";
+import { Reveal } from "@/components/site/reveal";
 
-const TITLE = "About LensFlow | Infrastructure for Modern Optometry";
+const TITLE = "About us | LensFlow";
 const DESC =
-  "LensFlow was founded around a simple observation: optical technology has advanced, but the workflows connecting practices, laboratories, and patients remain fragmented.";
+  "We are building the plumbing eyecare should have had a decade ago — one shared optical order between the systems that already exist.";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -24,54 +23,70 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
+const principles = [
+  {
+    title: "Meet the industry where it is",
+    body: "Nobody is switching EHRs or lab systems because a startup asked. We build adapters instead of ultimatums.",
+  },
+  {
+    title: "One record, not four opinions",
+    body: "Every dispute in optical ordering starts with two systems disagreeing. We collapse them into a single shared order.",
+  },
+  {
+    title: "Both sides have to win",
+    body: "A network only compounds when practices and labs each get more than they give. We design every feature against that test.",
+  },
+  {
+    title: "Privacy is not a feature",
+    body: "Least-privilege access, encryption in transit and at rest, and a complete audit trail are table stakes, not upsells.",
+  },
+];
+
+const timeline = [
+  ["01 · Started", "Built after watching the same Rx get typed three times in one afternoon."],
+  ["02 · Partnered", "Integration partnership with Ocuco LMS to deliver jobs natively into labs."],
+  ["03 · Live", "Multiple labs and practices onboarded and routing real orders."],
+  ["04 · Next", "Deeper EHR coverage and richer patient-facing tracking across the network."],
+];
+
 function AboutPage() {
   return (
     <>
-      <PageHero
-        eyebrow="About"
-        title={
-          <>
-            Built by people who{" "}
-            <span className="text-gradient">understand the problem.</span>
-          </>
-        }
-        body="LensFlow was founded around a simple observation: optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building LensFlow to change that."
+      <LfPageHero
+        eyebrow="About us"
+        title="We are building the plumbing eyecare should have had a decade ago."
+        body="LensFlow is a small, deliberately focused software team. We do one thing: make an optical order travel cleanly between the systems that already exist."
       />
-
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-          <SectionHeading
-            eyebrow="Our approach"
-            title="We're building infrastructure, not another portal."
-            body="LensFlow's architecture is intended to connect multiple EHR systems, optical laboratories, practices, and patients — so the industry gains a shared connectivity layer rather than one more disconnected login."
-          />
-          <Reveal delay={120} className="space-y-4">
-            {[
-              {
-                t: "Start where the friction is highest",
-                b: "Optical ordering is one of the most fragmented workflows in optometry. That's the wedge.",
-              },
-              {
-                t: "Design for many participants",
-                b: "Practices, EHRs, laboratories, and patients each need a different view of the same order.",
-              },
-              {
-                t: "Build for what's next",
-                b: "Today's workflow is only the beginning of what a connected optometry industry can look like.",
-              },
-            ].map((item) => (
-              <div key={item.t} className="rounded-2xl border border-border bg-mist p-6">
-                <h3 className="text-base font-semibold text-navy">{item.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.b}</p>
-              </div>
-            ))}
-          </Reveal>
+      <LfSection>
+        <LfEyebrow>Principles</LfEyebrow>
+        <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">
+          How we make decisions.
+        </h2>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+          {principles.map((item, i) => (
+            <Reveal key={item.title} delay={i * 50} className="rounded-3xl border border-border bg-card p-6 sm:p-7">
+              <h3 className="font-display text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            </Reveal>
+          ))}
         </div>
-      </Section>
-
+      </LfSection>
+      <LfSection className="bg-secondary/40">
+        <LfEyebrow>Where we are</LfEyebrow>
+        <h2 className="mt-4 font-display text-3xl font-semibold sm:text-5xl">
+          Early, but already live.
+        </h2>
+        <div className="mt-12 grid gap-4">
+          {timeline.map(([k, v], i) => (
+            <Reveal key={k} delay={i * 40} className="rounded-3xl border border-border bg-card p-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal">{k}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v}</p>
+            </Reveal>
+          ))}
+        </div>
+      </LfSection>
       <MeetTheFounders compact />
-
-      <FinalCTA />
+      <FinalBand title="Get in touch" primary={{ to: "/contact", label: "Request early access" }} />
     </>
   );
 }
