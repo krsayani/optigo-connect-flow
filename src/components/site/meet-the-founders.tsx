@@ -26,6 +26,8 @@ const people: Array<{
   {
     name: "Salman Jiwani",
     detail: "Multi-Location Practice Owner",
+    image: "/founders/salman-jiwani.jpg",
+    alt: "Salman Jiwani, Co-Founder of LensFlow",
   },
 ];
 
