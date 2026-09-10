@@ -36,17 +36,6 @@ const founders = people.map((person, i) => ({
   role: i === 0 ? "Founder" : "Co-Founder",
 }));
 
-function initials(name: string) {
-  return name
-    .replace(/^Dr\.\s+/i, "")
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
-
 export function MeetTheFounders({ compact = false }: { compact?: boolean }) {
   return (
     <LfSection id="founders">
@@ -75,9 +64,9 @@ export function MeetTheFounders({ compact = false }: { compact?: boolean }) {
                     className="h-full w-full object-cover object-top"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center">
-                    <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-foreground font-display text-2xl font-semibold text-background">
-                      {initials(person.name)}
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-secondary via-accent/40 to-signal/15">
+                    <span className="font-display text-lg font-semibold tracking-tight text-muted-foreground sm:text-xl">
+                      Coming Soon
                     </span>
                   </div>
                 )}

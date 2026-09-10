@@ -23,6 +23,7 @@ import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WhatWeDoRouteImport } from './routes/what-we-do'
@@ -97,6 +98,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/platform': typeof PlatformRoute
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
+  '/team': typeof TeamRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/what-we-do': typeof WhatWeDoRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/team'
     | '/technology'
     | '/terms'
     | '/what-we-do'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/team'
     | '/technology'
     | '/terms'
     | '/what-we-do'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/platform'
     | '/privacy'
     | '/signup'
+    | '/team'
     | '/technology'
     | '/terms'
     | '/what-we-do'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   PlatformRoute: typeof PlatformRoute
   PrivacyRoute: typeof PrivacyRoute
   SignupRoute: typeof SignupRoute
+  TeamRoute: typeof TeamRoute
   TechnologyRoute: typeof TechnologyRoute
   TermsRoute: typeof TermsRoute
   WhatWeDoRoute: typeof WhatWeDoRoute
@@ -351,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/technology': {
       id: '/technology'
       path: '/technology'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlatformRoute: PlatformRoute,
   PrivacyRoute: PrivacyRoute,
   SignupRoute: SignupRoute,
+  TeamRoute: TeamRoute,
   TechnologyRoute: TechnologyRoute,
   TermsRoute: TermsRoute,
   WhatWeDoRoute: WhatWeDoRoute,

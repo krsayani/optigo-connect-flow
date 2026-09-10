@@ -10,6 +10,7 @@ const nav = [
   { label: "For practices", to: "/for-practices" },
   { label: "For labs", to: "/for-labs" },
   { label: "About us", to: "/about" },
+  { label: "Team", to: "/team" },
 ] as const;
 
 export function SiteNav() {
