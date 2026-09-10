@@ -47,14 +47,18 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function MeetTheFounders() {
+export function MeetTheFounders({ compact = false }: { compact?: boolean }) {
   return (
     <Section id="founders" tone="mist">
       <SectionHeading
         align="center"
         eyebrow="Meet the Founders"
-        title="Built by people who understand the problem."
-        body="Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building LensFlow to change that."
+        title={compact ? "The team building LensFlow." : "Built by people who understand the problem."}
+        body={
+          compact
+            ? undefined
+            : "Optical technology has advanced dramatically, but many of the workflows connecting practices, laboratories, and patients remain fragmented. We're building LensFlow to change that."
+        }
       />
 
       <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">

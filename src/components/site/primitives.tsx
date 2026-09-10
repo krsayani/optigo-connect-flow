@@ -19,7 +19,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative overflow-hidden scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28",
+        "relative overflow-hidden px-5 py-20 sm:px-8 sm:py-28",
         tone === "mist" && "bg-mist",
         tone === "dark" && "surface-dark",
         className,
@@ -54,23 +54,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p
-          className={cn(
-            "eyebrow",
-            align === "center" && "flex items-center justify-center gap-3",
-            tone === "dark" ? "text-aqua" : "text-electric",
-          )}
-        >
-          {align === "center" ? (
-            <>
-              <span className="h-px w-8 bg-gradient-to-r from-transparent to-current opacity-70" />
-              {eyebrow}
-              <span className="h-px w-8 bg-gradient-to-l from-transparent to-current opacity-70" />
-            </>
-          ) : (
-            eyebrow
-          )}
-        </p>
+        <p className={cn("eyebrow", tone === "dark" && "text-aqua")}>{eyebrow}</p>
       )}
       <h2
         className={cn(
@@ -96,15 +80,11 @@ export function SectionHeading({
 
 export function CTAButton({
   to,
-  href,
-  search,
   children,
   variant = "primary",
   className,
 }: {
-  to?: string;
-  href?: string;
-  search?: Record<string, string>;
+  to: string;
   children: ReactNode;
   variant?: "primary" | "ghost" | "light" | "outline-light";
   className?: string;
@@ -119,37 +99,14 @@ export function CTAButton({
       "border border-white/25 text-on-dark hover:border-aqua hover:text-aqua",
   }[variant];
 
-  const classes = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5",
-    styles,
-    className,
-  );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        className={classes}
-        onClick={(e) => {
-          if (!href.startsWith("#")) return;
-          e.preventDefault();
-          window.history.pushState(null, "", href);
-          document
-            .getElementById(href.slice(1))
-            ?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }}
-      >
-        {children}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </a>
-    );
-  }
-
   return (
     <Link
-      to={(to || "/") as "/"}
-      search={search as never}
-      className={classes}
+      to={to as "/"}
+      className={cn(
+        "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300",
+        styles,
+        className,
+      )}
     >
       {children}
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -173,7 +130,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "lift rounded-3xl p-6 sm:p-7",
+        "lift rounded-2xl p-6",
         tone === "dark"
           ? "border border-white/10 bg-white/[0.04] backdrop-blur-sm"
           : "card-elevated",
@@ -183,7 +140,7 @@ export function FeatureCard({
       {icon && (
         <div
           className={cn(
-            "mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl",
+            "mb-5 inline-flex h-10 w-10 items-center justify-center rounded-xl",
             tone === "dark"
               ? "bg-white/10 text-aqua"
               : "bg-accent text-electric",
@@ -194,7 +151,7 @@ export function FeatureCard({
       )}
       <h3
         className={cn(
-          "text-lg font-semibold tracking-tight",
+          "text-base font-semibold",
           tone === "dark" ? "text-on-dark" : "text-navy",
         )}
       >
@@ -224,14 +181,13 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-border px-5 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-20">
-      <div className="absolute inset-0 surface-aurora" />
-      <div className="absolute inset-0 grid-mesh opacity-45" />
-      <div className="absolute -left-16 top-8 h-56 w-56 rounded-full bg-electric/20 blur-3xl animate-orb" />
+    <section className="relative overflow-hidden border-b border-border px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
+      <div className="absolute inset-0 surface-hero" />
+      <div className="absolute inset-0 grid-mesh opacity-60" />
       <div className="relative mx-auto max-w-7xl">
         <Reveal className="max-w-3xl">
-          <p className="eyebrow text-electric">{eyebrow}</p>
-          <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-navy sm:text-5xl lg:text-[3.4rem]">
+          <p className="eyebrow">{eyebrow}</p>
+          <h1 className="mt-4 text-4xl font-bold leading-[1.05] text-navy sm:text-5xl lg:text-[3.4rem]">
             {title}
           </h1>
           {body && (

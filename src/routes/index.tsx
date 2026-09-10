@@ -1,32 +1,24 @@
-import { useEffect, useState } from "react";
-import { createFileRoute, useLocation } from "@tanstack/react-router";
-import {
-  Building2,
-  GitBranch,
-  MessageSquare,
-  BarChart3,
-  Shuffle,
-  MessageSquareOff,
-  LineChart,
-  CheckCircle2,
-  Activity,
-  CreditCard,
-  Receipt,
-  DoorOpen,
-} from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight, Building2, FlaskConical } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
+import { WhyStory } from "@/components/site/why-story";
+import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
-import { Section, SectionHeading, CTAButton, FeatureCard } from "@/components/site/primitives";
-import { EcosystemStrip, WhyLensFlow } from "@/components/site/sections";
-import { MeetTheFounders } from "@/components/site/meet-the-founders";
-import { DemoForm, SignupForm, type SignupAccountType } from "@/components/site/forms";
-import { LensesIcon } from "@/components/site/lenses-icon";
-import { cn } from "@/lib/utils";
+import { OrderTracker } from "@/components/site/order-tracker";
+import { Section, SectionHeading, CTAButton } from "@/components/site/primitives";
+import {
+  EcosystemStrip,
+  InfrastructureSection,
+  WhyLensFlow,
+  BuiltForMore,
+  TrustSection,
+  FinalCTA,
+} from "@/components/site/sections";
 
-const TITLE = "LensFlow | One platform for every optical lab order";
+const TITLE = "LensFlow | The Connected Future of Optical Ordering";
 const DESC =
-  "One centralized platform for automated ordering, communication, tracking, payments, and lab intelligence—without juggling portals, spreadsheets, emails, or phone calls.";
+  "LensFlow is building modern infrastructure connecting optometry practices, EHR systems, optical laboratories, and patients through streamlined optical workflows.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,133 +36,45 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const problems = [
-  {
-    icon: <Shuffle className="h-4 w-4" />,
-    title: "Manual, inconsistent ordering",
-    body: "Staff pick labs and re-enter orders across portals—slow, error-prone, and hard to train.",
-  },
-  {
-    icon: <MessageSquareOff className="h-4 w-4" />,
-    title: "Scattered status updates",
-    body: "There's no one platform to communicate with labs or patients—progress lives in portals, calls, emails, and notes, so delays and answers get lost.",
-  },
-  {
-    icon: <LineChart className="h-4 w-4" />,
-    title: "No clear lab intelligence",
-    body: "Spend, turnaround, remakes, and lab performance stay fragmented—so leaders can't compare or control cost.",
-  },
-  {
-    icon: <DoorOpen className="h-4 w-4" />,
-    title: "Exam walkouts",
-    body: "Patients leave after the exam without buying. Without a quote they can purchase from later, that capture is gone.",
-  },
-];
-
-const heroChips = [
-  { label: "Ordering", icon: GitBranch },
-  { label: "Quotes", icon: Receipt },
-  { label: "Communication", icon: MessageSquare },
-  { label: "Tracking", icon: Activity },
-  { label: "Payments", icon: CreditCard },
-  { label: "Intelligence", icon: BarChart3 },
-] as const;
-
-const capabilities = [
-  {
-    icon: <Receipt className="h-4 w-4" />,
-    title: "Quotes they can buy from later",
-    body: "Give patients a quote before they walk out. They can purchase glasses after they leave the office—so the exam still converts.",
-  },
-  {
-    icon: <GitBranch className="h-4 w-4" />,
-    title: "Order from one place",
-    body: "LensFlow verifies each job and routes it to the right lab—pricing, turnaround, insurance, product fit, and your rules. Staff stop re-entering orders across portals.",
-  },
-  {
-    icon: <MessageSquare className="h-4 w-4" />,
-    title: "Communicate and track in one thread",
-    body: "Labs and patients hear from one platform. Status, questions, and updates live on the order—so delays and answers don’t get lost in calls and inboxes.",
-  },
-  {
-    icon: <BarChart3 className="h-4 w-4" />,
-    title: "Payments and lab intelligence",
-    body: "Invoices, spend, turnaround, remakes, and lab comparisons in one view—so leaders can compare performance and control cost.",
-  },
-];
-
 function Index() {
-  const [accountType, setAccountType] = useState<SignupAccountType | null>(null);
-  const hash = useLocation({ select: (l) => l.hash });
-
-  useEffect(() => {
-    if (!hash) return;
-    const id = hash.replace(/^#/, "");
-    const el = document.getElementById(id);
-    if (el) {
-      requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
-    }
-  }, [hash]);
-
   return (
     <>
       {/* HERO */}
-      <section id="top" className="relative scroll-mt-24 overflow-hidden px-5 pb-20 pt-10 sm:px-8 sm:pb-28 sm:pt-14">
-        <div className="absolute inset-0 surface-aurora" />
-        <div className="absolute inset-0 grid-mesh opacity-45" />
-        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-electric/25 blur-3xl animate-orb" />
-        <div className="absolute right-0 top-24 h-96 w-96 rounded-full bg-aqua/20 blur-3xl animate-orb" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-mist" />
-
+      <section className="relative overflow-hidden px-5 pb-16 pt-14 sm:px-8 sm:pb-24 sm:pt-20">
+        <div className="absolute inset-0 surface-hero" />
+        <div className="absolute inset-0 grid-mesh opacity-50" />
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.15fr] lg:gap-10">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_1.15fr] lg:gap-12">
             <div>
               <Reveal>
-                <p className="inline-flex items-center rounded-full border border-electric/20 bg-accent/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-electric">
-                  For practices and labs
-                </p>
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1.5 text-[11px] font-semibold text-navy backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-electric animate-pulse-soft" />
+                  Software infrastructure for optometry
+                </span>
               </Reveal>
-              <Reveal delay={70}>
-                <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.045em] text-navy sm:text-5xl lg:text-[3.85rem]">
-                  One platform for
+              <Reveal delay={80}>
+                <h1 className="mt-6 text-4xl font-bold leading-[1.03] text-navy sm:text-5xl lg:text-[4rem]">
+                  Optical Ordering.
                   <br />
-                  <span className="text-gradient">every optical lab order.</span>
+                  <span className="text-gradient">Reimagined.</span>
                 </h1>
               </Reveal>
-              <Reveal delay={140}>
+              <Reveal delay={160}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  One centralized platform for automated ordering, communication, tracking,
-                  payments, lab intelligence and reducing exam walkouts —without juggling
-                  portals, spreadsheets, emails, or phone calls.
+                  LensFlow connects practices, EHR systems, optical laboratories, and patients
+                  through one intelligent workflow—reducing manual work and bringing visibility
+                  to every order.
                 </p>
               </Reveal>
-              <Reveal delay={210} className="mt-8 flex flex-wrap gap-2">
-                {heroChips.map((chip) => (
-                  <span
-                    key={chip.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-3 py-1.5 text-[12px] font-semibold text-navy/80 shadow-sm backdrop-blur"
-                  >
-                    <chip.icon className="h-3.5 w-3.5 text-electric" />
-                    {chip.label}
-                  </span>
-                ))}
-              </Reveal>
-              <Reveal delay={250} className="mt-6 flex flex-wrap gap-3">
-                <CTAButton href="#get-started">Sign Up</CTAButton>
-                <CTAButton href="#contact" variant="ghost">
-                  Request a Demo
+              <Reveal delay={240} className="mt-9 flex flex-wrap gap-3">
+                <CTAButton to="/demo">Request a Demo</CTAButton>
+                <CTAButton to="/partner" variant="ghost">
+                  Become an Integration Partner
                 </CTAButton>
               </Reveal>
             </div>
 
-            <Reveal delay={160} className="relative">
-              <div
-                className="absolute inset-[4%_2%_8%] -z-10 bg-gradient-to-br from-electric/20 via-transparent to-aqua/25 blur-2xl"
-                style={{
-                  clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                  WebkitClipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-                }}
-              />
+            <Reveal delay={180}>
               <HeroFlow />
             </Reveal>
           </div>
@@ -179,308 +83,131 @@ function Index() {
 
       <EcosystemStrip />
 
-      {/* PROBLEM */}
-      <Section id="problem" tone="mist">
-        <SectionHeading
-          eyebrow="The problem"
-          title="Lab ordering is still fragmented."
-          body="Practices work with many labs—each with its own portal, catalog, pricing, and status process. Staff stitch it together by hand."
-          align="center"
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {problems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 80}>
-              <FeatureCard
-                icon={item.icon}
-                title={item.title}
-                body={item.body}
-                className="h-full"
-              />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* WHY OPTIGO EXISTS — storytelling */}
+      <WhyStory />
 
-      {/* SOLUTION */}
-      <Section id="solution">
-        <SectionHeading
-          eyebrow="The solution"
-          title="One platform for the whole workflow."
-          body="Automated ordering, communication, tracking, payments, and lab intelligence—connected across every practice and lab you work with."
-          align="center"
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((item, i) => (
-            <Reveal key={item.title} delay={i * 90}>
-              <div className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background p-7 shadow-card sm:p-8">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-electric via-electric-soft to-aqua" />
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-electric">
-                  {item.icon}
-                </span>
-                <p className="mt-5 font-mono text-[11px] tracking-[0.18em] text-electric">
-                  0{i + 1}
-                </p>
-                <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-navy">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
 
-      <WhyLensFlow />
+      {/* HOW IT WORKS */}
+      <Section tone="mist">
+        <SectionHeading
+          eyebrow="How LensFlow works"
+          title="How the connection works."
+          body="Order information moves from the practice or EHR into LensFlow, through the appropriate laboratory workflow, and back as the order progresses."
+        />
+        <HowItWorksStages />
+      </Section>
 
       {/* PRODUCT */}
-      <Section id="product" tone="mist">
+      <Section>
         <SectionHeading
           eyebrow="The product"
-          title="Every practice–lab order, in one place."
-          body="One operational surface across practices and labs—LensFlow verifies and routes orders, then keeps status, communication, payments, and performance in sync."
-          align="center"
+          title="Every optical order, in one place."
+          body="A single operational surface for optical orders across locations and connected laboratories."
         />
-        <Reveal delay={120} className="relative mt-12">
-          <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-electric/20 via-transparent to-aqua/25 blur-2xl" />
+        <Reveal delay={120} className="mt-12">
           <DashboardMockup />
         </Reveal>
         <p className="mt-5 text-center text-[11px] text-muted-foreground">
-          Interactive demo — click Overview, Orders, Messages, Payments, and more. All records are
-          fictional.
+          Product interface shown for illustration. All patient names and orders are fictional
+          demo data.
         </p>
       </Section>
 
-      {/* WHO */}
-      <Section id="who">
+      {/* VISIBILITY */}
+      <Section tone="mist">
         <SectionHeading
-          eyebrow="Who it's for"
-          title="Built for both sides of the connection."
-          body="Practices and labs—finally linked through LensFlow."
-          align="center"
+          eyebrow="Real-time visibility"
+          title="Know where every order stands."
+          body="LensFlow is being designed to give practices better visibility into the optical order lifecycle from submission through completion."
         />
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <Reveal className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
+        <OrderTracker />
+      </Section>
+
+      {/* AUDIENCE SPLIT */}
+      <Section>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Reveal className="lift flex flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
-            <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
-              Practices
+            <h3 className="mt-6 text-2xl font-bold leading-tight text-navy sm:text-3xl">
+              Less chasing.
+              <br />
+              More patient care.
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Connect your practice once and reach every lab you work with—ordering,
-              communication, and payments in one place.
+              Centralize optical orders, cut repetitive data entry, and give staff a clear view
+              of every order without another phone call.
             </p>
-            <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
-              {[
-                "One hub from your practice to many labs",
-                "Quotes patients can purchase after they leave the office",
-                "One place to communicate with labs and patients",
-                "Payments, spend, and turnaround in one view",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-electric" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-auto pt-8">
-              <a
-                href="#get-started"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setAccountType("practice");
-                  window.history.pushState(null, "", "#get-started");
-                  document.getElementById("get-started")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }}
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-electric"
-              >
-                Sign up as a practice
-              </a>
+            <div className="mt-8">
+              <CTAButton to="/for-practices">Bring LensFlow to Your Practice</CTAButton>
             </div>
           </Reveal>
 
           <Reveal
             delay={120}
-            className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
+            className="lift relative flex flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
           >
             <div className="absolute inset-0 grid-mesh-dark opacity-60" />
             <div className="relative flex flex-1 flex-col">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-aqua">
-                <LensesIcon className="h-4 w-4" />
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-aqua">
+                <FlaskConical className="h-4 w-4" />
               </span>
-              <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
-                Labs
+              <h3 className="mt-6 text-2xl font-bold leading-tight text-on-dark sm:text-3xl">
+                A better connection between labs and practices.
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Connect your lab once and receive structured orders from practices on
-                LensFlow—then talk, track, and settle in one thread.
+                Modern infrastructure designed to make digital communication between optical
+                laboratories and practices simpler, more transparent, and more scalable.
               </p>
-              <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
-                {[
-                  "Cleaner handoffs from any connected practice",
-                  "One thread instead of repetitive status calls",
-                  "One lab connection to many practices",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-8">
-                <a
-                  href="#get-started"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setAccountType("lab");
-                    window.history.pushState(null, "", "#get-started");
-                    document.getElementById("get-started")?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    });
-                  }}
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-on-dark px-5 py-3 text-sm font-semibold text-navy transition-all hover:-translate-y-0.5 hover:bg-aqua"
-                >
-                  Sign up as a lab
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      <MeetTheFounders />
-
-      {/* GET STARTED / SIGNUP */}
-      <Section id="get-started" tone="mist">
-        <SectionHeading
-          eyebrow="Sign up"
-          title="Create your LensFlow account."
-          body="Join as a practice or lab. We’ll connect you into the LensFlow network."
-          align="center"
-        />
-
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <button
-            type="button"
-            onClick={() => setAccountType("practice")}
-            aria-pressed={accountType === "practice"}
-            className={cn(
-              "relative h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
-              accountType === "practice"
-                ? "border-electric bg-accent shadow-card"
-                : "border-border bg-background hover:border-electric/40",
-            )}
-          >
-            {accountType === "practice" ? (
-              <CheckCircle2 className="absolute right-5 top-5 h-5 w-5 text-electric" />
-            ) : null}
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
-              <Building2 className="h-4 w-4" />
-            </span>
-            <h3 className="mt-4 text-lg font-bold text-navy">Practice</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Connect your practice to every lab you work with.
-            </p>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAccountType("lab")}
-            aria-pressed={accountType === "lab"}
-            className={cn(
-              "relative h-full rounded-3xl border p-6 text-left transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-electric/15 sm:p-7",
-              accountType === "lab"
-                ? "border-electric/40 surface-dark shadow-glow"
-                : "border-border bg-background hover:border-electric/40",
-            )}
-          >
-            {accountType === "lab" ? (
-              <CheckCircle2 className="absolute right-5 top-5 h-5 w-5 text-aqua" />
-            ) : null}
-            <span
-              className={cn(
-                "inline-flex h-10 w-10 items-center justify-center rounded-xl",
-                accountType === "lab" ? "bg-white/10 text-aqua" : "bg-accent text-electric",
-              )}
-            >
-              <LensesIcon className="h-4 w-4" />
-            </span>
-            <h3
-              className={cn(
-                "mt-4 text-lg font-bold",
-                accountType === "lab" ? "text-on-dark" : "text-navy",
-              )}
-            >
-              Lab
-            </h3>
-            <p
-              className={cn(
-                "mt-2 text-sm",
-                accountType === "lab" ? "text-on-dark-muted" : "text-muted-foreground",
-              )}
-            >
-              Connect your lab to practices on LensFlow.
-            </p>
-          </button>
-        </div>
-
-        {accountType && (
-          <Reveal className="mt-8 glass-panel rounded-3xl p-6 sm:p-9">
-            <SignupForm
-              accountType={accountType}
-              onChangeType={() => setAccountType(null)}
-            />
-          </Reveal>
-        )}
-      </Section>
-
-      {/* CONTACT / DEMO */}
-      <Section id="contact">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <div>
-            <SectionHeading
-              eyebrow="Request a demo"
-              title="Want a walkthrough first?"
-              body="Tell us about your practice or lab and we’ll follow up to show you LensFlow."
-            />
-            <Reveal className="mt-8 rounded-3xl border border-border bg-background p-6 shadow-card sm:p-8">
-              <DemoForm />
-            </Reveal>
-          </div>
-          <Reveal delay={100} className="space-y-4 lg:pt-16">
-            <div className="rounded-3xl border border-border bg-mist p-6">
-              <p className="eyebrow">What to expect</p>
-              <ul className="mt-4 space-y-3 text-sm text-navy/85">
-                {[
-                  "A short conversation about your current lab ordering workflow",
-                  "A walkthrough of the LensFlow experience",
-                  "Clear next steps for signup or partnership",
-                ].map((t) => (
-                  <li key={t} className="flex items-start gap-2.5">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-electric" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-3xl border border-electric/20 surface-dark p-6">
-              <p className="eyebrow text-aqua">Prefer to jump in?</p>
-              <p className="mt-3 text-sm leading-relaxed text-on-dark-muted">
-                Skip the demo and create an account above — we’ll still follow up personally.
-              </p>
-              <div className="mt-5">
-                <CTAButton href="#get-started" variant="light">
-                  Go to sign up
+              <div className="mt-8">
+                <CTAButton to="/for-labs" variant="light">
+                  Become an Integration Partner
                 </CTAButton>
               </div>
             </div>
           </Reveal>
         </div>
       </Section>
+
+      {/* INTEGRATIONS TEASER */}
+      <Section tone="mist">
+        <SectionHeading
+          eyebrow="Integrations"
+          title="Building the connected optical ecosystem."
+          body="We're actively working with industry partners to connect LensFlow with the systems practices and laboratories already use."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          {["Crystal Practice Management", "DVI", "Ocuco"].map((name, i) => (
+            <Reveal key={name} delay={i * 90}>
+              <div className="lift h-full rounded-2xl border border-border bg-background p-6">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-electric/15 to-aqua/20 font-display text-sm font-bold text-navy">
+                  {name.slice(0, 2).toUpperCase()}
+                </div>
+                <h3 className="mt-5 text-base font-semibold text-navy">{name}</h3>
+                <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-electric/25 bg-accent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-electric">
+                  Integration in development
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={200} className="mt-8 flex flex-wrap items-center gap-3">
+          <CTAButton to="/integrations" variant="ghost">
+            View all integrations
+          </CTAButton>
+          <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+            Interested in integrating with LensFlow?
+            <ArrowRight className="h-3 w-3" />
+          </span>
+        </Reveal>
+      </Section>
+
+      <InfrastructureSection />
+      <WhyLensFlow />
+      <BuiltForMore />
+      <TrustSection />
+      <FinalCTA />
     </>
   );
 }

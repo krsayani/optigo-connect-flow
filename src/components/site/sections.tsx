@@ -3,47 +3,49 @@ import {
   Cable,
   Eye,
   Sparkles,
+  ShieldCheck,
+  KeyRound,
+  ServerCog,
+  Lock,
+  FileCheck2,
   Building2,
-  Glasses,
+  Cpu,
+  FlaskConical,
+  HeartPulse,
 } from "lucide-react";
 import { Section, SectionHeading, CTAButton, FeatureCard } from "./primitives";
 import { Reveal } from "./reveal";
 import { InfrastructureGraphic } from "./infrastructure-graphic";
-import { LensesIcon } from "@/components/site/lenses-icon";
 
 /* ---------- Ecosystem strip ---------- */
 
 const ecosystem = [
-  { label: "Patient", icon: Glasses },
-  { label: "Practice", icon: Building2 },
-  { label: "Lab", icon: LensesIcon },
+  { label: "Practices", icon: Building2 },
+  { label: "EHRs", icon: Cpu },
+  { label: "Laboratories", icon: FlaskConical },
+  { label: "Patients", icon: HeartPulse },
 ];
 
 export function EcosystemStrip() {
   return (
-    <section className="relative border-y border-border bg-mist px-5 py-12 sm:px-8">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/40 to-transparent" />
+    <section className="border-y border-border bg-mist px-5 py-12 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <Reveal className="text-center">
           <p className="text-sm font-semibold tracking-tight text-navy sm:text-base">
             Built for the optical ecosystem.
           </p>
         </Reveal>
-        <Reveal delay={100} className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          {ecosystem.map((e, i) => (
-            <div key={e.label} className="flex items-center gap-3 sm:gap-4">
-              <div className="lift flex items-center gap-2.5 rounded-2xl border border-border bg-background px-4 py-3.5 shadow-card">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-accent text-electric">
-                  <e.icon className="h-4 w-4" />
-                </span>
-                <span className="text-[13px] font-semibold text-navy">{e.label}</span>
-              </div>
-              {i < ecosystem.length - 1 ? (
-                <span
-                  className="hidden h-px w-10 bg-gradient-to-r from-electric to-aqua sm:block"
-                  aria-hidden="true"
-                />
-              ) : null}
+        <Reveal
+          delay={100}
+          className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
+        >
+          {ecosystem.map((e) => (
+            <div
+              key={e.label}
+              className="lift flex items-center justify-center gap-2.5 rounded-xl border border-border bg-background px-4 py-4"
+            >
+              <e.icon className="h-4 w-4 text-electric" />
+              <span className="text-[13px] font-semibold text-navy">{e.label}</span>
             </div>
           ))}
         </Reveal>
@@ -112,18 +114,13 @@ const why = [
 export function WhyLensFlow() {
   return (
     <Section tone="mist">
-      <SectionHeading
-        align="center"
-        eyebrow="Why LensFlow"
-        title="What a shared connectivity layer changes."
-        body="Four shifts that happen when practices and labs share one place to order, communicate, and track."
-      />
+      <SectionHeading eyebrow="Why LensFlow" title="Designed as infrastructure, not another portal." />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {why.map((w, i) => (
           <Reveal key={w.title} delay={i * 80}>
             <FeatureCard
               icon={w.icon}
-              title={w.title}
+              title={w.title.toUpperCase()}
               body={w.body}
               className="h-full"
             />
@@ -234,6 +231,69 @@ export function BuiltForMore() {
             </div>
           </div>
 
+        </Reveal>
+      </div>
+    </Section>
+  );
+}
+
+/* ---------- Trust ---------- */
+
+const trust = [
+  { title: "Security-conscious architecture", icon: <ShieldCheck className="h-4 w-4" /> },
+  { title: "Responsible data handling", icon: <FileCheck2 className="h-4 w-4" /> },
+  { title: "Role-based access", icon: <KeyRound className="h-4 w-4" /> },
+  { title: "Reliable infrastructure", icon: <ServerCog className="h-4 w-4" /> },
+  { title: "Privacy-focused design", icon: <Lock className="h-4 w-4" /> },
+];
+
+export function TrustSection() {
+  return (
+    <Section tone="mist">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+        <SectionHeading
+          eyebrow="Trust"
+          title="Built with healthcare workflows in mind."
+          body="Designed with security and privacy as foundational considerations."
+        />
+        <div className="grid gap-3 sm:grid-cols-2">
+          {trust.map((t, i) => (
+            <Reveal key={t.title} delay={i * 70}>
+              <div className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3.5">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent text-electric">
+                  {t.icon}
+                </span>
+                <span className="text-[13px] font-semibold text-navy">{t.title}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ---------- Final CTA ---------- */
+
+export function FinalCTA() {
+  return (
+    <Section tone="dark">
+      <div className="absolute inset-0 grid-mesh-dark opacity-60" />
+      <div className="absolute -bottom-24 left-1/3 h-80 w-80 rounded-full bg-aqua/15 blur-3xl animate-drift" />
+      <div className="relative mx-auto max-w-3xl text-center">
+        <SectionHeading
+          align="center"
+          tone="dark"
+          title="Help build the future of optical connectivity."
+          body="Whether you're an optometry practice, optical laboratory, EHR provider, or technology partner, we'd like to hear from you."
+        />
+        <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
+          <CTAButton to="/demo" variant="light">
+            Request a Demo
+          </CTAButton>
+          <CTAButton to="/partner" variant="outline-light">
+            Partner With LensFlow
+          </CTAButton>
         </Reveal>
       </div>
     </Section>

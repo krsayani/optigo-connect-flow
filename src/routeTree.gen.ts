@@ -23,6 +23,7 @@ import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WhatWeDoRouteImport } from './routes/what-we-do'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -94,6 +95,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhatWeDoRoute = WhatWeDoRouteImport.update({
+  id: '/what-we-do',
+  path: '/what-we-do',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
+  '/what-we-do': typeof WhatWeDoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
+  '/what-we-do': typeof WhatWeDoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
+  '/what-we-do': typeof WhatWeDoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/signup'
     | '/terms'
+    | '/what-we-do'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/signup'
     | '/terms'
+    | '/what-we-do'
   id:
     | '__root__'
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/signup'
     | '/terms'
+    | '/what-we-do'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SignupRoute: typeof SignupRoute
   TermsRoute: typeof TermsRoute
+  WhatWeDoRoute: typeof WhatWeDoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -312,6 +325,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/what-we-do': {
+      id: '/what-we-do'
+      path: '/what-we-do'
+      fullPath: '/what-we-do'
+      preLoaderRoute: typeof WhatWeDoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -330,6 +350,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SignupRoute: SignupRoute,
   TermsRoute: TermsRoute,
+  WhatWeDoRoute: WhatWeDoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -22,8 +22,8 @@ const painPoints = [
   "Staff time",
 ];
 
-const lensflowSteps = [
-  "Order originates in the practice",
+const optigoSteps = [
+  "Order originates in the practice / EHR",
   "LensFlow normalizes and routes the order",
   "Laboratory workflow receives a clean handoff",
   "Status flows back to practice and patient",
@@ -79,7 +79,7 @@ export function ProblemContrast() {
         </div>
       </Reveal>
 
-      {/* WITH LENSFLOW */}
+      {/* WITH OPTIGO */}
       <Reveal
         delay={200}
         className="relative overflow-hidden rounded-3xl border border-electric/20 surface-dark p-6 sm:p-8"
@@ -99,7 +99,7 @@ export function ProblemContrast() {
           </h3>
 
           <ol className="mt-6 space-y-3">
-            {lensflowSteps.map((step) => (
+            {optigoSteps.map((step) => (
               <li
                 key={step}
                 className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3 backdrop-blur-sm"

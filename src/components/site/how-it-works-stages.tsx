@@ -1,29 +1,36 @@
 import { useEffect, useState } from "react";
-import { Cable, GitBranch, Radar } from "lucide-react";
+import { Cable, GitBranch, Radar, MessagesSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
 
 const steps = [
   {
     n: "01",
-    title: "Patient → Practice",
+    title: "Connect",
     icon: Cable,
-    body: "The patient order starts at the practice.",
-    lane: ["Patient", "Practice"],
+    body: "LensFlow connects with practice-management and EHR systems.",
+    lane: ["Practice / EHR", "LensFlow"],
   },
   {
     n: "02",
-    title: "Practice → LensFlow",
+    title: "Route",
     icon: GitBranch,
-    body: "The practice sends the order to LensFlow, which verifies and routes it.",
-    lane: ["Practice", "LensFlow"],
+    body: "Optical order information moves through a streamlined digital workflow toward the laboratory.",
+    lane: ["LensFlow", "Optical Lab"],
   },
   {
     n: "03",
-    title: "LensFlow → Lab",
+    title: "Track",
     icon: Radar,
-    body: "LensFlow sends the order to the lab, and stays in communication with the practice, lab, and patient.",
-    lane: ["LensFlow", "Lab"],
+    body: "Order status can move back through the connected ecosystem as the order progresses.",
+    lane: ["Optical Lab", "LensFlow"],
+  },
+  {
+    n: "04",
+    title: "Communicate",
+    icon: MessagesSquare,
+    body: "Practices and patients gain better visibility without relying on repetitive manual follow-up.",
+    lane: ["LensFlow", "Practice + Patient"],
   },
 ];
 
@@ -40,7 +47,7 @@ export function HowItWorksStages() {
       <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-mist p-6 sm:p-10">
         <div className="absolute inset-0 grid-mesh opacity-70" />
         <div className="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {["Patient", "Practice", "LensFlow", "Lab"].map((label, i) => (
+          {["EHR", "LensFlow", "Lab", "LensFlow", "Practice / Patient"].map((label, i) => (
             <div key={`${label}-${i}`} className="flex flex-1 items-center gap-3">
               <div
                 className={cn(
@@ -53,7 +60,7 @@ export function HowItWorksStages() {
               >
                 {label}
               </div>
-              {i < 3 && (
+              {i < 4 && (
                 <div className="relative hidden h-px w-8 bg-border sm:block">
                   <span
                     className={cn(
@@ -68,7 +75,7 @@ export function HowItWorksStages() {
         </div>
       </Reveal>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 90}>
             <button
