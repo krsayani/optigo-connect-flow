@@ -14,6 +14,7 @@ import {
   Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LensFlowMark } from "@/components/site/logo";
 
 const sidebar = [
   { label: "Overview", icon: LayoutDashboard },
@@ -159,7 +160,7 @@ export function DashboardMockup() {
         {/* sidebar */}
         <aside className="hidden w-52 shrink-0 flex-col bg-sidebar px-3 py-4 md:flex">
           <div className="flex items-center gap-2 px-2 pb-5">
-            <span className="h-6 w-6 rounded-lg bg-gradient-to-br from-electric to-aqua" />
+            <LensFlowMark className="h-6 w-6" />
             <span className="font-display text-sm font-bold text-sidebar-foreground">
               LensFlow
             </span>
