@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Building2, FlaskConical } from "lucide-react";
+import { useEffect } from "react";
+import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
+import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { HeroFlow } from "@/components/site/hero-flow";
 import { WhyStory } from "@/components/site/why-story";
@@ -7,6 +8,7 @@ import { HowItWorksStages } from "@/components/site/how-it-works-stages";
 import { DashboardMockup } from "@/components/site/dashboard-mockup";
 import { OrderTracker } from "@/components/site/order-tracker";
 import { Section, SectionHeading, CTAButton } from "@/components/site/primitives";
+import { LensesIcon } from "@/components/site/lenses-icon";
 import {
   EcosystemStrip,
   InfrastructureSection,
@@ -37,6 +39,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const hash = useLocation({ select: (l) => l.hash });
+
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.replace(/^#/, "");
+    const el = document.getElementById(id);
+    if (el) {
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
+    }
+  }, [hash]);
+
   return (
     <>
       {/* HERO */}
@@ -123,47 +136,86 @@ function Index() {
         <OrderTracker />
       </Section>
 
-      {/* AUDIENCE SPLIT */}
-      <Section>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Reveal className="lift flex flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-electric">
+      {/* WHO */}
+      <Section id="who">
+        <SectionHeading
+          eyebrow="Who it's for"
+          title="Built for both sides of the connection."
+          body="Practices and labs—finally linked through LensFlow."
+          align="center"
+        />
+        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <Reveal className="lift flex h-full flex-col rounded-3xl border border-border bg-background p-8 sm:p-10">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-electric">
               <Building2 className="h-4 w-4" />
             </span>
-            <h3 className="mt-6 text-2xl font-bold leading-tight text-navy sm:text-3xl">
-              Less chasing.
-              <br />
-              More patient care.
+            <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-navy sm:text-3xl">
+              Practices
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Centralize optical orders, cut repetitive data entry, and give staff a clear view
-              of every order without another phone call.
+              Connect your practice once and reach every lab you work with—ordering,
+              communication, and payments in one place.
             </p>
-            <div className="mt-8">
-              <CTAButton to="/for-practices">Bring LensFlow to Your Practice</CTAButton>
+            <ul className="mt-5 space-y-2.5 text-sm text-navy/85">
+              {[
+                "One hub from your practice to many labs",
+                "Quotes patients can purchase after they leave the office",
+                "One place to communicate with labs and patients",
+                "Payments, spend, and turnaround in one view",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2.5">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-electric" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-auto pt-8">
+              <Link
+                to="/signup"
+                search={{ type: "practice" }}
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-electric"
+              >
+                Sign up as a practice
+              </Link>
             </div>
           </Reveal>
 
           <Reveal
             delay={120}
-            className="lift relative flex flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
+            className="lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-electric/20 surface-dark p-8 sm:p-10"
           >
             <div className="absolute inset-0 grid-mesh-dark opacity-60" />
             <div className="relative flex flex-1 flex-col">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-aqua">
-                <FlaskConical className="h-4 w-4" />
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-aqua">
+                <LensesIcon className="h-4 w-4" />
               </span>
-              <h3 className="mt-6 text-2xl font-bold leading-tight text-on-dark sm:text-3xl">
-                A better connection between labs and practices.
+              <h3 className="mt-6 font-display text-2xl font-bold leading-tight tracking-tight text-on-dark sm:text-3xl">
+                Labs
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-on-dark-muted">
-                Modern infrastructure designed to make digital communication between optical
-                laboratories and practices simpler, more transparent, and more scalable.
+                Connect your lab once and receive structured orders from practices on
+                LensFlow—then talk, track, and settle in one thread.
               </p>
-              <div className="mt-8">
-                <CTAButton to="/for-labs" variant="light">
-                  Become an Integration Partner
-                </CTAButton>
+              <ul className="mt-5 space-y-2.5 text-sm text-on-dark/90">
+                {[
+                  "Cleaner handoffs from any connected practice",
+                  "One thread instead of repetitive status calls",
+                  "One lab connection to many practices",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-aqua" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-auto pt-8">
+                <Link
+                  to="/signup"
+                  search={{ type: "lab" }}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-on-dark px-5 py-3 text-sm font-semibold text-navy transition-all hover:-translate-y-0.5 hover:bg-aqua"
+                >
+                  Sign up as a lab
+                </Link>
               </div>
             </div>
           </Reveal>
