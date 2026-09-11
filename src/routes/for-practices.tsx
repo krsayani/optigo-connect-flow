@@ -41,7 +41,7 @@ const reasons = [
   },
   {
     title: "Keep your Practice Management System",
-    body: "LensFlow's proprietary workflow runs alongside Eyefinity, Crystal PM, RevolutionEHR, Compulink and other practice systems, so there is no migration project and no waiting on a vendor integration.",
+    body: "LensFlow's workflow runs alongside Eyefinity, Crystal PM, RevolutionEHR, Compulink and other practice systems, so there is no migration project and no waiting on a vendor integration.",
     items: ["Fits your current workflow", "No forced system change"],
   },
 ];

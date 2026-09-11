@@ -131,7 +131,7 @@ function Index() {
           <Reveal delay={80} className="rounded-3xl border border-border bg-card p-7 shadow-soft sm:p-9">
             <h3 className="font-display text-xl font-semibold">Two things, said precisely</h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              <span className="font-semibold text-foreground">Works alongside.</span> Our proprietary
+              <span className="font-semibold text-foreground">Works alongside.</span> Our
               workflow lets a practice use LensFlow regardless of its Practice Management System.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -169,7 +169,7 @@ function Index() {
         </h2>
         <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           Your practice shouldn't have to change its Practice Management System just to modernize its optical. LensFlow's
-          proprietary workflow is designed to work across different practice environments, so
+          workflow is designed to work across different practice environments, so
           optical teams can begin using LensFlow regardless of which Practice Management System they run.
         </p>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">

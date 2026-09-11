@@ -67,7 +67,7 @@ export function AdapterFlow() {
             <LensFlowMark className="h-10 w-10" />
           </div>
           <p className="mt-3 font-display text-sm font-semibold">LensFlow adapter layer</p>
-          <p className="mt-1 text-xs text-muted-foreground">proprietary normalization + validation</p>
+          <p className="mt-1 text-xs text-muted-foreground">normalization + validation</p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             {adapterBits.map((item) => (
               <span key={item} className="rounded-full bg-background px-3 py-1 text-[11px] font-medium">

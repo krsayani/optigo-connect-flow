@@ -26,7 +26,7 @@ export const Route = createFileRoute("/technology")({
 const pieces = [
   {
     title: "Works alongside any practice system",
-    body: "A proprietary workflow lets practices on Eyefinity, Crystal PM, RevolutionEHR, Compulink and others use LensFlow now. Where an approved native integration exists, the exchange gets more automated — but it is never a prerequisite.",
+    body: "LensFlow's workflow lets practices on Eyefinity, Crystal PM, RevolutionEHR, Compulink and others use LensFlow now. Where an approved native integration exists, the exchange gets more automated — but it is never a prerequisite.",
   },
   {
     title: "The normalized job object",
