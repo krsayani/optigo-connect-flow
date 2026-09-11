@@ -58,7 +58,7 @@ export function AdapterFlow() {
   return (
     <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr]">
       <div className="grid gap-3">
-        <Lane title="Practices & EHRs" kicker="any system, no rip-and-replace" items={practiceBits} />
+        <Lane title="Practices & Practice Management Systems" kicker="any system, no rip-and-replace" items={practiceBits} />
         <Lane title="Patients" kicker="automatic milestone updates" items={patientBits} />
       </div>
       <div className="flex items-center justify-center">

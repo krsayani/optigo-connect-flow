@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/reveal";
 
 const TITLE = "Contact LensFlow | Request early access";
 const DESC =
-  "Whether you run a practice, a lab, or an EHR platform, we'd like to understand how optical orders move through your world today.";
+  "Whether you run a practice, a lab, or a Practice Management System platform, we'd like to understand how optical orders move through your world today.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

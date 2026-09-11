@@ -7,7 +7,7 @@ import { Reveal } from "@/components/site/reveal";
 
 const TITLE = "LensFlow — The optical platform that works with your practice";
 const DESC =
-  "Order creation, lab communication, tracking, payments, patient updates and analytics — connected in one platform, whatever EHR your practice already runs.";
+  "Order creation, lab communication, tracking, payments, patient updates and analytics — connected in one platform, whatever Practice Management System your practice already runs.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -94,7 +94,7 @@ function Index() {
 
       <Marquee
         items={[
-          "Works alongside any EHR",
+          "Works alongside any Practice Management System",
           "Structured lab orders",
           "Ocuco lab connectivity",
           "Live order tracking",
@@ -106,16 +106,16 @@ function Index() {
       <LfSection>
         <LfEyebrow>Works alongside your system</LfEyebrow>
         <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
-          Keep your EHR. Upgrade your optical workflow.
+          Keep your Practice Management System. Upgrade your optical workflow.
         </h2>
         <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           LensFlow works alongside the systems your practice already uses, giving your optical team
           a modern ordering, lab communication, tracking, patient communication, payment and
-          analytics platform without requiring you to replace your EHR.
+          analytics platform without requiring you to replace your Practice Management System.
         </p>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal className="rounded-3xl border border-border bg-card p-7 shadow-soft sm:p-9">
-            <h3 className="font-display text-xl font-semibold">Your EHR doesn't have to change</h3>
+            <h3 className="font-display text-xl font-semibold">Your Practice Management System doesn't have to change</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Whether your practice uses Eyefinity, Crystal PM, RevolutionEHR, Compulink or another
               platform, LensFlow is designed to fit into your existing workflow.
@@ -132,7 +132,7 @@ function Index() {
             <h3 className="font-display text-xl font-semibold">Two things, said precisely</h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               <span className="font-semibold text-foreground">Works alongside.</span> Our proprietary
-              workflow lets a practice use LensFlow regardless of its EHR or PMS.
+              workflow lets a practice use LensFlow regardless of its Practice Management System.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               <span className="font-semibold text-foreground">Native integration.</span> A system
@@ -146,11 +146,11 @@ function Index() {
       <LfSection className="bg-secondary/40">
         <LfEyebrow>One platform</LfEyebrow>
         <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
-          One optical platform. Whatever EHR you use.
+          One optical platform. Whatever Practice Management System you use.
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           LensFlow sits between the practice workflow and the optical ecosystem, rather than being
-          tied to one EHR.
+          tied to one Practice Management System.
         </p>
         <div className="mt-12">
           <EcosystemHub />
@@ -168,9 +168,9 @@ function Index() {
           LensFlow meets your practice where it is.
         </h2>
         <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          Your practice shouldn't have to change its EHR just to modernize its optical. LensFlow's
+          Your practice shouldn't have to change its Practice Management System just to modernize its optical. LensFlow's
           proprietary workflow is designed to work across different practice environments, so
-          optical teams can begin using LensFlow regardless of which EHR they run.
+          optical teams can begin using LensFlow regardless of which Practice Management System they run.
         </p>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal className="rounded-3xl border border-border bg-card p-7">
@@ -179,8 +179,8 @@ function Index() {
             </p>
             <ol className="mt-5 space-y-4">
               {[
-                "Practice chooses an EHR",
-                "Practice is limited by what that EHR integrates with",
+                "Practice chooses a Practice Management System",
+                "Practice is limited by what that Practice Management System integrates with",
                 "Practice waits for vendors to build integrations",
                 "Optical workflow stays fragmented",
               ].map((item, i) => (
@@ -197,7 +197,7 @@ function Index() {
             </p>
             <ol className="mt-5 space-y-4">
               {[
-                "Your existing EHR — Eyefinity, Crystal, RevolutionEHR, Compulink or other",
+                "Your existing Practice Management System — Eyefinity, Crystal, RevolutionEHR, Compulink or other",
                 "LensFlow",
                 "Participating optical lab",
                 "Tracking, communication, payments, analytics",
@@ -216,7 +216,7 @@ function Index() {
       <LfSection className="bg-secondary/40">
         <LfEyebrow>After the sale</LfEyebrow>
         <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-[1.08] sm:text-5xl">
-          Don't change your EHR. Change what happens after the sale.
+          Don't change your Practice Management System. Change what happens after the sale.
         </h2>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           The patient buys their glasses. From that moment, LensFlow takes over the optical workflow.
@@ -270,7 +270,7 @@ function Index() {
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               These are environments LensFlow is designed to operate alongside. Practices do not need
-              to wait for their EHR provider to approve a specific integration before they can
+              to wait for their Practice Management System provider to approve a specific integration before they can
               benefit from LensFlow.
             </p>
           </Reveal>

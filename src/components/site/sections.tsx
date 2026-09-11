@@ -21,7 +21,7 @@ import { InfrastructureGraphic } from "./infrastructure-graphic";
 
 const ecosystem = [
   { label: "Practices", icon: Building2 },
-  { label: "EHRs", icon: Cpu },
+  { label: "Practice Management Systems", icon: Cpu },
   { label: "Laboratories", icon: FlaskConical },
   { label: "Patients", icon: HeartPulse },
 ];
@@ -285,7 +285,7 @@ export function FinalCTA() {
           align="center"
           tone="dark"
           title="Help build the future of optical connectivity."
-          body="Whether you're an optometry practice, optical laboratory, EHR provider, or technology partner, we'd like to hear from you."
+          body="Whether you're an optometry practice, optical laboratory, Practice Management System provider, or technology partner, we'd like to hear from you."
         />
         <Reveal delay={140} className="mt-10 flex flex-wrap justify-center gap-3">
           <CTAButton to="/demo" variant="light">

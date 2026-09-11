@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/reveal";
 
 const TITLE = "Technology | LensFlow adapter and event layer";
 const DESC =
-  "A translation layer built for a fragmented industry. LensFlow assumes eyecare will never standardize on one EHR or one LMS.";
+  "A translation layer built for a fragmented industry. LensFlow assumes eyecare will never standardize on one Practice Management System or one LMS.";
 
 export const Route = createFileRoute("/technology")({
   head: () => ({
@@ -51,7 +51,7 @@ const pieces = [
 ];
 
 const glance = [
-  ["Practice systems", "Works alongside your existing EHR"],
+  ["Practice systems", "Works alongside your existing Practice Management System"],
   ["Job schema", "One normalized optical order object"],
   ["Lab connectivity", "Ocuco connected; more expanding"],
   ["Status model", "Shared, event-sourced"],
@@ -65,7 +65,7 @@ function TechnologyPage() {
       <LfPageHero
         eyebrow="Technology"
         title="A translation layer built for a fragmented industry."
-        body="Eyecare will never standardize on one EHR or one LMS. LensFlow assumes that permanently, so a practice never has to wait on its EHR vendor to modernize its optical."
+        body="Eyecare will never standardize on one Practice Management System or one LMS. LensFlow assumes that permanently, so a practice never has to wait on its Practice Management System vendor to modernize its optical."
       />
       <LfSection>
         <AdapterFlow />

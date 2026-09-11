@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const ring = [
   { label: "Practice", icon: Building2, angle: 225 },
-  { label: "EHR", icon: Cpu, angle: 315 },
+  { label: "Practice Management System", icon: Cpu, angle: 315 },
   { label: "Laboratory", icon: FlaskConical, angle: 45 },
   { label: "Patient", icon: HeartPulse, angle: 135 },
 ];

@@ -8,8 +8,8 @@ const steps = [
     n: "01",
     title: "Connect",
     icon: Cable,
-    body: "LensFlow connects with practice-management and EHR systems.",
-    lane: ["Practice / EHR", "LensFlow"],
+    body: "LensFlow connects with Practice Management Systems.",
+    lane: ["Practice Management System", "LensFlow"],
   },
   {
     n: "02",
@@ -47,7 +47,7 @@ export function HowItWorksStages() {
       <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-mist p-6 sm:p-10">
         <div className="absolute inset-0 grid-mesh opacity-70" />
         <div className="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {["EHR", "LensFlow", "Lab", "LensFlow", "Practice / Patient"].map((label, i) => (
+          {["Practice Management System", "LensFlow", "Lab", "LensFlow", "Practice / Patient"].map((label, i) => (
             <div key={`${label}-${i}`} className="flex flex-1 items-center gap-3">
               <div
                 className={cn(

@@ -3,7 +3,7 @@ import { Building2, Cpu, FlaskConical, HeartPulse } from "lucide-react";
 
 const NODES = [
   { id: "practice", label: "Practice", icon: Building2, side: "left", y: 16 },
-  { id: "ehr", label: "EHR", icon: Cpu, side: "left", y: 78 },
+  { id: "ehr", label: "Practice Management System", icon: Cpu, side: "left", y: 78 },
   { id: "lab", label: "Optical Lab", icon: FlaskConical, side: "right", y: 16 },
   { id: "patient", label: "Patient", icon: HeartPulse, side: "right", y: 78 },
 ] as const;
@@ -16,7 +16,7 @@ const PATHS = [
   { id: "p4", d: "M 50 50 C 62 52, 66 72, 86 74", dir: 1 },
 ] as const;
 
-/** Animated PRACTICE / EHR -> OPTIGO -> LAB / PATIENT connectivity diagram. */
+/** Animated PRACTICE / Practice Management System -> OPTIGO -> LAB / PATIENT connectivity diagram. */
 export function HeroFlow() {
   const [tick, setTick] = useState(0);
   useEffect(() => {

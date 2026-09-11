@@ -378,7 +378,7 @@ const contactSchema = z.object({
 const contactTypes = [
   "Optometry practice",
   "Optical lab",
-  "EHR / technology partner",
+  "Practice Management System / technology partner",
   "Other",
 ];
 

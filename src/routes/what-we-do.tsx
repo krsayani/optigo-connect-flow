@@ -27,7 +27,7 @@ const steps = [
   {
     n: "01",
     title: "Submit",
-    body: "The optician finishes the order where they already work — inside the EHR. Nothing new to learn, no portal login.",
+    body: "The optician finishes the order where they already work — inside the Practice Management System. Nothing new to learn, no portal login.",
   },
   {
     n: "02",
@@ -61,7 +61,7 @@ const sides = [
     body: "One integration to receive clean, structured orders from every practice on the network.",
   },
   {
-    title: "EHR & LMS partners",
+    title: "Practice Management System & LMS partners",
     body: "A modern optical ordering surface you can offer your customers without building it yourself.",
   },
   {

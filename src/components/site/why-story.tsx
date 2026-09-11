@@ -90,7 +90,7 @@ function StepReentry() {
           {/* source window */}
           <div className="pop-card overflow-hidden rounded-2xl border border-border bg-background shadow-float">
             <WindowChrome
-              label="Practice / EHR"
+              label="Practice Management System"
               icon={<ClipboardList className="h-3 w-3 text-electric" />}
             />
             <div className="space-y-1.5 p-3.5">
@@ -408,7 +408,7 @@ function OptigoFlow() {
         <div className="relative text-center">
           <h3 className="text-xl font-bold text-on-dark sm:text-2xl">One entry. Every loop closed.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-on-dark-muted">
-            Enter the order once in your EHR. LensFlow routes it to the lab and keeps the patient
+            Enter the order once in your Practice Management System. LensFlow routes it to the lab and keeps the patient
             informed at every step.
           </p>
         </div>
@@ -492,7 +492,7 @@ function OptigoFlow() {
                 <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
                   <Monitor className="h-5 w-5" />
                 </span>
-                <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+                <p className="mt-3 text-xs font-semibold text-on-dark">Practice Management System</p>
                 <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
               </div>
             </div>
@@ -582,7 +582,7 @@ function OptigoFlow() {
             <span className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.08] text-on-dark">
               <Monitor className="h-5 w-5" />
             </span>
-            <p className="mt-3 text-xs font-semibold text-on-dark">Practice EHR</p>
+            <p className="mt-3 text-xs font-semibold text-on-dark">Practice Management System</p>
             <p className="mt-1 text-[10px] text-on-dark-muted">Enter once</p>
           </div>
 
